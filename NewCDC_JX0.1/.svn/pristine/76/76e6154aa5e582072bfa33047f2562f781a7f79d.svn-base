@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/glay" >
+
+    <RelativeLayout
+        android:id="@+id/title_custom_deal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_height"
+        android:background="@color/gree_my" >
+
+        <Button
+            android:id="@+id/btn_back_customdeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/title_left_margin"
+            android:background="@drawable/selector_back" />
+
+        <TextView
+            android:id="@+id/textView_title_custondeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="订单记录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listview_deal"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/scrollview_margin"
+        android:layout_below="@+id/title_custom_deal"
+        android:divider="@color/transparent"
+        android:dividerHeight="@dimen/sandp"
+        android:listSelector="@color/transparent" >
+    </ListView>
+
+</RelativeLayout>

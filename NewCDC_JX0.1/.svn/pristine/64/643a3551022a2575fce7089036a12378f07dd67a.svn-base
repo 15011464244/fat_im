@@ -1,0 +1,202 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/glay"
+    tools:context=".ClctMainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/titleHeight"
+            android:background="@color/gree_my"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/back_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/collection_back"
+                    android:layout_width="@dimen/layout_height"
+                    android:layout_height="@dimen/layout_height"
+                    android:layout_gravity="center"
+                    android:background="@drawable/selector_back"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.5"
+                android:background="@drawable/selector_groupall"
+                android:clickable="true"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_group_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/buttonHeight"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title_size" />
+
+                <TextView
+                    android:id="@+id/btn_group_activity_taskshow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/buttonHeight"
+                    android:background="@null"
+                    android:maxLength="9"
+                    android:singleLine="true"
+                    android:text="未揽收"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title_size" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right" >
+
+                <Button
+                    android:id="@+id/btn_map_collection"
+                    style="@style/button_sele"
+                    android:layout_width="@dimen/titleHeight"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/location_icon"
+                    android:text="地图"
+                    android:textSize="@dimen/textSizemin" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/liushidp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/wudp" >
+
+            <Button
+                android:id="@+id/nCollection"
+                style="@style/button_sele"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/selector_pl"
+                android:text="@string/nomail_lan"
+                android:textSize="@dimen/textSizeminer" />
+
+            <Button
+                android:id="@+id/sound"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/wudp"
+                android:background="@drawable/selector_sound" />
+
+            <Button
+                android:id="@+id/collection_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/wudp"
+                android:layout_toLeftOf="@+id/sound"
+                android:background="@drawable/selector_saoma" />
+
+            <AutoCompleteTextView
+                android:id="@+id/searchtext"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="@dimen/wudp"
+                android:layout_toLeftOf="@+id/collection_scan"
+                android:layout_toRightOf="@+id/nCollection"
+                android:background="@drawable/txt_background"
+                android:completionThreshold="1"
+                android:drawableLeft="@drawable/search"
+                android:hint="搜索"
+                android:singleLine="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/iv_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:background="@drawable/needscan" />
+
+                <ImageView
+                    android:id="@+id/iv_person"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:background="@drawable/person_scan" />
+            </LinearLayout>
+
+            <com.newcdc.tools.DragListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/wudp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="@dimen/sandp"
+                android:listSelector="@color/transparent"
+                android:scrollbars="none" >
+            </com.newcdc.tools.DragListView>
+
+            <com.newcdc.ui.SwipeListView
+                android:id="@+id/fragment_count_lantou_listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/wudp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="@dimen/sandp"
+                android:listSelector="@color/transparent"
+                android:scrollbars="none"
+                android:visibility="gone" >
+            </com.newcdc.ui.SwipeListView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white" >
+
+                <Button
+                    android:id="@+id/btn_beginto_update"
+                    style="@style/button_sele"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/wushidp"
+                    android:layout_margin="@dimen/wudp"
+                    android:background="@drawable/selector_pl"
+                    android:text="开始上传"
+                    android:textSize="@dimen/title_size"
+                    android:visibility="gone" >
+                </Button>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

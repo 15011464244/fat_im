@@ -1,0 +1,246 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/weiwhite"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/layout_title_function_4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleHeight"
+        android:background="@color/gree_my"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/give_btn_money_back"
+            android:layout_width="@dimen/titleHeight"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_back" />
+
+        <TextView
+            android:id="@+id/textView_title_function_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="缴费"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/setting_margin_left_right"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:layout_marginTop="@dimen/setting_margin_left_right"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txt_deliver_moy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="投递金额:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/give_deliver_moynum"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_medium"
+                android:layout_toLeftOf="@+id/give_btn_deliverdetail_moy"
+                android:layout_toRightOf="@+id/txt_deliver_moy"
+                android:textColor="@color/gree_my"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <Button
+                android:id="@+id/give_btn_deliverdetail_moy"
+                style="@style/button_stylex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_anim"
+                android:text="明细"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/setting_margin_left_right"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:layout_marginTop="@dimen/setting_margin_left_right"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txt_gather_moy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="揽收金额:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+            <TextView
+                android:id="@+id/give_gatherdetail_moynum"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_medium"
+                android:layout_toLeftOf="@+id/give_btn_gatherdetail_moy"
+                android:layout_toRightOf="@+id/txt_gather_moy"
+                android:textColor="@color/gree_my"
+                android:textSize="@dimen/textSizeNormal" />
+            
+
+            <Button
+                android:id="@+id/give_btn_gatherdetail_moy"
+                style="@style/button_stylex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_anim"
+                android:text="明细"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/setting_margin_left_right"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:layout_marginTop="@dimen/setting_margin_left_right"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txt_yawn_moy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="记欠金额:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/give_edt_yawn_moynum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_medium"
+                android:layout_toLeftOf="@+id/give_btn_yawn_moynum"
+                android:layout_toRightOf="@+id/txt_yawn_moy"
+                android:gravity="center_vertical"
+                android:text="0.0元"
+                android:textColor="@color/gree_my"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <Button
+                android:id="@+id/give_btn_yawn_moynum"
+                style="@style/button_stylex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_anim"
+                android:text="明细"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/setting_margin_left_right"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:layout_marginTop="@dimen/setting_margin_left_right"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txt_other_moy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="其他金额:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/give_edt_other_moynum"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_medium"
+                android:layout_toLeftOf="@+id/give_btn_otherdetail"
+                android:layout_toRightOf="@+id/txt_other_moy"
+                android:gravity="center_vertical"
+                android:textColor="@color/gree_my"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <Button
+                android:id="@+id/give_btn_otherdetail"
+                style="@style/button_stylex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_anim"
+                android:text="明细"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/setting_margin_left_right"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:layout_marginTop="@dimen/setting_margin_left_right"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/give_txt_detail_moy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="实收金额:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/give_all_moynum"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_medium"
+                android:layout_toRightOf="@+id/give_txt_detail_moy"
+                android:textColor="@color/gree_my"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/give_btn_money"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/setting_margin_left_right"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:layout_marginTop="@dimen/setting_margin_top"
+            android:background="@drawable/selector_btn_big"
+            android:text="确认缴款"
+            android:textColor="@color/white"
+            android:textSize="@dimen/login_button_txtsize" />
+    </LinearLayout>
+
+</LinearLayout>

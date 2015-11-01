@@ -1,0 +1,194 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".BackMailActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleHeight"
+        android:background="@drawable/title_background" >
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="@dimen/titleHeight"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="返单件"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="@dimen/ershidp"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="邮件号 : "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/et_fanshishoukuan"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/textSizeNormal"
+                    android:textColor="@color/dialog_text"
+                    android:background="@drawable/txt_background" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" *"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shidp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大客户 : "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/et_fandakehu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal"
+                    android:background="@drawable/txt_background" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" *"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shidp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="寄达地 : "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/et_fanjidadi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal"
+                    android:background="@drawable/txt_background" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" *"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shidp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="返单号 : "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <EditText
+                    android:id="@+id/et_itemNum"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_"
+                   	android:inputType="textCapCharacters"
+                   	android:textSize="@dimen/textSizeNormal"
+                   	android:textColor="@color/dialog_text"
+                    android:hint="请输入返单号" />
+
+                <Button
+                    android:id="@+id/saoyisao"
+                    android:layout_width="45dp"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="5dip"
+                    android:background="@drawable/selector_saoma" />
+
+                <Button
+                    android:id="@+id/say"
+                    android:layout_width="45dp"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="5dip"
+                    android:background="@drawable/back_sound_selecter" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" *"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/return_bucun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sizhidp"
+                android:background="@drawable/selector_btn_big"
+                android:text="保存"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_size" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/saoma_my_normal" android:state_pressed="false"></item>
+    <item android:drawable="@drawable/saoma_my_press" android:state_pressed="true"></item>
+
+</selector>

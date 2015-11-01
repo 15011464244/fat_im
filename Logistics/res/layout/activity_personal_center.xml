@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView style="@style/DividerLineStyle" />
+
+        <LinearLayout
+            android:id="@+id/btn_icon"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/padding_20"
+            android:paddingRight="@dimen/padding_20"
+            android:background="#fff"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:text="@string/C_PHOTO"
+               	style="@style/text_list" />
+
+            <com.ems.express.ui.view.CircleImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/img_default_user"
+                app:border_color="@color/gray"
+                app:border_width="1dp" />
+            
+             <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_10"
+                android:layout_weight="0.5"
+                android:drawablePadding="@dimen/padding_10"
+                android:drawableRight="@drawable/icon_right"
+                android:gravity="right"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/font_15" />
+            
+        </LinearLayout>
+
+        <!-- <TextView style="@style/DividerLineStyle" /> -->
+        <View style="@style/line_margin_no" />
+
+    	<View style="@style/line_top_10" />
+    	
+    	 <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="150dp"
+       android:background="#fff"
+       android:orientation="vertical" >
+
+       <LinearLayout
+            android:id="@+id/btn_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/padding_10"
+            android:paddingLeft="@dimen/padding_20"
+            android:paddingRight="@dimen/padding_20"
+            android:paddingTop="@dimen/padding_10"
+             >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@string/C_NAME"
+              	 style="@style/text_list" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_10"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/padding_10"
+                android:drawableRight="@drawable/icon_right"
+                android:gravity="right"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/font_15" />
+        </LinearLayout>
+
+        <!-- <TextView style="@style/DividerLineStyle" /> -->
+          <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        style="@style/line_left_right_10"
+        android:background="@drawable/horizontal_line" />
+
+        <LinearLayout
+            android:id="@+id/btn_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/padding_10"
+            android:paddingLeft="@dimen/padding_20"
+            android:paddingRight="@dimen/padding_20"
+            android:paddingTop="@dimen/padding_10" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@string/C_PHONE"
+               style="@style/text_list" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_10"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/padding_10"
+                android:drawableRight="@drawable/icon_right"
+                android:gravity="right"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/font_15" />
+        </LinearLayout><View
+                style="@style/line_left_right_10"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@drawable/horizontal_line" />
+
+          <LinearLayout
+            android:id="@+id/btn_qrcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/padding_10"
+            android:paddingLeft="@dimen/padding_20"
+            android:paddingRight="@dimen/padding_20"
+            android:paddingTop="@dimen/padding_10" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@string/C_QR"
+               style="@style/text_list" />
+            <View 
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+            <ImageView 
+                android:id="@+id/iv_qrcode"
+                android:layout_height="30dp"
+               	android:layout_width="30dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/qrcodesmall"
+                
+                />
+            <TextView
+                android:id="@+id/tv_qrcode"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_10"
+                android:drawablePadding="@dimen/padding_10"
+                android:drawableRight="@drawable/icon_right"
+                android:gravity="right"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/font_15" />
+        </LinearLayout>
+        
+
+        <TextView style="@style/DividerLineStyle" />
+
+        <LinearLayout
+            android:id="@+id/btn_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:paddingBottom="@dimen/padding_10"
+            android:paddingLeft="@dimen/padding_20"
+            android:paddingRight="@dimen/padding_20"
+            android:paddingTop="@dimen/padding_10" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/C_ADDRESS"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_15" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_10"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/padding_10"
+                android:drawableRight="@drawable/ic_right_arrow_red"
+                android:gravity="right"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/font_15" />
+        </LinearLayout>
+        </LinearLayout>
+
+        <TextView style="@style/DividerLineStyle" />
+    </LinearLayout>
+
+</LinearLayout>

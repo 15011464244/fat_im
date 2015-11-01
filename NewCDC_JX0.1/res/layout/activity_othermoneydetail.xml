@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/weiwhite"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title_custom_deal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_height"
+        android:background="@color/gree_my" >
+
+        <Button
+            android:id="@+id/btn_back_othermoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/title_left_margin"
+            android:background="@drawable/back"
+            android:textSize="@dimen/TextSize_Button" />
+
+        <TextView
+            android:id="@+id/textView_title_custondeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="其他金额"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+        <ImageButton
+            android:id="@+id/addothermoney"
+            android:layout_width="@dimen/sanshi"
+            android:layout_height="@dimen/sanshi"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/half_padding"
+            android:layout_marginRight="@dimen/item_list_2_margintit"
+            android:layout_marginTop="@dimen/half_padding"
+            android:background="@drawable/add_defults"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/save_othermoney"
+            android:layout_width="@dimen/titleHeight"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/title_left_margin"
+            android:background="@drawable/selector_save"
+            android:textSize="@dimen/TextSize_Button" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/othermoney_lin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/left_margin"
+                android:layout_marginRight="@dimen/left_margin"
+                android:layout_marginTop="@dimen/left_margin"
+                android:orientation="vertical" >
+            </LinearLayout>
+            <TextView 
+                 android:layout_width="match_parent"
+                android:layout_height="@dimen/ershidp"
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/jiqian_money_remarks"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/login_middle_margin"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:layout_marginLeft="@dimen/padding_medium"
+            android:gravity="center_vertical"
+            android:text="修改分组"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeBig" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/map_divider"
+            android:background="@android:color/darker_gray" />
+
+        <EditText
+            android:id="@+id/editText_dialog_addgroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dialog_marginBottom"
+            android:background="@drawable/txt_background"
+            android:hint="请输入分组名字"
+            android:maxLength="10"
+            android:singleLine="true" >
+
+            <requestFocus />
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sizhidp"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/btn_cancel_dialog_addgroup"
+                    style="@style/button_sel"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/button_selecter"
+                    android:text="取消"
+                    android:textSize="@dimen/textSizeNormal" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.3"
+                android:background="@drawable/edit_bac"
+                android:orientation="horizontal"
+                android:visibility="invisible" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sizhidp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btn_commit_dialog_addgroup"
+                    style="@style/button_sel"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/button_selecter"
+                    android:text="确定"
+                    android:textSize="@dimen/textSizeNormal" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

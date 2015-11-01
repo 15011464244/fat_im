@@ -1,0 +1,320 @@
+package com.ems.express.fragment.home;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+
+import im.fir.sdk.FIR;
+import im.fir.sdk.callback.VersionCheckCallback;
+import im.fir.sdk.version.AppVersion;
+
+import com.ems.express.R;
+import com.ems.express.R.id;
+import com.ems.express.R.layout;
+import com.ems.express.ui.Home2Activity;
+import com.ems.express.ui.LoginActivity;
+import com.ems.express.ui.MyJifenActivity;
+import com.ems.express.ui.PersonalCenterActivity;
+import com.ems.express.ui.SettingActivity;
+import com.ems.express.ui.YouhuiquanListActivity;
+import com.ems.express.ui.mail.MailOrderListActivity;
+import com.ems.express.ui.send.SenderInfoActivity;
+import com.ems.express.ui.send.SenderListActivity;
+import com.ems.express.ui.view.CircleImageView;
+import com.ems.express.util.AnimationUtil;
+import com.ems.express.util.AppUpdateUtil;
+import com.ems.express.util.DialogUtils;
+import com.ems.express.util.FileUtil;
+import com.ems.express.util.LogUtil;
+import com.ems.express.util.SpfsUtil;
+import com.ems.express.util.ToastUtil;
+import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UmengUpdateListener;
+import com.umeng.update.UpdateResponse;
+import com.umeng.update.UpdateStatus;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.Toast;
+
+public class HomePersonalFragment extends Fragment implements OnScrollListener{
+	
+	private Context mContext;
+	private View view;
+	private CircleImageView userImage;
+	private TextView userSay;
+	
+	private LinearLayout myInfo;
+	private LinearLayout mailHistory;
+	private LinearLayout addSender;
+	private LinearLayout addReceiver;
+	private LinearLayout updateApp;
+	private LinearLayout setting;
+	
+	private LinearLayout myJifen;
+	private LinearLayout myYouhuiquan;
+	
+	private Dialog mDialog;
+	private File mTempFile;
+	
+	//菊花
+	private AnimationUtil animationUtil;
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		if(userSay != null){
+			userSay.setText(SpfsUtil.loadName());
+		}
+		if(userImage != null){
+			//获取头像
+			String headImageUrl = SpfsUtil.loadHeadImageUrl();
+			System.out.println("headImageUrl-----"+headImageUrl);
+			if(headImageUrl!=""){
+				Bitmap photo = BitmapFactory.decodeFile(headImageUrl);
+				userImage.setImageBitmap(photo);
+			}else{
+				Bitmap aa = BitmapFactory.decodeResource(getResources(), R.drawable.img_default_user);
+				userImage.setImageBitmap(aa);
+			}
+			
+		}
+		
+		super.onResume();
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		view = inflater.inflate(R.layout.home_personal_fragment, null);
+		mContext = this.getActivity();
+		animationUtil = new AnimationUtil(mContext, R.style.dialog_animation);
+		initView();
+		return view;
+	}
+	public void initView(){
+		userImage = (CircleImageView) view.findViewById(R.id.iv_icon);
+		//获取头像
+		String headImageUrl = SpfsUtil.loadHeadImageUrl();
+		System.out.println("headImageUrl-----"+headImageUrl);
+		if(headImageUrl!=""){
+			Bitmap photo = BitmapFactory.decodeFile(headImageUrl);
+			userImage.setImageBitmap(photo);
+		}else{
+			Bitmap aa = BitmapFactory.decodeResource(getResources(), R.drawable.default_head);
+			userImage.setImageBitmap(aa);
+		}
+		
+		
+		userSay = (TextView) view.findViewById(R.id.tv_status);
+		userSay.setText(SpfsUtil.loadName());
+		
+		myInfo = (LinearLayout) view.findViewById(R.id.ll_myinfo);
+		mailHistory = (LinearLayout) view.findViewById(R.id.ll_mail_history);
+		addSender = (LinearLayout) view.findViewById(R.id.ll_add_sender);
+		addReceiver = (LinearLayout) view.findViewById(R.id.ll_add_receiver);
+		updateApp = (LinearLayout) view.findViewById(R.id.ll_update_app);
+		setting = (LinearLayout) view.findViewById(R.id.ll_setting);
+		myJifen = (LinearLayout) view.findViewById(R.id.ll_jifen);
+		myYouhuiquan = (LinearLayout) view.findViewById(R.id.ll_youhuiquan);
+		
+		
+		userImage.setOnClickListener(listener);
+		myInfo.setOnClickListener(listener);
+		mailHistory.setOnClickListener(listener);
+		addSender.setOnClickListener(listener);
+		addReceiver.setOnClickListener(listener);
+		updateApp.setOnClickListener(listener);
+		setting.setOnClickListener(listener);
+		myJifen.setOnClickListener(listener);
+		myYouhuiquan.setOnClickListener(listener);
+		
+		//隐藏扫件
+		Home2Activity parent = (Home2Activity)getActivity();
+		parent.showScan(false);
+		parent.showSign(true);
+	}
+	
+	private OnClickListener listener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View view) {
+			switch (view.getId()) {
+			case R.id.ll_myinfo:
+				if(SpfsUtil.loadPhone().equals("")){
+					Intent intent1 = new Intent(mContext,LoginActivity.class);
+					startActivity(intent1);
+					ToastUtil.show(mContext, "请先登录");
+				}else{
+					Intent intent = new Intent(mContext, PersonalCenterActivity.class);
+					startActivity(intent);
+				}
+				break;
+			case R.id.ll_mail_history:
+				if(SpfsUtil.loadPhone().equals("")){
+					Intent noLogin = new Intent(mContext, LoginActivity.class);
+					startActivity(noLogin);
+					ToastUtil.show(mContext, "请先登录");
+				}else{
+					Intent mailIntent = new Intent(mContext, MailOrderListActivity.class);
+					startActivity(mailIntent);
+				}		
+				break;
+			case R.id.ll_add_sender:
+				if(SpfsUtil.loadPhone().equals("")){
+					Intent noLogin = new Intent(mContext, LoginActivity.class);
+					startActivity(noLogin);
+					ToastUtil.show(mContext, "请先登录");
+				}else{
+					SenderListActivity.actionStartForResult(getActivity(),SenderInfoActivity.SENDER,SenderListActivity.FROM_PERSONAL);
+				}	
+				break;
+			case R.id.ll_add_receiver:
+				if(SpfsUtil.loadPhone().equals("")){
+					Intent noLogin = new Intent(mContext, LoginActivity.class);
+					startActivity(noLogin);
+					ToastUtil.show(mContext, "请先登录");
+				}else{
+					SenderListActivity.actionStartForResult(getActivity(),SenderInfoActivity.RECEIVER,SenderListActivity.FROM_PERSONAL);
+				}	
+				break;
+			case R.id.ll_update_app:
+				//bugHd更新
+				//获取本机app的版本
+//				AppUpdateUtil appUpdateUtil = new AppUpdateUtil(mContext);
+//				PackageInfo info = appUpdateUtil.getLocalInfo();
+//				appUpdateUtil.appUpdate(info);
+			
+				
+				//友盟更新
+				//开启菊花
+				animationUtil.show();
+				UmengUpdateAgent.setUpdateOnlyWifi(false);
+//				UmengUpdateAgent.update(mContext);
+//				UmengUpdateAgent.forceUpdate(mContext);
+				
+				UmengUpdateAgent.setUpdateAutoPopup(false);
+				UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
+				    @Override
+				    public void onUpdateReturned(int updateStatus,UpdateResponse updateInfo) {
+				    	//关闭菊花
+			        	animationUtil.dismiss();
+				        switch (updateStatus) {
+				        case UpdateStatus.Yes: // has update
+				            UmengUpdateAgent.showUpdateDialog(mContext, updateInfo);
+				            break;
+				        case UpdateStatus.No: // has no update
+				            Toast.makeText(mContext, "您安装的是最新版本！", Toast.LENGTH_SHORT).show();
+				            break;
+				        case UpdateStatus.NoneWifi: // none wifi
+				            Toast.makeText(mContext, "没有wifi连接， 只在wifi下更新", Toast.LENGTH_SHORT).show();
+				            break;
+				        case UpdateStatus.Timeout: // time out
+				            Toast.makeText(mContext, "请求超时，请检查您的网络！", Toast.LENGTH_SHORT).show();
+				            break;
+				        }
+				    }
+				});
+				UmengUpdateAgent.forceUpdate(mContext);
+				
+				break;
+			case R.id.ll_setting:
+				SettingActivity.actionStart(mContext);
+				break;
+			case R.id.ll_jifen:
+				if(SpfsUtil.loadPhone().equals("")){
+					Intent intent1 = new Intent(mContext,LoginActivity.class);
+					startActivity(intent1);
+					ToastUtil.show(mContext, "请先登录");
+				}else{
+					Intent toJifen = new Intent(mContext,MyJifenActivity.class);
+					startActivity(toJifen);
+				}
+				
+				break;
+			case R.id.ll_youhuiquan:
+				if(SpfsUtil.loadPhone().equals("")){
+					Intent intent1 = new Intent(mContext,LoginActivity.class);
+					startActivity(intent1);
+					ToastUtil.show(mContext, "请先登录");
+				}else{
+					Intent toYouhuiquan = new Intent(mContext,YouhuiquanListActivity.class);
+					startActivity(toYouhuiquan);
+				}
+				break;
+			case R.id.iv_icon:
+				if(SpfsUtil.loadPhone().equals("")){
+					Intent intent1 = new Intent(mContext,LoginActivity.class);
+					startActivity(intent1);
+					ToastUtil.show(mContext, "请先登录");
+				}else{
+					Intent intent = new Intent(mContext, PersonalCenterActivity.class);
+					intent.putExtra("from", "HomeImg");
+					startActivity(intent);
+					
+//					if (mDialog != null && !mDialog.isShowing()) {
+//						mDialog.show();
+//					}
+					
+					
+//					if (!FileUtil.isSdcardReady()) {
+//						ToastUtil.show(mContext, getString(R.string.C_NO_SDCARD));
+//						return;
+//					}
+//					File mTempFile = new File(FileUtil.getTempFileName());
+//					if (mTempFile != null) {
+//						Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//						intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mTempFile));
+//						startActivityForResult(intent, PersonalCenterActivity.REQUEST_CODE_CAMERA);
+//					}
+				}
+				break;
+
+			default:
+				break;
+			}
+			
+		}
+	};
+	
+	
+
+
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem,
+			int visibleItemCount, int totalItemCount) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+}

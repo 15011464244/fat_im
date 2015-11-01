@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5" >
+
+    <include layout="@layout/header" 
+        android:id="@+id/sss"
+        />
+
+    <View
+        android:id="@+id/aaa"
+        android:layout_below="@+id/sss"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/horizontal_line" />
+
+    <View
+        android:id="@+id/bbb"
+        android:layout_below="@+id/aaa"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/horizontal_line" />
+
+    <LinearLayout
+        android:layout_below="@+id/bbb"
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/layout_china"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/bg_home_rel"
+            android:orientation="horizontal"
+            android:padding="5dp" >
+
+            <TextView
+                android:id="@+id/tex_title_"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="8dp"
+                android:layout_toLeftOf="@+id/icon_1"
+                android:gravity="center_vertical"
+                android:text="中国大陆"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/img_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="16dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="8dp"
+                android:paddingTop="16dp"
+                android:src="@drawable/icon_down"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/img_icon_next"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:padding="10.5dp"
+                android:src="@drawable/icon_right" />
+        </RelativeLayout>
+
+        <GridView
+            android:id="@+id/grid_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:listSelector="@android:color/transparent"  
+            android:background="@drawable/bg_home_rel"
+            android:numColumns="3"
+            android:visibility="gone" >
+        </GridView>
+
+        <View
+            android:id="@+id/line_1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:visibility="gone"
+            android:background="@drawable/horizontal_line" />
+
+        <View
+            android:id="@+id/line_2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/horizontal_line" />
+
+        <RelativeLayout
+            android:id="@+id/layout_other"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/bg_home_rel"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:padding="5dp" >
+
+            <TextView
+                android:id="@+id/tex_title_3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="8dp"
+                android:layout_toLeftOf="@+id/icon_1"
+                android:gravity="center_vertical"
+                android:text="港澳台"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/img_icon_3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:padding="10.5dp"
+                android:src="@drawable/icon_right" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line_3"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@drawable/horizontal_line" />
+
+        <View
+            android:id="@+id/line_4"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/horizontal_line" />
+
+        <RelativeLayout
+            android:id="@+id/layout_internation"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/bg_home_rel"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:padding="5dp" >
+
+            <TextView
+                android:id="@+id/tex_title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="8dp"
+                android:layout_toLeftOf="@+id/icon_1"
+                android:gravity="center_vertical"
+                android:text="国际"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/img_icon_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:padding="10.5dp"
+                android:src="@drawable/icon_right" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line_5"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="0.5dp"
+            android:background="@drawable/horizontal_line" />
+    </LinearLayout>
+
+   
+    
+</RelativeLayout>

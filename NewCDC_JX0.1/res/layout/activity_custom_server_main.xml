@@ -1,0 +1,154 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="@drawable/custom_server"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title_customserver"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_height"
+        android:background="@color/gree_my" >
+
+        <Button
+            android:id="@+id/btn_back_customserver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/title_left_margin"
+            android:background="@drawable/selector_back" />
+
+        <TextView
+            android:id="@+id/textView_title_custonserver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="服务记录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ershidp"
+                android:background="@color/glay_script" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/settings_back"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_medium"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="姓名："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textSizeNormal"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/name_customserver"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:background="@drawable/edit_bac"
+                        android:padding="@dimen/item_list_2_margin"
+                        android:textColor="@color/dialog_text"
+                        android:textSize="@dimen/textSizeNormal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_medium"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="电话："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textSizeNormal"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mobiles_customserver"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:background="@drawable/edit_bac"
+                        android:padding="@dimen/item_list_2_margin"
+                        android:textColor="@color/dialog_text"
+                        android:textSize="@dimen/textSizeNormal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/glay_script"
+                android:padding="@dimen/item_list_2_margin"
+                android:paddingBottom="@dimen/padding_medium"
+                android:paddingLeft="@dimen/padding_medium"
+                android:paddingTop="@dimen/padding_medium"
+                android:text="通话："
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/speak_customserver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/settings_back"
+                android:padding="@dimen/item_list_2_margin"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/glay_script"
+                android:padding="@dimen/item_list_2_margin"
+                android:paddingBottom="@dimen/padding_medium"
+                android:paddingLeft="@dimen/padding_medium"
+                android:paddingTop="@dimen/padding_medium"
+                android:text="短信："
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/msg_customserver"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+               
+                android:padding="@dimen/item_list_2_margin"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

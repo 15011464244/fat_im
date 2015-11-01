@@ -1,0 +1,227 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/titleHeight"
+            android:background="@color/gree_my"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/back_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/btn_back_fragment_deliver"
+                    android:layout_width="@dimen/layout_height"
+                    android:layout_height="@dimen/layout_height"
+                    android:layout_gravity="center"
+                    android:background="@drawable/selector_back"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.5"
+                android:clickable="true"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btn_group_fragment_deliver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/buttonHeight"
+                    android:background="@null"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:singleLine="true"
+                    android:text="基础数据下载"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_top"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/titleHeight"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="下一步动作"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/tv_NEXT_ACTN_CODE"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/selector_btn"
+                android:gravity="center"
+                android:text="下载"
+                android:textColor="@drawable/selector_btn"
+                android:textSize="@dimen/textSizeNormal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/titleHeight"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="未妥投原因"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/tv_UNDLV_CAUSE_CODE"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/selector_btn"
+                android:gravity="center"
+                android:text="下载"
+                android:textColor="@drawable/selector_btn"
+                android:textSize="@dimen/textSizeNormal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/titleHeight"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="邮件备注"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/tv_MAIL_NOTE_CODE"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/selector_btn"
+                android:gravity="center"
+                android:text="下载"
+                android:textColor="@drawable/selector_btn"
+                android:textSize="@dimen/textSizeNormal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/titleHeight"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="投递备注"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/tv_DLV_STS_CODE"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/selector_btn"
+                android:gravity="center"
+                android:text="下载"
+                android:textColor="@drawable/selector_btn"
+                android:textSize="@dimen/textSizeNormal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/titleHeight"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="转退原因"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <TextView
+                android:id="@+id/tv_TURN_BACK_CAUSE_CODE"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/selector_btn"
+                android:gravity="center"
+                android:text="下载"
+                android:textColor="@drawable/selector_btn"
+                android:textSize="@dimen/textSizeNormal" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_downdata_all"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/titleHeight"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/selector_btn_big"
+        android:gravity="center"
+        android:text="全部下载"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_size" >
+    </TextView>
+
+</RelativeLayout>

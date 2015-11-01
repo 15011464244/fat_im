@@ -1,0 +1,179 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    android:orientation="vertical" >
+	<!-- title   start -->
+	<RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff" >
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="快递帮手"
+            android:textColor="#333333"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/horizontal_line" />
+        
+        <ImageButton
+            android:id="@+id/ib_scan"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/image_scan" 
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tv_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="12dp"
+            android:text="签到"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            />
+        
+        
+        
+        
+    </RelativeLayout>
+    <!-- Title   end -->
+   <!--  <ScrollView 
+        android:id="@+id/sl_content"
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="520dp"> -->
+    <LinearLayout 
+        android:id="@+id/ll_content"
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:orientation="vertical">
+    </LinearLayout>
+   <!--  </ScrollView> -->
+    <!-- <fragment 
+        android:id="@+id/search_fragment"
+        android:name="com.ems.express.fragment.home.HomeSearchFragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@id/title"/> -->
+    
+    <!-- <fragment 
+        android:id="@+id/index_fragment"
+        android:name="com.ems.express.fragment.home.HomeIndexFragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@id/title"/> -->
+    
+   <!--  <fragment 
+        android:id="@+id/personal_fragment"
+        android:name="com.ems.express.fragment.home.HomePersonalFragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@id/title"/> -->
+   
+    
+    <!-- bottom start -->
+     <LinearLayout 
+         android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+    	android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@drawable/bottom_bg">
+        <LinearLayout 
+            android:id="@+id/ll_tosearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:padding="3dp">
+            <ImageView
+                android:id="@+id/iv_b1"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:src="@drawable/bottom_search_selector"/>
+            <TextView 
+                 android:id="@+id/tv_b1"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="查件"/>
+        </LinearLayout>
+          <LinearLayout 
+            android:id="@+id/ll_tohome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:padding="3dp">
+            <ImageView
+                 android:id="@+id/iv_b2"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:src="@drawable/bottom_home_selector"/>
+            <TextView 
+                 android:id="@+id/tv_b2"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="首页"/>
+        </LinearLayout>
+         <LinearLayout 
+            android:id="@+id/ll_topersonal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:padding="3dp">
+            <ImageView
+                 android:id="@+id/iv_b3"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:src="@drawable/bottom_personal_selector"/>
+            <TextView 
+                 android:id="@+id/tv_b3"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textSize="14sp"
+                android:text="我的"
+                android:gravity="center"
+                />
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    
+    <!-- bottom end  -->
+
+</RelativeLayout>
+
+    

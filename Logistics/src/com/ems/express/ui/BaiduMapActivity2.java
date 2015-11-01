@@ -1,0 +1,520 @@
+package com.ems.express.ui;
+
+import java.util.HashMap;
+import java.util.List;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
+
+import com.alibaba.fastjson.JSONObject;
+import com.android.volley.Request.Method;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.GsonPostParamsRequest;
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.SDKInitializer;
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.Marker;
+import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.MyLocationConfigeration;
+import com.baidu.mapapi.map.MyLocationConfigeration.LocationMode;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
+import com.ems.express.App;
+import com.ems.express.R;
+import com.ems.express.adapter.message.SendNoticeBean;
+import com.ems.express.adapter.message.SignMessageBean;
+import com.ems.express.bean.DeliveryMessageBean;
+import com.ems.express.bean.MessageCenterBean;
+import com.ems.express.constant.Constant;
+import com.ems.express.net.Carrier;
+import com.ems.express.util.AnimationUtil;
+import com.ems.express.util.DeviceUtil;
+import com.ems.express.util.DialogUtils;
+import com.ems.express.util.LogUtil;
+import com.ems.express.util.ToastUtil;
+
+public class BaiduMapActivity2 extends BaseActivityForRequest implements
+		OnClickListener, OnMarkerClickListener/*, OnWheelChangedListener*/ {
+	@SuppressWarnings("unused")
+	private static final String LTAG = BaiduMapActivity2.class.getSimpleName();
+	public final static String KEY_TYPE = "key_type";
+	private String messageIsSign;
+	//自己的坐标
+	private LatLng myLocations = null;
+	private LatLng carLocations = null;
+	private MapView mMapView;
+	private BaiduMap mBaiduMap;
+	private GeoCoder coder;
+	private String activity;
+	private String phoneNum;
+	
+	private double carLongitude;
+	private double carLatitude;
+	
+	private double myLongitude;
+	private double myLatitude;
+	
+	private TextView jumpSend;
+	
+	private String orgcode;
+	private String username;
+	
+	
+	private DeliveryMessageBean mDeliveryMessage;
+
+	private Context mContext;
+
+	private SDKReceiver mReceiver;
+
+	private SendNoticeBean mSendNoticeBean;
+	
+	private AnimationUtil util;
+	
+	private BDLocationListener myListener = new BDLocationListener() {
+
+		@Override
+		public void onReceivePoi(BDLocation location) {
+			if (location != null) {
+				System.out.println("onReceivePoi: " + location.getCity());
+				System.out.println("onReceivePoi: " + location.getProvince());
+				System.out.println("onReceivePoi: " + location.getDistrict());
+			}
+		}
+
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			if (((BaseActivityForRequest) mContext).stayThisPage) {
+				if (location != null) {
+						// 刷新地图
+						LatLng ll = new LatLng(location.getLatitude(),
+								location.getLongitude());
+						if (!"messageCenter".equals(activity)) {
+							myLocations = ll;
+//							setLocation();
+						}
+
+						if (!"signMessage".equals(activity)) {
+							myLocations = ll;
+//							setLocation();
+						}
+
+						ReverseGeoCodeOption option = new ReverseGeoCodeOption();
+						option.location(ll);
+						coder.reverseGeoCode(option);
+					}
+				}
+			}
+	};
+
+	private void addMapMark(LatLng ll) {
+		MarkerOptions markerOptions = new MarkerOptions().icon(
+				BitmapDescriptorFactory
+						.fromResource(R.drawable.location_other))
+				.position(ll);
+
+		if (mBaiduMap != null) {
+			mBaiduMap.addOverlay(markerOptions);
+
+//			mBaiduMap.setMapStatus(MapStatusUpdateFactory.zoomTo(15));
+		}
+	}
+
+	private void addMapMark2(LatLng ll) {
+		MarkerOptions markerOptions = new MarkerOptions().icon(
+				BitmapDescriptorFactory.fromResource(R.drawable.location_mine))
+				.position(ll);
+
+		if (mBaiduMap != null) {
+			mBaiduMap.addOverlay(markerOptions);
+
+//			mBaiduMap.setMapStatus(MapStatusUpdateFactory.zoomTo(15));
+		}
+	}
+
+	private void setLocation() {
+		MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(myLocations);
+		mBaiduMap.animateMapStatus(u);
+	}
+
+	Handler handler = new Handler();
+	Runnable runnable = new Runnable() {
+		@Override
+		public void run() {
+			handler.postDelayed(this, 5*1000);
+			Log.i("tag", "定时查询邮递员");
+			mBaiduMap.clear();
+			//加载自己的图标
+			if(null != myLocations){
+				addMapMark2(myLocations);
+			}
+			if ("1".equals(messageIsSign)) {
+				queryFindEmlpoyeeMessageByPhone(orgcode, username);
+			} else if ("2".equals(messageIsSign)) {
+				querySignMessage(orgcode, username);
+			}
+			carLocations = new LatLng(carLatitude, carLongitude);
+			addMapMark(carLocations);
+			MapStatus mapStatus = new MapStatus.Builder().target(carLocations)/*.zoom(18)*/
+					.build();
+			MapStatusUpdate mapStatusUpdate = MapStatusUpdateFactory
+					.newMapStatus(mapStatus);
+			mBaiduMap.setMapStatus(mapStatusUpdate);
+		}
+
+	};
+	
+
+	/**
+	 * 查询下段的信息
+	 * 
+	 * @param orgcode
+	 * @param username
+	 */
+	public void queryFindEmlpoyeeMessageByPhone(final String orgcode,
+			final String username) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("orgcode", orgcode);
+		map.put("username", username);
+		GsonPostParamsRequest<MessageCenterBean> rep = new GsonPostParamsRequest<MessageCenterBean>(
+				Method.POST, Constant.QueryNextSection, null,
+				new Listener<MessageCenterBean>() {
+					@Override
+					public void onResponse(MessageCenterBean arg0) {
+						util.dismiss();
+						LogUtil.print("获取快递员位置:"+arg0);
+						if (((BaseActivityForRequest) mContext).stayThisPage) {
+							Log.e("msg", JSONObject.toJSONString(arg0));
+							if (arg0 != null) {
+								if ("1".equals(arg0.getResult())) {
+									mDeliveryMessage = arg0.getBody()
+											.getSuccess();
+									if(mDeliveryMessage != null){
+										carLongitude = mDeliveryMessage.getLongitude();
+										carLatitude = mDeliveryMessage.getLatitude();
+									}
+									
+								} else if ("0".equals(arg0.getResult())) {
+									Log.e("BaiduMapActivity", arg0.getBody()
+											.getError());
+								}
+								
+							}
+							
+						}
+					}
+
+				}, new ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError arg0) {
+						Log.e("BaiduMapActivity",
+								"查询下段信息失败" + arg0.getMessage());
+					}
+				}, MessageCenterBean.class, map);
+		App.getQueue().add(rep);
+	}
+	
+	/**
+	 * 查询快递员
+	 * @param orgcode
+	 * @param username
+	 */
+	private void querySignMessage(final String orgcode, final String username) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("orgcode", orgcode);
+		map.put("username", username);
+		GsonPostParamsRequest<SignMessageBean> rep = new GsonPostParamsRequest<SignMessageBean>(
+				Method.POST, Constant.QueryNextSection, null,
+				new Listener<SignMessageBean>() {
+					@Override
+					public void onResponse(SignMessageBean arg0) {
+						util.dismiss();
+						LogUtil.print("获取快递员位置:"+arg0);
+						Log.e("msg", JSONObject.toJSONString(arg0));
+						if (arg0 != null) {
+							if ("1".equals(arg0.getResult())) {
+								mSendNoticeBean = arg0.getBody().getSuccess();
+								if(mSendNoticeBean != null){
+									carLongitude = mSendNoticeBean.getLongitude();
+									carLatitude = mSendNoticeBean.getLatitude();
+								}
+								Log.e("msg", carLongitude + ";" + carLatitude);
+							} else if ("0".equals(arg0.getResult())) {
+								Log.e("BaiduMapActivity", arg0.getBody()
+										.getError());
+							}
+						}
+					}
+				}, new ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError arg0) {
+						Log.e("BaiduMapActivity",
+								"查询下段信息失败" + arg0.getMessage());
+					}
+				}, SignMessageBean.class, map);
+		App.getQueue().add(rep);
+
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_location2);
+		mContext = this;
+		// 开启菊花
+		util = new AnimationUtil(this, R.style.dialog_animation);
+		
+		jumpSend = (TextView) findViewById(R.id.bt_jump_send);
+		jumpSend.setVisibility(View.GONE);
+		
+		if(!DeviceUtil.isNetworkAvailable(this)){
+			ToastUtil.show(mContext, "没有网络，请检查网络是否开启");
+		}else{
+			util.show();
+		}
+		((TextView)findViewById(R.id.tex_title)).setText("附近的快递员");
+//		setHeadTitle("快递员位置");
+		mMapView = (MapView) findViewById(R.id.bmapView);
+		
+		Intent intent = getIntent();
+		mDeliveryMessage = (DeliveryMessageBean) intent
+				.getSerializableExtra("deliveryMessage");
+		activity = intent.getStringExtra("activity");
+		phoneNum = intent.getStringExtra("phoneNum");
+		orgcode = intent.getStringExtra("orgcode");
+		username = intent.getStringExtra("username");
+		messageIsSign = intent.getStringExtra("messageIsSign");
+		mSendNoticeBean = (SendNoticeBean) intent
+				.getSerializableExtra("sendNoticeBean");
+		
+		carLongitude = intent.getDoubleExtra("LONGITUDE", 0.0);
+		carLatitude = intent.getDoubleExtra("LATITUDE", 0.0);
+		
+		mBaiduMap = mMapView.getMap();
+
+		coder = GeoCoder.newInstance();
+		coder.setOnGetGeoCodeResultListener(new OnGetGeoCoderResultListener() {
+
+			@Override
+			public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
+				if (result != null) {
+				}
+			}
+
+			@Override
+			public void onGetGeoCodeResult(GeoCodeResult result) {
+				if (result != null) {
+				}
+			}
+		});
+		
+		mBaiduMap.setOnMarkerClickListener(this);
+		LocationMode mCurrentMode = LocationMode.NORMAL;
+		mBaiduMap.setMyLocationConfigeration(new MyLocationConfigeration(
+				mCurrentMode, true, BitmapDescriptorFactory
+						.fromResource(R.drawable.icon_location_courier_map)));
+		mBaiduMap.setMaxAndMinZoomLevel(10, 18);
+		// 开启定位图层
+		mBaiduMap.setMyLocationEnabled(true);
+		// 定位初始化
+		LocationClient mLocClient = new LocationClient(getApplicationContext());
+		mLocClient.registerLocationListener(myListener);
+		LocationClientOption option = new LocationClientOption();
+		option.setOpenGps(true);// 打开gps
+		option.setCoorType("bd09ll"); // 设置坐标类型
+		option.setScanSpan(1000);
+		mLocClient.setLocOption(option);
+		mLocClient.start();
+		Log.e("ajh", "code: " + mLocClient.requestLocation());
+
+
+	}
+
+	/**
+	 * 构造广播监听类，监听 SDK key 验证以及网络异常广播
+	 */
+	public class SDKReceiver extends BroadcastReceiver {
+		public void onReceive(Context context, Intent intent) {
+			String s = intent.getAction();
+			if (s.equals(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR)) {
+				Log.e("ajh", "key 验证出错! 请在 AndroidManifest.xml 文件中检查 key 设置");
+			} else if (s
+					.equals(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR)) {
+				Log.e("ajh", "网络出错");
+			}
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		// activity 暂停时同时暂停地图控件
+		mMapView.onPause();
+		unregisterReceiver(mReceiver);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		// 注册 SDK 广播监听者
+		IntentFilter iFilter = new IntentFilter();
+		iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
+		iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
+		mReceiver = new SDKReceiver();
+		registerReceiver(mReceiver, iFilter);
+		if ("messageCenter".equals(activity)) {
+			handler.postDelayed(runnable, 5000);
+		} else if ("signMessage".equals(activity)) {
+			handler.postDelayed(runnable, 5000);
+		}
+
+		// activity 恢复时同时恢复地图控件
+		mMapView.onResume();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		// activity 销毁时同时销毁地图控件
+		coder.destroy();
+		mMapView.onDestroy();
+
+	}
+
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		
+		default:
+			break;
+		}
+	}
+
+
+	public void encryptCarrier(List<Carrier> list, String item) {
+		/*
+		 * 0 经度 1 纬度 2 联系人 3 电话 4 地址 5 IM_PUSH_ID（邮递员的IM推送用户id）6 EMPLOYEE_NO
+		 * 邮递员工号 7 code机构号 8 SID（如果头像为空则不查询此项）标识
+		 */
+		// String temp = item.substring(1, item.length() - 1);// 去掉头尾的框
+		String[] content = item.split(",");
+		Carrier carrier = new Carrier();
+		for (int i = 0; i < content.length; i++) {
+			if (i == 0)
+				try {
+					carrier.setLongitude(Double.parseDouble(content[0]));
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			if (i == 1)
+				try {
+					carrier.setLatitude(Double.parseDouble(content[1]));
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			if (i == 2)
+				carrier.setPeople(content[2]);
+			if (i == 3)
+				carrier.setMobile(content[3]);
+			if (i == 4)
+				carrier.setAddress(content[4]);
+			if (i == 5)
+				carrier.setClientId(content[5]);
+			if (i == 6)
+				carrier.setEmployeeNo(content[6]);
+			if (i == 7) {
+				carrier.setCode(content[7]);
+			}
+			if (i == 8) {
+				carrier.setSID(content[8]);
+			}
+		}
+		list.add(carrier);
+	}
+
+	@Override
+	public boolean onMarkerClick(Marker marker) {
+			if ("messageCenter".equals(activity)) {
+				Carrier car = new Carrier();
+				if (mDeliveryMessage.getSid() == null
+						|| "".equals(mDeliveryMessage.getSid())) {
+					car.setSID("null");
+				} else {
+					car.setSID(mDeliveryMessage.getSid());
+				}
+				car.setClientId(mDeliveryMessage.getChannelId());
+				if(null == phoneNum){
+					car.setMobile("");
+				}else{
+					car.setMobile(phoneNum);
+				}
+				
+				car.setPeople(mDeliveryMessage.getPeople());
+				car.setCode(mDeliveryMessage.getCode());
+				car.setEmployeeNo(mDeliveryMessage.getEmployeeNo());
+				car.setLatitude(mDeliveryMessage.getLatitude());
+				car.setLongitude(mDeliveryMessage.getLongitude());
+				DialogUtils.getCarrierDialog(car, this, myLocations);
+			}
+			if ("signMessage".equals(activity)) {
+				Carrier car = new Carrier();
+				if (mSendNoticeBean.getSid() == null
+						|| mSendNoticeBean.getSid().equals("")) {
+					car.setSID("null");
+				} else {
+					car.setSID(mSendNoticeBean.getSid());
+				}
+				car.setClientId(mSendNoticeBean.getChannelId());
+				if(null == phoneNum){
+					car.setMobile("");
+				}else{
+					car.setMobile(phoneNum);
+				}
+				car.setPeople(mSendNoticeBean.getPeople());
+				car.setCode(mSendNoticeBean.getCode());
+				car.setEmployeeNo(mSendNoticeBean.getEmployeeNo());
+				car.setLatitude(mSendNoticeBean.getLatitude());
+				car.setLongitude(mSendNoticeBean.getLongitude());
+				DialogUtils.getCarrierDialog(car, this, myLocations);
+			}
+
+		return false;
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		handler.removeCallbacks(runnable);
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+	}
+
+	
+
+}

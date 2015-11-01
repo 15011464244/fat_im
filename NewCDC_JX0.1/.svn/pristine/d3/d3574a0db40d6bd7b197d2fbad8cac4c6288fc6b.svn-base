@@ -1,0 +1,95 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="DialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground"> @android:color/transparent </item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="chat_content_date_style">
+        <item name="android:gravity">left|center</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="MySwitchButton" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/switchbutton</item>
+    </style>
+
+    <style name="MyCheckbox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_check</item>
+        <item name="android:background">@drawable/btn_check_label_background</item>
+    </style>
+
+    <style name="MyRadio" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/radio_style</item>
+        <item name="android:padding">@dimen/shidp</item>
+    </style>
+
+    <style name="Theme_Dialog_Sigin" parent="@android:Theme.Dialog">
+         <item name="android:windowBackground">@android:color/transparent</item>  
+        <item name="android:windowFrame">@null</item>  
+        <item name="android:windowNoTitle">true</item>  
+        <item name="android:windowIsFloating">true</item>  
+        <item name="android:windowIsTranslucent">true</item>  
+        <item name="android:windowContentOverlay">@null</item>  
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>  
+        <item name="android:backgroundDimEnabled">true</item>  
+        
+        <item name="android:background">@android:color/black</item>
+    </style>
+
+    <style name="dialogss" parent="@android:Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@color/touming</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="dialogtheme" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="button_stylex">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textColor">@drawable/button_anim</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="button_sel">
+        <item name="android:textColor">@drawable/button_selecter</item>
+    </style>
+
+    <style name="button_sigin">
+        <item name="android:textColor">@drawable/btn_signin_selecter</item>
+    </style>
+
+    <style name="button_sele">
+        <item name="android:textColor">@drawable/selector_mybtn</item>
+    </style>
+
+</resources>

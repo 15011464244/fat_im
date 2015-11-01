@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4c202020"
+     >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/dialog_backgroud"
+        android:orientation="vertical" >
+
+        
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
+            android:orientation="vertical" >
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/dialog_message_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="你确定删除么？"
+            android:textColor="#000"
+            android:textSize="18sp" />
+        
+        <View
+            android:id="@+id/line_1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/dialog_message_title_fragment"
+            android:background="@drawable/horizontal_line" />
+
+        <TextView
+            android:id="@+id/dialog_message_title_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+       <Button
+           android:id="@+id/message_dialog__fragment1"
+           android:layout_width="110dp"
+           android:layout_height="50dp"
+           android:layout_alignParentBottom="true"
+           android:layout_marginLeft="20dp"
+           android:layout_marginBottom="15dp"
+           android:background="@drawable/btn_dialog_two_button_determine" />
+       
+       <Button
+           android:id="@+id/message_dialog_fragment2"
+           android:layout_width="110dp"
+           android:layout_height="50dp"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentRight="true"
+           android:layout_marginRight="20dp"
+           android:layout_marginBottom="15dp"
+           android:background="@drawable/btn_dialog_two_button_cancel" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

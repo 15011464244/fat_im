@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/group_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/nocollection_pop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/shidp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="未揽收"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeSamll" />
+
+        <TextView
+            android:id="@+id/nocollection_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(1)"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeSamll" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/collection_pop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/shidp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="已揽收"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeSamll" />
+
+        <TextView
+            android:id="@+id/collection_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(1)"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeSamll" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/weishangchuan_pop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/shidp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="未上传"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeSamll" />
+
+        <TextView
+            android:id="@+id/weishangchuan_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(1)"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeSamll" />
+    </LinearLayout>
+
+</LinearLayout>

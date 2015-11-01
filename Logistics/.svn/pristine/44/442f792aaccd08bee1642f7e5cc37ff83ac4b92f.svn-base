@@ -1,0 +1,177 @@
+package com.ems.express.adapter.message;
+
+import java.util.List;
+
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.animation.Animator.AnimatorListener;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+
+import com.ems.express.R;
+import com.ems.express.R.color;
+import com.ems.express.global.GlobalVar;
+import com.ems.express.ui.BaiduMapActivity;
+import com.ems.express.ui.check.ResultActivity;
+import com.ems.express.util.DialogUtils;
+import com.ems.express.util.ToastUtil;
+
+public class OtherMessageAdapter extends BaseAdapter {
+	private LayoutInflater mInflater;
+	private Context mContext;
+	private List<ReceivePaymnetBean> mList;
+	private String messageIsSign = "2";
+	private ViewHolder holder ;
+	
+	public OtherMessageAdapter(Context context,List<ReceivePaymnetBean> list ) {
+		this.mInflater = LayoutInflater.from(context);
+		this.mContext = context;
+		this.mList = list;
+	}
+
+	@Override
+	public int getCount() {
+		if(mList != null){
+			return mList.size();
+		}
+		return mList.size();
+	}
+
+	@Override
+	public ReceivePaymnetBean getItem(int position) {
+		return mList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+	@Override
+	public int getItemViewType(int position) {
+		//消息已读
+//		if(!"0".equals(mList.get(position).getMessageStatus())){
+//			return 1;
+//		}
+		//3已取件，10已妥投，4已揽收  , 6由于邀请手机得到积分  
+		return Integer.valueOf(mList.get(position).getMailStatus());
+	}
+
+	@Override
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		final int index = position;
+		ReceivePaymnetBean bean = mList.get(index);
+		String mailStatus = bean.getMailStatus();
+//		final String sid = bean.getSid();
+		Log.e("msggg", "mailState:"+bean.getMailStatus());
+		
+		if(convertView == null){
+			holder = new ViewHolder();
+			convertView = mInflater.inflate(R.layout.mail_message_item, null);
+			holder.commonData = (TextView) convertView.findViewById(R.id.tv_time);
+			holder.messageName = (TextView) convertView.findViewById(R.id.tv_content);
+//			holder.paymentMessage = (TextView) convertView.findViewById(R.id.tv_payment_content);
+//			holder.paymentTime= (TextView) convertView.findViewById(R.id.tv_payment_time);
+			
+			holder.body = (LinearLayout)convertView.findViewById(R.id.ll_body);
+//			holder.paymentBody = (LinearLayout) convertView.findViewById(R.id.ll_payment_body);
+			holder.sysMsg = (TextView) convertView.findViewById(R.id.sys_msg);
+			holder.call = (ImageView)convertView.findViewById(R.id.iv_call);
+			holder.isNotRead = (ImageView)convertView.findViewById(R.id.iv_not_read);
+			convertView.setTag(holder);
+		}else{
+			holder = (ViewHolder) convertView.getTag();
+		}
+		//前面是否有小红点
+		if("1".equals(bean.getMessageStatus())){
+			holder.isNotRead.setVisibility(View.VISIBLE);
+		}else{
+			holder.isNotRead.setVisibility(View.GONE);
+		}
+		if("6".equals(mailStatus)){
+			//积分消息
+			convertView = hand6(mContext,convertView, bean,index);
+//			holder.isNotRead.setVisibility(View.VISIBLE);
+		}else if("7".equals(mailStatus)){
+			//支付信息
+			convertView = hand7(mContext,convertView, bean,index);
+//			holder.isNotRead.setVisibility(View.VISIBLE);
+		}
+		
+		return convertView;
+	} 
+	
+	
+
+	
+
+	
+	/*
+	 * 揽投助手通过智能平台传回来的信息
+	 */
+	private View hand7(Context mContext2, View convertView,
+			ReceivePaymnetBean bean, int index) {
+		holder.sysMsg.setText("付款信息");
+//		holder.sysMsg.setTextSize(23);
+//		holder.paymentTime.setText(""+bean.getMessageTime());
+		holder.commonData.setText(""+bean.getMessageTime());
+//		holder.messageName.setText("新注册用户"+bean.getInvitedMobile()+",使用了您的邀请手机号获取"+bean.getIntegral()+"积分");
+//		holder.messageName.setText(Html.fromHtml("<font color=\'#858585\'>订单</font><font color=\'#f02387\'><U>购物咨询</U></font>"));
+		holder.messageName.setText(Html.fromHtml("<font color=\'#858585\'>订单</font><font color=\'#ff9803\'>"+bean.getOrderNum()+"</font><font color=\'#858585\'>应付款</font><font color=\'#ff9803\'>"+bean.getPrice()+"</font><font color=\'#858585\'>元，请选择付款方式</font>"));
+//		holder.body.setVisibility(View.GONE);
+		return convertView;
+	}
+	// 积分消息
+		private View hand6(Context mContext2, View convertView,
+				ReceivePaymnetBean bean, int index) {
+//			holder.paymentBody.setVisibility(View.GONE);
+			holder.sysMsg.setText("积分消息");
+//			holder.sysMsg.setTextSize(23);
+			holder.commonData.setText(""+bean.getMessageTime());
+//			holder.messageName.setText("新注册用户"+bean.getInvitedMobile()+",使用了您的邀请手机号获取"+bean.getIntegral()+"积分");
+//			holder.messageName.setText(Html.fromHtml("<font color=\'#858585\'>购买前如有任何疑问，欢迎使用：</font><font color=\'#f02387\'><U>购物咨询</U></font>"));
+			holder.messageName.setText(Html.fromHtml("<font color=\'#858585\'>新注册用户</font><font color=\'#ff9803\'>"+bean.getInvitedMobile()+"</font><font color=\'#858585\'>,使用了您的邀请手机号获取</font><font color=\'#ff9803\'>"+bean.getIntegral()+"</font><font color=\'#858585\'>积分</font>"));
+			holder.call.setVisibility(View.GONE);
+			
+			return convertView;
+		}
+	
+	
+	
+	
+	class ViewHolder{
+		TextView commonData;
+		TextView messageName;
+//		TextView paymentMessage;
+		TextView sysMsg;
+//		TextView paymentTime;
+		ImageButton courier,delete;
+		LinearLayout body;
+//		LinearLayout paymentBody;
+		ImageView call;
+		ImageView isNotRead;
+	}
+	
+	public void notifyData(List<ReceivePaymnetBean> list){
+		mList = list;
+		this.notifyDataSetChanged();
+	}
+}

@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="@color/weiwhite" >
+
+    <RelativeLayout
+        android:id="@+id/title_custom_deal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_height"
+        android:background="@color/gree_my" >
+
+        <Button
+            android:id="@+id/btn_back_tasklist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/title_left_margin"
+            android:background="@drawable/selector_back" />
+
+        <TextView
+            android:id="@+id/textView_title_custondeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="任务列表"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/title_categry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_custom_deal"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/shiwudp"
+            android:layout_toLeftOf="@+id/txt_jt"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/task_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="新增任务"
+                android:textColor="@color/black_2"
+                android:textSize="@dimen/TextSize_listView" />
+
+            <TextView
+                android:id="@+id/task_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="任务名称"
+                android:textColor="@color/black_2"
+                android:textSize="@dimen/TextSize_listView" />
+
+            <TextView
+                android:id="@+id/task_count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="总任务"
+                android:textColor="@color/black_2"
+                android:textSize="@dimen/TextSize_listView" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_jt"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/linelisttop"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/title_categry"
+        android:layout_marginTop="@dimen/shiwudp"
+        android:background="@drawable/listview_line" />
+
+    <ListView
+        android:id="@+id/listview_tasklist"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linelisttop"
+        android:layout_marginLeft="@dimen/scrollview_margin"
+        android:layout_marginRight="@dimen/scrollview_margin"
+        android:divider="@drawable/line1"
+        android:listSelector="@color/transparent" >
+    </ListView>
+
+</RelativeLayout>

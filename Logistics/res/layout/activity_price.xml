@@ -1,0 +1,493 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical"
+     >
+	
+	<!--  <include layout="@layout/header" 
+	     android:id="@+id/price_log"/> -->
+	 <include
+        android:id="@+id/title"
+        layout="@layout/title_layout" />
+	 
+
+   <!--  <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/price_log"
+        android:background="@drawable/horizontal_line" /> -->
+	
+	
+	
+  <!--   <View
+        android:id="@+id/price_view1"
+        android:layout_below="@+id/price_log"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/horizontal_line" /> -->
+
+    <LinearLayout
+        android:id="@+id/price_view_ll"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="业务种类："
+            android:textColor="#333"
+            android:textSize="18sp" />
+
+        <RadioGroup
+            android:id="@+id/mail_type_selection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checkedButton="@+id/file"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/premium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:button="@drawable/radiobutton_selector"
+                android:checked="true"
+                android:text="标准快递"
+                android:textColor="#333"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/normal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:button="@drawable/radiobutton_selector"
+                android:text="快递包裹"
+                android:textColor="#333"
+                android:textSize="16sp" />
+        </RadioGroup>
+    </LinearLayout>
+    
+    <View style="@style/line_left_right_10"/>
+    
+    
+    
+
+   <!--  <View
+        android:id="@+id/price_view2"
+        android:layout_below="@+id/price_view_ll"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/horizontal_line" /> -->
+
+    <LinearLayout
+        android:layout_below="@+id/price_view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/record_name"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="原地址"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+            <View style="@style/line_top_10"/>
+
+            <RelativeLayout
+                android:id="@+id/layout_start_location"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="7"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="请选择寄件地址"
+                    android:textColor="#666"
+                    android:textSize="16sp" />
+
+                <!-- <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="10dp"
+                    android:padding="13dp"
+                    android:src="@drawable/icon_right" /> -->
+                    
+                <ImageView
+                   style="@style/img_dicertion"
+                    android:src="@drawable/icon_right" />
+                
+            </RelativeLayout>
+        </LinearLayout>
+        
+         <!-- 测试代码 start-->
+             <RelativeLayout
+                android:id="@+id/layout_12"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" 
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/item_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="原寄址"
+                    android:textColor="#333"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/line2"
+                    android:layout_width="1dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/item_name2"
+                    android:background="@drawable/vertical_line" />
+
+                
+            </RelativeLayout>
+            
+            <LinearLayout
+            android:id="@+id/ll_address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+             >
+<include layout="@layout/spiner_main" />
+           
+            </LinearLayout>
+            
+            <View style="@style/line_left_right_10"/>
+            
+         <!-- 测试代码 start-->
+             <RelativeLayout
+                android:id="@+id/layout_122"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" 
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/item_name22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="目的地"
+                    android:textColor="#333"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/line22"
+                    android:layout_width="1dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/item_name22"
+                    android:background="@drawable/vertical_line" />
+
+                
+            </RelativeLayout>
+            
+            <LinearLayout
+            android:id="@+id/ll_address2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+             >
+
+            <include layout="@layout/spiner_main2" />
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal" 
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="目的地"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/vertical_line" />
+
+            <RelativeLayout
+                android:id="@+id/layout_end_location"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="7"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="请选择寄件地址"
+                    android:textColor="#7a7a7a"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:padding="8dp"
+                    android:src="@drawable/icon_right" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@drawable/horizontal_line" /> -->
+            <View style="@style/line_left_right_10"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="重    量"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/vertical_line" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:text="g"
+                    android:textColor="#333"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_weight"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="77dp"
+                    android:layout_toLeftOf="@+id/textView1"
+                    android:background="@null"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="5dp"
+                    android:textColor="#666"
+                    android:textSize="16sp" >
+
+                    <requestFocus />
+                </EditText>
+            </RelativeLayout>
+        </LinearLayout>
+        
+       
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@drawable/horizontal_line" />
+
+  		<!-- <RelativeLayout
+            android:id="@+id/layout_query"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/submit_button_selector2"
+            android:gravity="center" > -->
+
+            <!-- <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/icon_query"
+                android:gravity="center"
+                android:text="查询"
+                android:textColor="#333"
+                android:textSize="18sp" />
+        </RelativeLayout -->
+        <TextView
+           	android:id="@+id/layout_query"
+            style="@style/BtnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/padding_20"
+            android:text="查询" />
+
+       <!--  <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@drawable/horizontal_line" /> -->
+
+        <LinearLayout
+            android:id="@+id/layout_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="产品名："
+                    android:textColor="#333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_product"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:textColor="#333"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+          
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp" >
+                
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="重量(g)："
+                    android:textColor="#333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:textColor="#333"
+                    android:textSize="16sp" />
+                
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="运费(元)："
+                    android:textColor="#333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_final_price"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:textColor="#333"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:paddingLeft="8dp"
+            android:paddingRight="18dp"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="运费查询其他说明"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/icon_right" />
+        </RelativeLayout>
+    </LinearLayout>
+   
+
+</LinearLayout>

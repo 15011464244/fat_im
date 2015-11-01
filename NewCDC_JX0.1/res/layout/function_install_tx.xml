@@ -1,0 +1,297 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_height"
+        android:background="@color/gree_my"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ll_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:padding="10dp" >
+
+            <Button
+                android:id="@+id/btn_back_function_install"
+                android:layout_width="@dimen/buttonBackWidth"
+                android:layout_height="@dimen/buttonBackHeight"
+                android:layout_gravity="center"
+                android:background="@drawable/selector_back"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_title_function_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/padding_left"
+            android:text="@string/activity_setting_tx"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_dingwei"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/setting_tx_margin_left"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/setting_tx_margin_left"
+            android:text="定位提醒"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/setting_margin_left_right" >
+
+            <CheckBox
+                android:id="@+id/cb_dingwei"
+                style="@style/MySwitchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_dw"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/wudp"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/tv_time_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/setting_tx_margin_left"
+                android:text="时        间："
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <EditText
+                android:id="@+id/et_dw_time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/tv_time_right"
+                android:layout_toRightOf="@+id/tv_time_left"
+                android:background="@drawable/txt_background"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/tv_time_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="@dimen/title_left_margin"
+                android:text="分"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/wudp"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_distance_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/setting_tx_margin_left"
+                android:text="距        离："
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <EditText
+                android:id="@+id/et_dw_distance"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/tv_distance_right"
+                android:layout_toRightOf="@+id/tv_distance_left"
+                android:background="@drawable/txt_background"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/tv_distance_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="@dimen/title_left_margin"
+                android:text="米"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/setting_tx_margin_left"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/setting_tx_margin_left"
+            android:text="预警提醒"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/setting_margin_left_right" >
+
+            <CheckBox
+                android:id="@+id/cb_yujing"
+                style="@style/MySwitchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_yj"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/wudp"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/time_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/setting_tx_margin_left"
+                android:text="投递时间："
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <EditText
+                android:id="@+id/et_yj_td_time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/time_right"
+                android:layout_toRightOf="@+id/time_left"
+                android:background="@drawable/txt_background"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/time_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="@dimen/title_left_margin"
+                android:text="分"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_yujing_time"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/wudp"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/time_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/setting_tx_margin_left"
+                android:text="揽收时间："
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+
+            <EditText
+                android:id="@+id/et_yj_ls_time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/time_right"
+                android:layout_toRightOf="@+id/time_left"
+                android:background="@drawable/txt_background"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/time_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="@dimen/title_left_margin"
+                android:text="分"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/tv_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/setting_margin_left_right"
+        android:layout_marginRight="@dimen/setting_margin_left_right"
+        android:layout_marginTop="@dimen/setting_margin_top"
+        android:background="@drawable/selector_btn_big"
+        android:gravity="center"
+        android:text="@string/activity_setting_save"
+        android:textColor="@color/white"
+        android:textSize="@dimen/login_button_txtsize" />
+
+</LinearLayout>

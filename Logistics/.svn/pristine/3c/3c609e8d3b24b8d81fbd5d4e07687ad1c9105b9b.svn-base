@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#eeeeee" >
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title_layout" />
+    <!-- <ListView 
+        android:id="@+id/lv_senderlist"
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:footerDividersEnabled="false"
+    	android:divider="@null"
+    	>
+    </ListView> -->
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+          android:id="@+id/lv_senderlist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+       android:divider="@null"
+       android:footerDividersEnabled="false"/>
+    
+    
+</LinearLayout>

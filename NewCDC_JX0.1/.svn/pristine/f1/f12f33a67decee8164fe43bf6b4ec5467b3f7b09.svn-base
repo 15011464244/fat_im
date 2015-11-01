@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleHeight"
+        android:background="@color/gree_my" >
+
+        <ImageView
+            android:id="@+id/btn_back_function_install"
+            android:layout_width="@dimen/titleHeight"
+            android:layout_height="fill_parent"
+            android:background="@drawable/back" />
+
+        <TextView
+            android:id="@+id/textView_title_function_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="设置"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+        <Button
+            android:id="@+id/btn_saoma_content_1"
+            android:layout_width="@dimen/titleHeight"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/add_defults"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/setting_margin_left_right"
+        android:layout_marginRight="@dimen/setting_margin_left_right"
+        android:layout_marginTop="@dimen/setting_margin_top" >
+
+        <com.newcdc.ui.RoundImageView
+            android:id="@+id/iv_head"
+            android:layout_width="@dimen/img_height_width"
+            android:layout_height="@dimen/img_height_width"
+            android:background="@drawable/headimg"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginLeft="@dimen/setting_margin_left_right"
+            android:layout_toRightOf="@+id/iv_head"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/tv_nicname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/left_margin"
+                    android:text="姓名"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="工号:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/left_margin"
+                    android:text="工号"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="手机号:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <Button
+                    android:id="@+id/btn_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/left_margin"
+                    android:background="@drawable/button_selecter"
+                    android:gravity="center"
+                    android:text="18734821423"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- 提醒设置 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/setting_margin_left_right"
+        android:layout_marginRight="@dimen/setting_margin_left_right"
+        android:layout_marginTop="@dimen/setting_margin_top"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/paddingleft"
+            android:text="@string/activity_setting_tx"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/tv_update_tx"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:layout_marginLeft="@dimen/setting_margin_left"
+            android:layout_weight="2.5"
+            android:background="@drawable/selector_btn"
+            android:gravity="center"
+            android:text="@string/activity_setting_edit"
+            android:textColor="@drawable/selector_btn"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/setting_margin_left_right"
+        android:layout_marginRight="@dimen/setting_margin_left_right"
+        android:layout_marginTop="@dimen/setting_margin_top"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/btn_bluetooth"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:layout_weight="1"
+            android:background="@drawable/selector_btn"
+            android:gravity="center"
+            android:paddingLeft="@dimen/paddingleft"
+            android:text="蓝牙配对"
+            android:textColor="@drawable/selector_btn"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/txt_bluetooth_conn"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:layout_marginLeft="@dimen/setting_margin_left"
+            android:layout_weight="2.5"
+            android:background="@drawable/selector_btn"
+            android:gravity="center"
+            android:text="连接"
+            android:textColor="@drawable/selector_btn"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+    <!-- 蓝牙打印机绑定 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/setting_margin_left_right"
+        android:layout_marginRight="@dimen/setting_margin_left_right"
+        android:layout_marginTop="@dimen/setting_margin_top"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/paddingleft"
+            android:text="@string/activity_setting_bind_pda"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <LinearLayout
+            android:id="@+id/tv_pda"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:layout_marginLeft="@dimen/setting_margin_left"
+            android:layout_weight="2.5"
+            android:gravity="center" >
+
+            <CheckBox
+                android:id="@+id/cb_pda"
+                style="@style/MySwitchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 清除缓存 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/setting_margin_left_right"
+        android:layout_marginRight="@dimen/setting_margin_left_right"
+        android:layout_marginTop="@dimen/setting_margin_top"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/paddingleft"
+            android:text="@string/activity_setting_update_cache"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/tv_clean_cache"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:layout_marginLeft="@dimen/setting_margin_left"
+            android:layout_weight="2.5"
+            android:background="@drawable/selector_btn"
+            android:gravity="center"
+            android:text="@string/activity_setting_cache"
+            android:textColor="@drawable/selector_btn"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/setting_margin_left_right"
+        android:layout_marginRight="@dimen/setting_margin_left_right"
+        android:layout_marginTop="@dimen/setting_margin_top"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/setting_button_height"
+            android:background="@color/transparent"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/paddingleft"
+            android:text="@string/activity_setting_version"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/setting_button_height"
+            android:layout_marginLeft="@dimen/setting_margin_left"
+            android:gravity="center"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeSamll" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_loginout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/setting_margin_left_right"
+        android:layout_marginRight="@dimen/setting_margin_left_right"
+        android:layout_marginTop="@dimen/setting_margin_top"
+        android:background="@drawable/selector_btn_big"
+        android:text="@string/activity_setting_logout"
+        android:textColor="@color/white"
+        android:textSize="@dimen/login_button_txtsize"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_updatepassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/setting_margin_left_right"
+        android:layout_marginRight="@dimen/setting_margin_left_right"
+        android:layout_marginTop="@dimen/setting_margin_top"
+        android:background="@drawable/selector_btn_big"
+        android:text="修改密码"
+        android:textColor="@color/white"
+        android:textSize="@dimen/login_button_txtsize" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/setting_margin_left_right"
+            android:layout_marginRight="@dimen/setting_margin_left_right"
+            android:layout_marginTop="@dimen/setting_margin_top"
+            android:background="@drawable/selector_btn_big"
+            android:text="退出登录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/login_button_txtsize" />
+</LinearLayout>

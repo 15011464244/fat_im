@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_task_list"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/item_left1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/fragment_countlantou_item_kehu1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="客户1:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeNormal"
+                android:visibility="gone" />
+            
+            <RelativeLayout
+                android:id="@+id/fragment_count_item_danhao_relat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/wudp" >
+
+                <TextView
+                    android:id="@+id/fragment_count_item_danhao1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="单号:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/fragment_countlantou_item_danhao"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/wudp"
+                    android:layout_toRightOf="@+id/fragment_count_item_danhao1"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </RelativeLayout>
+            
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/wudp" >
+
+                <TextView
+                    android:id="@+id/fragment_count_item_number1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="邮件号:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/fragment_countlantou_item_number"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/wudp"
+                    android:layout_toRightOf="@+id/fragment_count_item_number1"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/wudp" >
+
+                <TextView
+                    android:id="@+id/fragment_count_item_address1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="寄达地:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/fragment_countlantou_item_address"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/wudp"
+                    android:layout_toRightOf="@+id/fragment_count_item_address1"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:id="@+id/fragment_count_item_zhongliang_relat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                         android:visibility="gone"
+                        android:layout_marginTop="@dimen/wudp" >
+
+                        <TextView
+                            android:id="@+id/fragment_count_item_zhongliang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="重量:"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textSizeNormal" />
+
+                        <TextView
+                            android:id="@+id/fragment_count_item_zhongliang1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/wudp"
+                            android:layout_toRightOf="@+id/fragment_count_item_zhongliang"
+                            android:textColor="@color/dialog_text"
+                            android:textSize="@dimen/textSizeNormal" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/fragment_count_item_money_relat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/wudp" >
+
+                        <TextView
+                            android:id="@+id/fragment_count_item_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="实收款:"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textSizeNormal" />
+
+                        <TextView
+                            android:id="@+id/fragment_count_item_money1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/wudp"
+                            android:layout_toRightOf="@+id/fragment_count_item_money"
+                            android:text="111111"
+                            android:textColor="@color/dialog_text"
+                            android:textSize="@dimen/textSizeNormal" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_count_item_zhudanhao2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/wudp"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/fragment_count_item_zhudanhao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="主单号:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/fragment_count_item_zhudanhao1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/wudp"
+                    android:layout_toRightOf="@+id/fragment_count_item_zhudanhao"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/item_right1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/gree_my" >
+
+        <TextView
+            android:id="@+id/item_right_txt1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+</LinearLayout>

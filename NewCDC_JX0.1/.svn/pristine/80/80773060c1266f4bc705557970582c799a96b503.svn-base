@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/jiqian_money_remarks"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleHeight"
+        android:gravity="center"
+        android:text="电话补录"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSizeBig" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/map_divider"
+        android:background="@color/glay" />
+
+    <EditText
+        android:id="@+id/dia__edit_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dialog_marginBottom"
+        android:background="@drawable/edit_bac"
+        android:hint="请输入电话号码"
+        android:inputType="phone"
+        android:padding="@dimen/padding_medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSizeNormal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/info_call_cancel"
+            style="@style/button_sel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sizhidp"
+            android:layout_margin="@dimen/dialog_marginBottom"
+            android:layout_weight="1"
+            android:background="@drawable/button_selecter"
+            android:text="取消"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <Button
+            android:id="@+id/info_call_sure"
+            style="@style/button_sel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sizhidp"
+            android:layout_margin="@dimen/dialog_marginBottom"
+            android:layout_weight="1"
+            android:background="@drawable/button_selecter"
+            android:text="确定"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4c202020"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:text="北京西站"
+            android:textColor="#000"
+            android:textSize="20sp" />
+        <View
+            android:id="@+id/line_1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@drawable/horizontal_line" />
+
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp"
+            >
+        
+        <TextView
+            android:id="@+id/dialog_people"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:gravity="center_vertical"
+            android:text="联系人：小雨"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/dialog_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:gravity="center_vertical"
+            android:text="电话：18623451239"
+            android:textColor="#000"
+            android:textSize="20sp" />
+        
+        <TextView 
+            android:id="@+id/dialog_start_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:gravity="center_vertical"
+            android:text="开门时间：09:00"
+            android:textColor="#000"
+            android:textSize="20sp"
+            />
+        <TextView 
+            android:id="@+id/dialog_stop_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:gravity="center_vertical"
+            android:text="关门时间：18:00"
+            android:textColor="#000"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:id="@+id/dialog_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:gravity="center_vertical"
+            android:text="地址：北京市朝阳区育慧里小区74号"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        
+</LinearLayout>
+        <Button
+            android:id="@+id/dialog_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_phone_call"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+             />
+    </LinearLayout>
+
+</RelativeLayout>

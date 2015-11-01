@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/jiqian_money_remarks"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/txt_tit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_margin="@dimen/wudp"
+        android:gravity="center"
+        android:text="发短信"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSizeBig" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/map_divider"
+        android:background="@color/glay" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_middle_margin"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1000dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/custom_dia_centercall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeNormal" />
+
+                <TextView
+                    android:id="@+id/custom_dia_centercall_repeat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/textSizeNormal"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_frequence"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/titleHeight"
+                android:layout_marginTop="@dimen/login_middle_margin"
+                android:layout_marginLeft="@dimen/login_middle_margin"
+                android:layout_marginRight="@dimen/login_middle_margin"
+                android:orientation="horizontal" 
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeNormal"
+                    android:text="下段频次:" />
+
+                <Spinner
+                    android:id="@+id/sp_frequence"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/login_middle_margin"
+                    android:background="@drawable/spinner_bg"
+                    android:paddingLeft="@dimen/liushidp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/TextSize_Button"
+                android:orientation="horizontal" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sizhidp"
+                    android:layout_weight="1" >
+
+                    <Button
+                        android:id="@+id/info_cancel"
+                        style="@style/button_sel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/button_selecter"
+                        android:text="取消"
+                        android:textSize="@dimen/textSizeNormal" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.3"
+                    android:background="@drawable/edit_bac"
+                    android:orientation="horizontal"
+                    android:visibility="invisible" >
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sizhidp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/info_sure"
+                        style="@style/button_sel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/button_selecter"
+                        android:text="确定"
+                        android:textSize="@dimen/textSizeNormal" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

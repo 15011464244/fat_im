@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="ClickableViewAccessibility">
+        <ignore path="src/com/ems/logistics/MainActivity.java" />
+    </issue>
+    <issue id="HandlerLeak">
+        <ignore path="src/com/ems/logistics/MainActivity.java" />
+    </issue>
+    <issue id="InflateParams">
+        <ignore path="src/com/ems/logistics/adapter/chat/ChatBoxMessageAdapter.java" />
+    </issue>
+    <issue id="SdCardPath" severity="ignore" />
+    <issue id="SimpleDateFormat">
+        <ignore path="src/com/ems/logistics/util/DateTimeUtil.java" />
+    </issue>
+</lint>

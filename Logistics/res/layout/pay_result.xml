@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:background="#FFE1E8EB"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
+    
+	<TextView
+	    android:layout_width="fill_parent"
+	 	android:layout_height="fill_parent"
+		android:gravity="center"
+	 	android:textColor="#ff000000"
+	 	android:textSize="20dp"
+	 	android:text="这个界面显示第三方app显示的结果"/>
+	
+</LinearLayout>

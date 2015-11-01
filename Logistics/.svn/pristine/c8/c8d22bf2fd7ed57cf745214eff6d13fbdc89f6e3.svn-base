@@ -1,0 +1,788 @@
+package com.ems.express.ui.send;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.android.volley.Request.Method;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.ems.express.App;
+import com.ems.express.R;
+import com.ems.express.bean.City;
+import com.ems.express.bean.PeopleInfo;
+import com.ems.express.constant.Constant;
+import com.ems.express.net.MyRequest;
+import com.ems.express.ui.BaseActivityForRequest;
+import com.ems.express.ui.ServiceRangeSelectActivity;
+import com.ems.express.util.AnimationUtil;
+import com.ems.express.util.DialogUtils;
+import com.ems.express.util.ParamsUtil;
+import com.ems.express.util.SpfsUtil;
+import com.ems.express.util.ToastUtil;
+import com.lidroid.xutils.util.LogUtils;
+
+public class SenderInfoActivity extends BaseActivityForRequest implements OnClickListener{
+
+	public static final int SENDER = 1;
+	public static final int RECEIVER = 2;
+	public static final String INFO_TYPE = "type";
+	public static int type;
+	public static int from;
+	
+	private Intent intent;
+
+	private int mType;
+	
+//	RangeSelectUtil rsUtil;
+	
+	int proindex = 0;
+	int cityindex = 0;
+	int countyindex = 0;
+	
+
+	@InjectView(R.id.et_name)
+	EditText mEtName;
+	@InjectView(R.id.et_phone)
+	EditText mEtPhone;
+	@InjectView(R.id.tv_zone)
+	TextView mTvZone;
+	@InjectView(R.id.et_location)
+	EditText mEtLocation;
+	@InjectView(R.id.et_location2)
+	TextView mEtLocation2;
+	@InjectView(R.id.ll_location_select)
+	LinearLayout mLls;
+	@InjectView(R.id.query_address)
+	ListView mLvQuery;
+	@InjectView(R.id.iv_zone)
+	ImageView mIvZone;
+	
+	
+	@InjectView(R.id.bt_select)
+	Button btSelect;
+	
+	@InjectView(R.id.ll_main)
+	LinearLayout llmain;
+	
+	private Context mContext;
+	private City mProv;
+	private City mCity;
+	private City mCounty;
+	
+	private List<String> mData = new ArrayList<String>();
+	ArrayAdapter mAdapter;
+	Boolean flag = true;
+	
+	Boolean isFirstLoad = true;
+	
+	private AnimationUtil animationUtil;
+	
+	
+	private Spinner provinceSpinner = null;  //省级（省、直辖市）
+    private Spinner citySpinner = null;     //地级市
+    private Spinner countySpinner = null;    //县级（区、县、县级市）
+    
+    
+    ArrayAdapter<Object> provinceAdapter = null;  //省级适配器
+    ArrayAdapter<Object> cityAdapter = null;    //地级适配器
+    ArrayAdapter<Object> countyAdapter = null;    //县级适配器
+    static int provincePosition = 3;
+    
+	
+
+	public static void actionStart(Context context, int flag) {
+		type = flag;
+		Intent intent = new Intent(context, SenderInfoActivity.class);
+		intent.putExtra(INFO_TYPE, flag);
+		context.startActivity(intent);
+	}
+	public static void actionStartForResult(Context context,int flag) {
+		type = flag;
+		Intent intent = new Intent(context, SenderInfoActivity.class);
+		intent.putExtra(INFO_TYPE, flag);
+		context.startActivity(intent);
+	}
+	
+	
+	public static void actionStartForResult(Context context,PeopleInfo info, int flag) {
+		type = flag;
+		Intent intent = new Intent(context, SenderInfoActivity.class);
+		if(info != null){
+			intent.putExtra("info", info);
+		}
+		intent.putExtra(INFO_TYPE, flag);
+		context.startActivity(intent);
+	}
+
+
+	public void back(View v) {
+		finish();
+	}
+	
+	
+    //保存信息
+	public void storeInfo(View v) {
+		if (mProv == null) {
+			ToastUtil.show(mContext, "请选择省份");
+			return;
+		}
+		if (mCity == null) {
+			ToastUtil.show(mContext, "请选择城市");
+			return;
+		}
+		if (mCounty == null) {
+			ToastUtil.show(mContext, "请选择区县");
+			return;
+		}
+		if (mEtName.getText().toString().isEmpty()) {
+			ToastUtil.show(mContext, "请填写姓名");
+			return;
+		}
+		boolean mobileNO = DialogUtils.isMobileNO(mEtPhone.getText().toString());
+		if (mEtPhone.getText().toString().isEmpty()) {
+			ToastUtil.show(mContext, "请填写电话");
+			return;
+		}
+		if(mobileNO==false){
+			ToastUtil.show(mContext, "请检查电话是否正确");
+			return;
+		}
+		if (mEtLocation2.getText().toString().isEmpty()) {
+			ToastUtil.show(mContext, "请填写详细地址");
+			return;
+		}
+		PeopleInfo senderInfo = new PeopleInfo();
+		senderInfo.setName(mEtName.getText().toString().trim());
+		senderInfo.setPhone(mEtPhone.getText().toString().trim());
+		senderInfo.setProv(mProv.getName());
+		senderInfo.setCity(mCity.getName());
+		senderInfo.setCounty(mCounty.getName());
+		senderInfo.setProvCode(mProv.getCode() + "");
+		senderInfo.setCityCode(mCity.getCode() + "");
+		senderInfo.setCountyCode(mCounty.getCode() + "");
+		senderInfo.setLocation(mEtLocation2.getText().toString().trim());
+		senderInfo.setType(type);
+		senderInfo.setIsDef(0);
+		Intent intent2 = new Intent();
+		intent2.putExtra("info", senderInfo);
+		intent2.putExtra("from", from);
+		//传进来的寄件人
+		PeopleInfo info = (PeopleInfo) this.intent.getSerializableExtra("info");
+		if(info == null){
+			//保存寄件人，收件人
+//			App.dbHelper.addSender(App.db, senderInfo);
+			saveSender(senderInfo, SpfsUtil.loadPhone());
+		}else{
+			//修改寄件人信息
+			senderInfo.setId(info.getId());
+//			App.dbHelper.updateSender(App.db, senderInfo);
+			senderInfo.setId(info.getId());
+			senderInfo.setUserId(info.getUserId());
+			editSender(senderInfo, SpfsUtil.loadPhone());
+		}
+		setResult(RESULT_OK, intent2);
+		finish();
+	}
+	
+	/**
+	 * 保存寄件人
+	 * @param senderInfo
+	 */
+	private void saveSender(PeopleInfo senderInfo,String phone){
+		//开启菊花
+		animationUtil.show();
+		HashMap<String, Object> json = new HashMap<String, Object>();
+		json.put("mobile", phone);
+		json.put("userType", senderInfo.getType());
+		json.put("userName", senderInfo.getName());
+		json.put("userTel", senderInfo.getPhone());
+		json.put("provCode", senderInfo.getProvCode());
+		json.put("cityCode", senderInfo.getCityCode());
+		json.put("countyCode", senderInfo.getCountyCode());
+		json.put("address", senderInfo.getLocation());
+		json.put("prov", senderInfo.getProv());
+		json.put("city", senderInfo.getCity());
+		json.put("county", senderInfo.getCounty());
+		String params = ParamsUtil.getUrlParamsByMap(json);
+		MyRequest<Object> req = new MyRequest<Object>(Request.Method.POST, null, Constant.saveSender,
+				new Response.Listener<Object>() {
+
+					@Override
+					public void onResponse(Object arg0) {
+						LogUtils.e("saveSender_response == "+arg0+"");
+						if(((BaseActivityForRequest)mContext).stayThisPage){
+							//关闭菊花
+							animationUtil.dismiss();
+						}
+						//请求成功
+//						if(((BaseActivityForRequest)mContext).stayThisPage){
+							String result = (String) arg0;
+							JSONObject object = JSONObject.parseObject(result.toString());
+							if (object.getInteger("result") == 1) {
+								ToastUtil.show(mContext, "保存成功");
+							} else {
+								//请求失败
+								ToastUtil.show(mContext,object.getString("errorMsg"));
+							}
+//						}
+					}
+				
+				}, new Response.ErrorListener() {
+
+					@Override
+					public void onErrorResponse(VolleyError arg0) {
+						if(((BaseActivityForRequest)mContext).stayThisPage){
+							//关闭菊花
+							animationUtil.dismiss();
+						}
+						Toast.makeText(mContext, "请求异常!", Toast.LENGTH_LONG).show();
+						arg0.printStackTrace();
+					}
+				}, params);
+		App.getQueue().add(req);
+	}
+	
+	/**
+	 * 编辑寄件人
+	 * @param senderInfo
+	 */
+	private void editSender(PeopleInfo senderInfo,String phone){
+		//开启菊花
+		animationUtil.show();
+		HashMap<String, Object> json = new HashMap<String, Object>();
+		json.put("sid", senderInfo.getId());
+		json.put("userId", senderInfo.getUserId());
+		json.put("mobile", phone);
+		json.put("userType", senderInfo.getType());
+		json.put("userName", senderInfo.getName());
+		json.put("userTel", senderInfo.getPhone());
+		json.put("provCode", senderInfo.getProvCode());
+		json.put("cityCode", senderInfo.getCityCode());
+		json.put("countyCode", senderInfo.getCountyCode());
+		json.put("address", senderInfo.getLocation());
+		json.put("prov", senderInfo.getProv());
+		json.put("city", senderInfo.getCity());
+		json.put("county", senderInfo.getCounty());
+		String params = ParamsUtil.getUrlParamsByMap(json);
+		MyRequest<Object> req = new MyRequest<Object>(Request.Method.POST, null, Constant.editSender,
+				new Response.Listener<Object>() {
+
+					@Override
+					public void onResponse(Object arg0) {
+						LogUtils.e("saveSender_response == "+arg0+"");
+						if(((BaseActivityForRequest)mContext).stayThisPage){
+							//关闭菊花
+							animationUtil.dismiss();
+						}
+						//请求成功
+//						if(((BaseActivityForRequest)mContext).stayThisPage){
+							String result = (String) arg0;
+							JSONObject object = JSONObject.parseObject(result.toString());
+							if (object.getInteger("result") == 1) {
+								ToastUtil.show(mContext, "保存成功");
+							} else {
+								//请求失败
+								ToastUtil.show(mContext,object.getString("errorMsg"));
+							}
+//						}
+					}
+				
+				}, new Response.ErrorListener() {
+
+					@Override
+					public void onErrorResponse(VolleyError arg0) {
+						if(((BaseActivityForRequest)mContext).stayThisPage){
+							//关闭菊花
+							animationUtil.dismiss();
+						}
+						Toast.makeText(mContext, "请求异常!", Toast.LENGTH_LONG).show();
+						arg0.printStackTrace();
+					}
+				}, params);
+		App.getQueue().add(req);
+	}
+	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_sender_info);
+		mContext = this;
+		ButterKnife.inject(this);
+		animationUtil = new AnimationUtil(this, R.style.dialog_animation);
+		
+		intent = getIntent();
+		mType = intent.getIntExtra(INFO_TYPE, SENDER);
+		type = mType;
+		from = intent.getIntExtra("from", SenderListActivity.FROM_SEND);
+		((TextView) findViewById(R.id.tv_title))
+				.setText(mType == SENDER ? "寄件人信息" : "收件人信息");
+		mEtLocation2.setOnClickListener(this);
+		
+		mTvZone.setOnClickListener(this);
+		
+//		mTvZone2.setOnClickListener(this);
+//		mIvZone2.setOnClickListener(this);
+		btSelect.setOnClickListener(this);
+		
+		mIvZone.setOnClickListener(this);
+		mAdapter = new ArrayAdapter<String>(mContext,
+				R.layout.simple_list_item_query, mData);
+		mLvQuery.setAdapter(mAdapter);
+		mLvQuery.setVisibility(View.GONE);
+		mLvQuery.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				flag = false;
+				mLvQuery.setVisibility(View.GONE);
+				mEtLocation.setText(mData.get(position));
+				
+				mEtLocation2.setText(mData.get(position));
+				mLls.setVisibility(View.GONE);
+//				mLl.setVisibility(View.GONE);
+				llmain.setVisibility(View.VISIBLE);
+				//强制隐藏键盘 
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(SenderInfoActivity.this.getCurrentFocus().getWindowToken(), 0); 
+			}
+		});
+		mEtLocation.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (flag)
+					getQueryAddress(s);
+				flag = true;
+			}
+
+		});
+		
+
+		mEtName.setOnClickListener(this);
+		mEtPhone.setOnClickListener(this);
+		mTvZone.setOnClickListener(this);
+		mEtLocation.setOnClickListener(this);
+		
+		initData();
+		setSpinner();
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		if(animationUtil.isShowing()){
+			animationUtil.dismiss();
+		}
+	}
+	
+	private List<City> proList;
+	private List<City> cityList;
+	private List<City> countyList;
+	
+	  /*
+     * 设置下拉框
+     */
+    private void setSpinner()
+    {        
+    	  provinceSpinner = (Spinner)findViewById(R.id.spin_province);
+          citySpinner = (Spinner)findViewById(R.id.spin_city);
+          countySpinner = (Spinner)findViewById(R.id.spin_county);
+          
+    	if(null == mProv ||null == mCity ||null == mCounty){
+    		proList = App.dbHelper.queryProvinceList(App.db);
+        	mProv = proList.get(0);
+        	cityList = App.dbHelper.queryCityList(App.db,mProv.getCode()+"");
+        	mCity = cityList.get(0);
+        	countyList = App.dbHelper.queryCountyList(App.db,mCity.getCode()+"");
+        	mCounty = countyList.get(0);
+    	}else{
+    		//初始化信息
+    		proList = App.dbHelper.queryProvinceList(App.db);
+    		cityList = App.dbHelper.queryCityList(App.db,mProv.getCode()+"");
+    		countyList = App.dbHelper.queryCountyList(App.db,mCity.getCode()+"");
+    		
+    		for (int j = 0; j < proList.size(); j++) {
+    			if(mProv.getCode() == proList.get(j).getCode()){
+    				proindex = j;
+    				Log.e("province", proList.get(j)+"");
+    				break;
+    			}
+			}
+    			
+    		for (int j = 0; j < cityList.size(); j++) {
+    			if(mCity.getCode() == cityList.get(j).getCode()){
+    				cityindex = j;
+    				Log.e("city", cityList.get(j)+"");
+    				break;
+    			}
+			}
+    		for (int j = 0; j < countyList.size(); j++) {
+    			if(mCounty.getCode() == countyList.get(j).getCode()){
+    				countyindex = j;
+    				Log.e("county", countyList.get(j)+"");
+    				break;
+    			}
+			}
+    	}
+    	
+    	//绑定适配器和值--省
+        provinceAdapter = new ArrayAdapter<Object>(mContext,
+                R.layout.my_spinner_hint,  proList.toArray());
+        provinceAdapter.setDropDownViewResource(R.layout.my_spinner_down_item);
+        provinceSpinner.setAdapter(provinceAdapter);
+        
+        //绑定适配器和值--市
+        cityAdapter = new ArrayAdapter<Object>(mContext, 
+               R.layout.my_spinner_hint, cityList.toArray());
+        cityAdapter.setDropDownViewResource(R.layout.my_spinner_down_item);
+        citySpinner.setAdapter(cityAdapter);
+        
+        //绑定适配器和值--县
+        countyAdapter = new ArrayAdapter<Object>(mContext, 
+               R.layout.my_spinner_hint, cityList.toArray());
+        countyAdapter.setDropDownViewResource(R.layout.my_spinner_down_item);
+        countySpinner.setAdapter(countyAdapter);
+        
+        provinceSpinner.setSelection(proindex,true);  //设置默认选中项，此处为默认选中第4个值
+        
+        //延时加载
+      new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                citySpinner.setSelection(cityindex,true);  
+            }
+            
+        }.sendMessageDelayed(new Message(), 100);
+        
+        new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                countySpinner.setSelection(countyindex, true);
+            }
+            
+        }.sendMessageDelayed(new Message(), 200);
+
+        
+        //省级下拉框监听
+        provinceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            // 表示选项被改变的时候触发此方法，主要实现办法：动态改变地级适配器的绑定值
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3)
+            {
+            	 provinceSpinner.setSelection(position, true);
+            	 mProv = proList.get(position);
+            	 
+            	 cityList = App.dbHelper.queryCityList(App.db,mProv.getCode()+"");
+            	 cityAdapter = new ArrayAdapter<Object>(mContext, 
+                        R.layout.my_spinner_hint, cityList.toArray());
+            	 cityAdapter.setDropDownViewResource(R.layout.my_spinner_down_item);
+                 citySpinner.setAdapter(cityAdapter);
+
+                 citySpinner.setSelection(0,true);  //默认选中第0个
+                 
+                 mCity = cityList.get(0); 
+                 
+                 countyList = App.dbHelper.queryCountyList(App.db,mCity.getCode()+"");
+                 countyAdapter = new ArrayAdapter<Object>(mContext,
+                        R.layout.my_spinner_hint,  countyList.toArray());
+                 countyAdapter.setDropDownViewResource(R.layout.my_spinner_down_item);
+                 countySpinner.setAdapter(countyAdapter);
+                 countySpinner.setSelection(0, true);
+                 
+                 mCounty = countyList.get(0);
+                 
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0)
+            {
+            	ToastUtil.show(mContext, "没有选项");
+            }
+
+        });
+
+        
+        //市级下拉监听
+        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                    int position, long arg3)
+            {
+            	citySpinner.setSelection(position, true);
+                mCity = cityList.get(position); 
+                
+                countyList = App.dbHelper.queryCountyList(App.db,mCity.getCode()+"");
+                countyAdapter = new ArrayAdapter<Object>(mContext,
+                        R.layout.my_spinner_hint,  countyList.toArray());
+                countyAdapter.setDropDownViewResource(R.layout.my_spinner_down_item);
+                countySpinner.setAdapter(countyAdapter);
+                
+                countySpinner.setSelection(0, true);
+                
+                mCounty = countyList.get(0);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0)
+            {
+            	ToastUtil.show(mContext, "没有选项");
+            }
+        });
+        
+        //县级下拉监听
+        countySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                    int position, long arg3)
+            {
+            	countySpinner.setSelection(position,true);
+                mCounty = countyList.get(position);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0)
+            {
+            	ToastUtil.show(mContext, "没有选项");
+            }
+        });
+    }
+    
+    
+    
+    
+
+	public void getQueryAddress(Editable s) {
+		if (mProv != null && mCity != null) {
+			mData.clear();
+			mLvQuery.setVisibility(View.VISIBLE);
+			HashMap<String, Object> json = new HashMap<String, Object>();
+			json.put("provCode", mProv.getCode() + "");
+			if(mProv.getCode() == 11||mProv.getCode()==12 || mProv.getCode()==31 || mProv.getCode() == 50){
+				json.put("cityCode", mProv.getCode()+"");
+			}else{
+				json.put("cityCode", mCity.getCode()+"");
+			}
+			json.put("countyCode", mCounty.getCode() + "");
+			json.put("addrName", s + "");
+			String params = ParamsUtil.getUrlParamsByMap(json);
+			System.out.println("json-pre:" + json);
+
+			MyRequest<Object> req = new MyRequest<Object>(Method.POST, null,
+					Constant.QueryAddress, new Listener<Object>() {
+
+						@Override
+						public void onResponse(Object arg0) {
+							Log.e("msg", arg0.toString());
+
+							JSONObject obj = JSONObject.parseObject(arg0
+									.toString());
+							if ("1".equals(obj.getString("result"))) {
+								JSONObject bodyObj = obj.getJSONObject("body");
+								JSONArray successObja = bodyObj
+										.getJSONArray("success");
+								JSONObject jsonDataObj = successObja
+										.getJSONObject(0);
+								String jsonData = jsonDataObj.getString("jsonData");
+								if (jsonData.contains("prov_code")) {
+									JSONObject addressListObj = JSONObject
+											.parseObject(jsonData);
+									JSONObject addressObj = addressListObj
+											.getJSONObject("address_list");
+									JSONArray addressObja = new JSONArray();
+									try {
+										addressObja = addressObj
+												.getJSONArray("address");
+									} catch (Exception e) {
+										e.printStackTrace();
+										return;
+									}
+									for (int i = 0; i < addressObja.size(); i++) {
+										JSONObject jo = addressObja
+												.getJSONObject(i);
+										Log.e("msg", jo.getString("value"));
+										mData.add(jo.getString("value"));
+									}
+									Log.e("msg", "list："+mData.toString());
+									mAdapter.notifyDataSetChanged();
+								}
+							}
+						}
+					}, new ErrorListener() {
+
+						@Override
+						public void onErrorResponse(VolleyError arg0) {
+							arg0.printStackTrace();
+
+						}
+					}, params);
+			App.getQueue().add(req);
+		}
+	}
+
+	private void initData() {
+//		String infoStr = SpfsUtil.getString("people_info" + mType);
+		PeopleInfo info = (PeopleInfo) intent.getSerializableExtra("info");
+		if (info == null) {
+			//首次填写寄件人默认为登陆用户信息
+			if(mType == SENDER){
+//				mEtName.setText(SpfsUtil.loadName());
+				mEtPhone.setText(SpfsUtil.loadPhone());
+			}
+//			isFirstLoad = false;
+//			getProList();
+			return;
+		}
+//		PeopleInfo info = new Gson().fromJson(infoStr, PeopleInfo.class);
+		mEtName.setText(info.getName());
+		mEtPhone.setText(info.getPhone());
+//		mTvZone.setText(info.getProv() + " " + info.getCity() + " "
+//				+ info.getCounty());
+//		mEtLocation.setText(info.getLocation());
+		mEtLocation2.setText(info.getLocation());
+//		loadProv = new City();
+//		loadProv.setCode(Integer.parseInt(info.getProvCode()));
+//		loadProv.setName(info.getProv());
+//		loadCity = new City();
+//		loadCity.setCode(Integer.parseInt(info.getCityCode()));
+//		loadCity.setName(info.getCity());
+//		loadCounty = new City();
+//		loadCounty.setCode(Integer.parseInt(info.getCountyCode()));
+//		loadCounty.setName(info.getCounty());
+		
+		mProv = new City();
+		mProv.setCode(Integer.parseInt(info.getProvCode()));
+		mProv.setName(info.getProv());
+		mCity = new City();
+		mCity.setCode(Integer.parseInt(info.getCityCode()));
+		mCity.setName(info.getCity());
+		mCounty = new City();
+		mCounty.setCode(Integer.parseInt(info.getCountyCode()));
+		mCounty.setName(info.getCounty()); 
+		
+		
+	}
+	
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.tv_zone:
+			mLvQuery.setVisibility(View.GONE);
+			ServiceRangeSelectActivity.start(
+					ServiceRangeSelectActivity.QUERY_TYPE_ADDRESS,
+					City.TYPE_COUNTY, -1, false, (Activity) mContext);
+			break;
+		case R.id.iv_zone:
+			mLvQuery.setVisibility(View.GONE);
+			ServiceRangeSelectActivity.start(
+					ServiceRangeSelectActivity.QUERY_TYPE_ADDRESS,
+					City.TYPE_COUNTY, -1, false, (Activity) mContext);
+			break;
+			
+//		case R.id.tv_zone2:
+//			if(llAddress.getVisibility() == View.GONE){
+//				llAddress.setVisibility(View.VISIBLE);
+////				mIvZone2.setImageDrawable(getResources().getDrawable(R.drawable.icon_up));
+//				if(mProv != null && mCity != null && mCounty != null){
+//					mTvZone2.setText(mProv.getName()+"  "+mCity.getName()+"  "+mCounty.getName());
+//				}
+//				//强制隐藏键盘 
+//				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//				imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0); 
+////				mIvZone2.setImageResource();
+//			}else{
+//				llAddress.setVisibility(View.GONE);
+////				mIvZone2.setImageDrawable(getResources().getDrawable(R.drawable.icon_down));
+//			}
+//			
+//			break;
+//		case R.id.iv_zone2:
+//			if(llAddress.getVisibility() == View.GONE){
+//				llAddress.setVisibility(View.VISIBLE);
+////				mIvZone2.setImageDrawable(getResources().getDrawable(R.drawable.icon_up));
+//				if(mProv != null && mCity != null && mCounty != null){
+//					mTvZone2.setText(mProv.getName()+"  "+mCity.getName()+"  "+mCounty.getName());
+//				}
+//				//强制隐藏键盘 
+//				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//				imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0); 
+//			}else{
+//				llAddress.setVisibility(View.GONE);
+//				mIvZone2.setImageDrawable(getResources().getDrawable(R.drawable.icon_down));
+//			}
+//			break;
+		case R.id.bt_select:
+			mLvQuery.setVisibility(View.GONE);
+			
+			mEtLocation2.setText(mEtLocation.getText().toString());
+			mLls.setVisibility(View.GONE);
+//			mLl.setVisibility(View.GONE);
+			llmain.setVisibility(View.VISIBLE);
+			//强制隐藏键盘 
+			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0); 
+			break;
+			
+
+		default:
+			mLvQuery.setVisibility(View.GONE);
+			break;
+		}
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(data != null){
+			mEtLocation.setText(data.getStringExtra("addressDeail"));
+			mEtLocation2.setText(data.getStringExtra("addressDeail"));
+		}
+		
+		
+	}
+
+
+}

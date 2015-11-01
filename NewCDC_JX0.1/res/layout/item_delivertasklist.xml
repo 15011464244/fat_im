@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/shiwudp"
+        android:layout_marginTop="@dimen/shiwudp"
+        android:layout_toLeftOf="@+id/txt_jt"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/task_num"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textColor="@color/black_1"
+            android:textSize="@dimen/TextSize_listView" >
+
+            <TextView
+                android:id="@+id/red_num"
+                android:layout_width="@dimen/marginbottom_count"
+                android:layout_height="@dimen/marginbottom_count"
+                android:layout_centerInParent="true"
+                android:background="@drawable/defule_reader"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSizemin" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/task_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="今日任务"
+            android:textColor="@color/black_2"
+            android:textSize="@dimen/TextSize_listView" />
+
+        <TextView
+            android:id="@+id/task_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="28"
+            android:textColor="@color/black_1"
+            android:textSize="@dimen/TextSize_listView" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_jt"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/black_jt" />
+
+</RelativeLayout>

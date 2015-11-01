@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/tab_fragment"
+     >
+    
+    <RelativeLayout
+        android:id="@+id/rl_notpackage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center" 
+        android:visibility="gone">
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+        <RelativeLayout
+            android:id="@+id/rl_notpackage_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/img_view2"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:src="@drawable/img_notmessage_frant" />
+
+            <ImageView
+                android:id="@+id/img_view3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/img_notmail" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/rl_notpackage_img"
+            android:gravity="center"
+            android:text="亲，还没有记录哦"
+            android:textColor="#999"
+            android:textSize="14sp" />
+        
+        </LinearLayout>
+        
+    </RelativeLayout>
+    
+      <!-- 网络连接异常 -->
+    <RelativeLayout
+        android:id="@+id/rl_notconnection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center" 
+        android:visibility="gone"
+       >
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+        <RelativeLayout
+            android:id="@+id/rl_notconnection_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/img_view4"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:src="@drawable/img_notmessage_frant" />
+
+            <ImageView
+                android:id="@+id/img_view5"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="35dp"
+                android:src="@drawable/img_not_connection" />
+            
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/rl_notpackage_img"
+            android:gravity="center"
+            android:text="没有网络连接"
+            android:textColor="#999"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_flush"
+            android:layout_height="30dp"
+            android:layout_width="80dp"
+            android:text="点击刷新"
+            android:layout_marginTop="5dp"
+            android:textColor="#666"
+            android:gravity="center"
+            android:background="@drawable/btn_send_selector"
+            />
+        
+        
+        </LinearLayout>
+        
+    </RelativeLayout>
+    
+    <ListView
+        android:id="@+id/lv_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" 
+     	>
+    </ListView>
+   
+
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 揽收任务 -->
+    <string name="checkAll">全选</string>
+    <string name="messageMuti">批量短信</string>
+    <string name="nCollection">无派单揽收</string>
+    <string name="sound">语音</string>
+    <string name="back">返回</string>
+    <string name="map">地图</string>
+    <string name="phone">电话</string>
+    <string name="message">短信</string>
+    <string name="fastCollection">快揽</string>
+    <string name="deliverdefult">空</string>
+    <string name="app_name">揽投助手</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_custom">CustomActivity</string>
+    <string name="title_activity_task_show">TaskShowActivity</string>
+    <!-- 设置 -->
+    <string name="activity_setting_tx">提醒设置</string>
+    <string name="activity_setting_password">密码修改</string>
+    <string name="activity_setting_edit">编辑</string>
+    <string name="activity_setting_update">修改</string>
+    <string name="activity_setting_update_type">更换类型</string>
+    <string name="activity_setting_update_pass">修改密码</string>
+    <string name="activity_setting_update_name">更换工号</string>
+    <string name="activity_setting_update_cache">清除缓存</string>
+    <string name="activity_setting_version">当前版本号</string>
+    <string name="activity_setting_bind_pda">蓝牙打印机绑定</string>
+    <string name="activity_setting_logout">注销账号</string>
+    <string name="activity_setting_save">保存</string>
+    <string name="activity_setting_cache">清除</string>
+    <string name="activity_setting_set_oldname">请输入当前工号</string>
+    <string name="activity_setting_set_newname">请输入新工号</string>
+    <string name="activity_setting_finish">完成修改</string>
+    <!-- 无派单揽收 -->
+    <string name="login_compnum">请输入机构号</string>
+    <string name="login_worknumber">请输入工号</string>
+    <string name="login_password">请输入密码</string>
+    <string name="login">登录</string>
+    <string name="app_id">=54ad3a50</string>
+    <string name="login_savepass">记住密码</string>
+    <string name="login_auto">自动登录</string>
+    <string name="title_activity_deliver_error">DeliverErrorActivity</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_clct_main">ClctMainActivity</string>
+    <string name="title_activity_no_clct">NoClctActivity</string>
+    <string name="mailnum">单号:</string>
+    <string name="weight">重量:</string>
+    <string name="wendu">温度:</string>
+    <string name="mailtype">分类:</string>
+    <string name="title_activity_back_mail">BackMailActivity</string>
+    <string name="title_activity_one_to_more">OneToMoreActivity</string>
+    <string name="res_type">物品类型&#160;:&#160;</string>
+    <string name="res_type_file">文件</string>
+    <string name="res_type_res">物品</string>
+    <string name="isfreight">是否到付&#160;:&#160;</string>
+    <string name="isfreight_yes">&#160;&#160;&#160;&#160;是</string>
+    <string name="isfreight_no">&#160;&#160;&#160;&#160;否</string>
+    <string name="dunweigekou">本地格口&#160;:&#160;</string>
+    <string name="zhongxingekou">168格口&#160;:&#160;</string>
+    <string name="nomail_lan">无派单\n揽收</string>
+    <string name="plcz">批量\n操作</string>
+    <!-- 一票多件 -->
+    <string name="onetomoreweight">&#160;&#160;重&#160;&#160;量&#160;:&#160;</string>
+    <string name="title_activity_ji_pao">JiPaoActivity</string>
+    <!-- operate_action -->
+    <string name="operate_action_deliver_down">下载下段任务</string>
+    <string name="operate_action_deliver_mingzhi">下段名址查询</string>
+    <string name="operate_action_deliver">揽投员做下段</string>
+    <string name="operate_action_deliver_qz">揽投员做下段-强制提交</string>
+    <string name="operate_action_clct_down">下载派揽任务</string>
+    <string name="operate_action_clct_down_zn">下载智能平台派揽任务</string>
+    <string name="operate_action_deliver_return">投递反馈</string>
+    <string name="operate_action_clct_return">揽收反馈</string>
+    <string name="operate_action_payment_success">缴款-成功</string>
+    <string name="operate_action_payment_failed">缴款-失败</string>
+    <string name="operate_action_kehu">查询客户信息</string>
+    <string name="operate_action_send_msg">发送短信</string>
+    <string name="title_activity_deliver">DeliverActivity</string>
+
+</resources>

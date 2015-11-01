@@ -1,0 +1,158 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/glay"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_height"
+        android:background="@color/gree_my"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_back_activity_taskshow"
+            android:layout_width="@dimen/layout_height"
+            android:layout_height="@dimen/layout_height"
+            android:background="@drawable/selector_back" />
+
+        <TextView
+            android:id="@+id/btn_group_activity_taskshow"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="自定义组"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+        <TextView
+            android:id="@+id/tv_count_activity_taskshow"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/btn_group_activity_taskshow"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wushidp"
+            android:layout_margin="@dimen/wudp"
+            android:orientation="horizontal" >
+
+            <AutoCompleteTextView
+                android:id="@+id/input"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/txt_background"
+                android:completionThreshold="1"
+                android:drawableLeft="@drawable/search"
+                android:hint="搜索"
+                android:lines="1"
+                android:paddingLeft="@dimen/marginLittle" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/btn_saoma_activity_showtask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/wudp"
+                    android:background="@drawable/selector_saoma" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/btn_batchoper_activity_showtask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/wudp"
+                    android:background="@drawable/selector_sound" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/dlvnot_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/marginLeft_Item"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white" >
+
+            <Button
+                android:id="@+id/shure"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="@dimen/pading10"
+                android:background="@drawable/selector_btn_big"
+                android:text="确认提交"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSizeNormal" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_graybg"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/dlvnot_bottom"
+            android:background="@color/glay" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/iv_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:background="@drawable/needscan" />
+
+                <ImageView
+                    android:id="@+id/iv_person"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:background="@drawable/person_scan" />
+            </LinearLayout>
+
+            <com.newcdc.ui.SwipeListView
+                android:id="@+id/listView_activity_taskshow"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="@dimen/wudp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="@dimen/sandp"
+                android:listSelector="@android:color/transparent"
+                android:scrollbars="none" >
+            </com.newcdc.ui.SwipeListView>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

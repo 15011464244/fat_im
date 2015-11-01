@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    
+<RelativeLayout
+        android:layout_width="104dp"
+        android:layout_height="100dp"
+        android:background="@drawable/progress_background"
+         >
+
+        <ImageView
+        android:id="@+id/loadingIv"
+        android:layout_width="104dp"
+        android:layout_height="100dp" />
+       
+</RelativeLayout>
+
+</RelativeLayout>

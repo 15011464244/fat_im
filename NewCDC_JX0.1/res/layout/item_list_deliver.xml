@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/buttonHeight"
+    android:layout_margin="@dimen/pading10"
+    android:gravity="center"
+    android:text="1064166980814"
+    android:textColor="@color/black"
+    android:textSize="@dimen/textSizeNormal" />
+<!-- <Button -->
+<!-- android:id="@+id/btn_remove_item_list_deliver" -->
+<!-- android:layout_width="0dp" -->
+<!-- android:visibility="gone" -->
+<!-- android:layout_weight="1" -->
+<!-- android:layout_height="@dimen/buttonHeight" -->
+<!-- android:layout_margin="@dimen/pading10" -->
+<!-- android:textSize="@dimen/textSizeNormal" -->
+<!-- android:background="@drawable/selector_deliver_task" -->
+<!-- android:gravity="center" -->
+<!-- android:text="移除" -->
+<!-- android:textColor="@drawable/selector_btn" /> -->
+

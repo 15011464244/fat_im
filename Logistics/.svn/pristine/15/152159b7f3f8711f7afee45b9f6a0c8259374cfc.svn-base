@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    android:orientation="vertical" >
+
+
+    <RelativeLayout
+        android:id="@+id/rl_notpackage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center" >
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+        <RelativeLayout
+            android:id="@+id/rl_notpackage_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/img_view2"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:src="@drawable/img_notmessage_frant" />
+
+            <ImageView
+                android:id="@+id/img_view3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/img_notpackage" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/rl_notpackage_img"
+            android:gravity="center"
+            android:text="亲，还没有包裹信息"
+            android:textColor="#999"
+            android:textSize="14sp" />
+        
+        </LinearLayout>
+        
+    </RelativeLayout>
+
+    <!--
+   <ListView
+        android:id="@+id/list_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#00000000"
+        android:listSelector="#00000000"
+        android:fadingEdge="none"
+        android:cacheColorHint="#00000000"
+     	>
+   </ListView>
+    -->
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/list_message"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="#00000000"
+        android:fadingEdge="none"
+        android:listSelector="#00000000" />
+
+</LinearLayout>

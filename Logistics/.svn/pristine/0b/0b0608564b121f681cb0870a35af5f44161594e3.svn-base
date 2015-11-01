@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+         android:layout_height="58dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:background="@color/white" >
+
+        <TextView
+            android:id="@+id/tv_news_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="6dp"
+            android:text="运单号：111111111"
+            android:layout_marginTop="2dp"
+            android:textColor="#88000000"
+            android:textSize="16sp" />
+        
+        <TextView
+            android:id="@+id/tv_news_below_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="运单号：111111111"
+            android:layout_marginTop="2dp"
+            android:textColor="#88000000"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

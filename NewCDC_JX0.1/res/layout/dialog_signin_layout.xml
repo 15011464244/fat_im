@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/signin_bac"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ershidp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/signin_car"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/shidp"
+            android:gravity="center"
+            android:text="新的一天开始了"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/shidp"
+            android:gravity="center"
+            android:text="为美好的一天签个到吧"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sizhidp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/shidp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/sigin_sure"
+                style="@style/button_sigin"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/btn_signin_selecter"
+                android:text="是"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

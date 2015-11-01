@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/item_selector" 
+    tools:context="${relativePackage}.${activityClass}" >
+
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+    <!-- 订单信息 -->
+    <TextView 
+       android:id="@+id/tv_follow_item"
+  	   android:layout_height="50dp"
+  	   android:layout_width="wrap_content"
+       android:textSize="16sp"
+       android:singleLine="true"
+       android:layout_marginLeft="30dp"
+       android:gravity="center_vertical"
+       android:textColor="#666"
+       android:text="邮件号：5555555555555"
+       />
+   
+</LinearLayout>
+
+   <View 
+       android:id="@+id/v_divline"
+       android:layout_width="fill_parent"
+  	   android:layout_height="0.5dp"
+  	   android:layout_marginLeft="10dp"
+  	   android:layout_marginRight="10dp"
+  	   android:layout_alignParentBottom="true"
+  	   android:background="@drawable/horizontal_line"
+  	   />
+
+</RelativeLayout>

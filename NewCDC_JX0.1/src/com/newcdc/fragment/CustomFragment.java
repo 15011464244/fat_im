@@ -1,0 +1,799 @@
+package com.newcdc.fragment;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
+import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.telephony.SmsManager;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.newcdc.R;
+import com.newcdc.activity.usercenter.CustomDealActivity;
+import com.newcdc.activity.usercenter.CustomServerActivity;
+import com.newcdc.application.MainActivity;
+import com.newcdc.db.AddressDao;
+import com.newcdc.db.DeliverDaoFactory;
+import com.newcdc.tools.Global;
+import com.newcdc.tools.NetHelper;
+import com.newcdc.tools.UserInfoUtils;
+import com.newcdc.tools.Utils;
+import com.newcdc.ui.ProgressDialog;
+import com.newcdc.ui.XFAudio;
+
+public class CustomFragment extends Fragment {
+	/**
+	 * 客户管理
+	 */
+	private View mView;
+	private ImageView btn_back;
+	private Button btn_saoma_content_1, btn_commit_content_1;
+	private AddressDao infodao;
+	private ListView telnum;
+	private LinearLayout ll_back;
+	public Mydapter adapter = null;
+	public List<Map<String, Object>> dataList;
+	private TextView reason, add;
+	private Button mcha;
+	// 多线程消息控制
+	private static final int SUCCESS = 1;
+	private static final int ERROR = 2;
+	private Dialog dia;
+	private Receiver Receiver = null;
+	public static String SMS_SEND_ACTIOIN = "SMS_SEND_ACTIOIN";
+	public static String SMS_DELIVERED_ACTION = "SMS_DELIVERED_ACTION";
+	private UserInfoUtils userInfo;
+	private ProgressDialog myDialog;
+	private View layout;
+	private LayoutInflater inflater;
+	private int width;
+	private Dialog longdia;
+	private Handler mHandler;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		mView = inflater.inflate(R.layout.function_2, container, false);
+		initView();
+		initData();
+		initListener();
+
+		// 查询数据库
+		return mView;
+	}
+
+	/**
+	 * 初始化变量
+	 */
+	private void initData() {
+		infodao = DeliverDaoFactory.getInstance().getAddressDao(getActivity());
+		adapter = new Mydapter();
+		dataList = new ArrayList<Map<String, Object>>();
+		userInfo = new UserInfoUtils(getActivity().getApplicationContext());
+		Receiver = new Receiver();
+		mHandler = new Handler();
+		telnum.setAdapter(adapter);
+		new Thread() {
+			@Override
+			public void run() {
+				Findtelenum(userInfo.getUserName(),
+						userInfo.getUserDelvorgCode());
+				mHandler.post(new Runnable() {
+
+					@Override
+					public void run() {
+						adapter.notifyDataSetChanged();
+					}
+				});
+			};
+		}.start();
+	}
+
+	/**
+	 * 查询通讯录
+	 */
+	private void Findtelenum(String username, String orgcode) {
+		dataList = infodao.Findtelephone(username, orgcode);
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		getActivity().unregisterReceiver(Receiver);
+	}
+
+	private boolean bePaused = false;
+
+	@Override
+	public void onResume() {
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("com.cn.net.usefulpro.Receiver");
+		getActivity().registerReceiver(Receiver, filter);
+		if (bePaused) {
+			bePaused = false;
+			reason.addTextChangedListener(new TextWatcher() {
+
+				@Override
+				public void onTextChanged(CharSequence s, int start,
+						int before, int count) {
+					if (!"".equals(reason.getText().toString())) {
+						List<Map<String, Object>> lists = new ArrayList<Map<String, Object>>();
+						lists = infodao.querytelreason(reason.getText()
+								.toString().trim());
+						if (lists.size() > 0) {
+							dataList.clear();
+							dataList = lists;
+							adapter.notifyDataSetChanged();
+						} else {
+							dataList.clear();
+							adapter.notifyDataSetChanged();
+						}
+					} else {
+						dataList.clear();
+						// dataList =
+						// infodao.Findtelephone(userInfo.getUserName(),
+						// userInfo.getUserDelvorgCode());
+						// adapter.notifyDataSetChanged();
+						userInfo = new UserInfoUtils(getActivity()
+								.getApplicationContext());
+						dataList = infodao.Findtelephone(
+								userInfo.getUserName(),
+								userInfo.getUserDelvorgCode());
+						adapter.notifyDataSetChanged();
+					}
+				}
+
+				@Override
+				public void beforeTextChanged(CharSequence s, int start,
+						int count, int after) {
+
+				}
+
+				@Override
+				public void afterTextChanged(Editable s) {
+
+				}
+			});
+		}
+		Utils.startIntentService(getActivity());// 启动投递、揽收异步上传服务
+		super.onResume();
+
+	}
+
+	@Override
+	public void onPause() {
+		bePaused = true;
+		super.onPause();
+	}
+
+	private void initView() {
+		mcha = (Button) mView.findViewById(R.id.cha);
+		btn_back = (ImageView) mView.findViewById(R.id.btn_back_function_2);
+		ll_back = (LinearLayout) mView.findViewById(R.id.ll_back);
+		// 添加通讯录
+		btn_saoma_content_1 = (Button) mView
+				.findViewById(R.id.btn_saoma_content_1);
+		// 添加到数据库
+		reason = (EditText) mView.findViewById(R.id.reason);// 查询条件
+		telnum = (ListView) mView.findViewById(R.id.telnum);// list
+		myDialog = new ProgressDialog(getActivity(), "正在处理...");
+	}
+
+	private void initListener() {
+		DisplayMetrics metric = new DisplayMetrics();
+		getActivity().getWindowManager().getDefaultDisplay().getMetrics(metric);
+		width = metric.widthPixels;
+
+		btn_back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				switchFragment(6);
+			}
+		});
+		btn_saoma_content_1.setOnClickListener(new OnClickListener() {// 添加
+					@Override
+					public void onClick(View v) {
+						alertdialog();
+						btn_saoma_content_1.setVisibility(View.GONE);
+					}
+				});
+
+		// 查询通讯录
+		reason.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				if (!"".equals(reason.getText().toString())) {
+					List<Map<String, Object>> lists = new ArrayList<Map<String, Object>>();
+					lists = infodao.querytelreason(reason.getText().toString());
+					if (lists.size() > 0) {
+						dataList.clear();
+						dataList = lists;
+						adapter.notifyDataSetChanged();
+					} else {
+						dataList.clear();
+						adapter.notifyDataSetChanged();
+					}
+				} else {
+					dataList.clear();
+					dataList = infodao.Findtelephone(userInfo.getUserName(),
+							userInfo.getUserDelvorgCode());
+					adapter.notifyDataSetChanged();
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		});
+
+		XFAudio audio = new XFAudio(getActivity(), mcha, reason);
+		audio.toSay();
+		// telnum.setOnItemClickListener(new OnItemClickListener() {//
+		// 点击listview
+		// @Override
+		// public void onItemClick(AdapterView<?> parent, View view,
+		// int position, long id) {
+		// Map<String, Object> maps = dataList.get(position);
+		// Intent ints = new Intent(getActivity(), Addressdetail.class);
+		// Bundle bundle = new Bundle();
+		// bundle.putString("telephonenum", maps.get("telephonenum")
+		// .toString());
+		// bundle.putString("mainid", maps.get("mainid").toString());
+		// ints.putExtras(bundle);
+		// startActivity(ints);
+		// }
+		// });
+	}
+
+	class Mydapter extends BaseAdapter {
+		@Override
+		public int getCount() {
+			return dataList.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return dataList.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			Viewholder holder;
+			if (convertView == null) {
+				convertView = LayoutInflater.from(getActivity()).inflate(
+						R.layout.listview_type, null);
+				holder = new Viewholder();
+				holder.name = (TextView) convertView.findViewById(R.id.name);
+				holder.tel = (ImageButton) convertView.findViewById(R.id.tel);
+				holder.add = (TextView) convertView.findViewById(R.id.add);// 地址
+				holder.phonenum = (TextView) convertView
+						.findViewById(R.id.phonenum);
+				holder.custom_server = (Button) convertView
+						.findViewById(R.id.custom_server);// 服务记录
+				holder.custom_deal = (Button) convertView
+						.findViewById(R.id.custom_deal);// 订单记录
+				holder.custom_money = (Button) convertView
+						.findViewById(R.id.custom_money);// 订单记录
+
+				convertView.setTag(holder);
+			} else {
+				holder = (Viewholder) convertView.getTag();
+
+			}
+			final Map<String, Object> map = dataList.get(position);
+
+			holder.name.setText(map.get("bodyname").toString());
+			// holder.tel.setText(map.get("telephonenum").toString());
+			holder.phonenum.setText(map.get("telephonenum").toString());
+			holder.add.setText(map.get("address").toString());
+			holder.tel.setOnClickListener(new OnClickListener() {// 打电话
+						@Override
+						public void onClick(View v) {
+							String phoneNum = map.get("telephonenum")
+									.toString().trim();
+							if (phoneNum != null && !"".equals(phoneNum)) {
+								if (longdia == null) {
+									longdia = new Dialog(getActivity(),
+											R.style.dialogss);
+									sureCallDialog(longdia, phoneNum);
+								} else {
+									sureCallDialog(longdia, phoneNum);
+								}
+							} else {
+								Toast.makeText(getActivity(), "电话号码无效", 0)
+										.show();
+							}
+
+						}
+					});
+
+			holder.custom_server.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (!"".equals(map.get("telephonenum").toString())
+							&& map.get("telephonenum").toString() != null) {
+						Intent intent = new Intent();
+						intent.setClass(getActivity(),
+								CustomServerActivity.class);
+						Bundle bundle = new Bundle();
+						bundle.putString("phonenum", map.get("telephonenum")
+								.toString());
+						intent.putExtras(bundle);
+						startActivity(intent);
+					} else {
+						Toast.makeText(getActivity(), "号码为空", 1).show();
+					}
+				}
+			});
+			holder.custom_deal.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+
+					if (!"".equals(map.get("telephonenum").toString())
+							&& map.get("telephonenum").toString() != null) {
+						Intent intent = new Intent();
+						intent.setClass(getActivity(), CustomDealActivity.class);
+						Bundle bundle = new Bundle();
+						bundle.putString("phonenum", map.get("telephonenum")
+								.toString());
+						intent.putExtras(bundle);
+						startActivity(intent);
+					} else {
+						Toast.makeText(getActivity(), "号码为空", 1).show();
+					}
+
+				}
+			});
+			holder.custom_money.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// Intent intent = new Intent();
+					// intent.setClass(getActivity(),
+					// CustomMoneyActivity.class);
+					// startActivity(intent);
+				}
+			});
+			return convertView;
+		}
+	}
+
+	class Viewholder {
+		TextView name;
+		ImageButton tel;
+		TextView add;
+		Button custom_server;
+		Button custom_deal;
+		Button custom_money;
+		TextView phonenum;
+	}
+
+	private void alertdialog() {// 添加弹出框
+		LayoutInflater inflater = getActivity().getLayoutInflater();
+		final View view = inflater.inflate(R.layout.dialog_address, null);
+		final Dialog dias = new Dialog(getActivity(), R.style.dialogss);
+		DisplayMetrics metric = new DisplayMetrics();
+		getActivity().getWindowManager().getDefaultDisplay().getMetrics(metric);
+		int width = metric.widthPixels;
+		dias.setContentView(view, new LayoutParams(width * 18 / 20,
+				LayoutParams.MATCH_PARENT));
+		dias.setCanceledOnTouchOutside(false);
+
+		final EditText name = (EditText) view.findViewById(R.id.name);
+		final EditText tel = (EditText) view.findViewById(R.id.num);
+		final EditText addr = (EditText) view.findViewById(R.id.addr);
+		Button complete = (Button) view.findViewById(R.id.dia_btn_ok);
+		Button cancel = (Button) view.findViewById(R.id.dia_btn_not);
+
+		tel.setInputType(InputType.TYPE_CLASS_NUMBER);
+		dias.show();
+		complete.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if ("".equals(name.getText().toString().trim())) {
+					Toast.makeText(getActivity(), "姓名不能为空", Toast.LENGTH_LONG)
+							.show();
+				} else if ("".equals(tel.getText().toString().trim())) {
+					Toast.makeText(getActivity(), "电话号码不能为空", Toast.LENGTH_LONG)
+							.show();
+				} else if ("".equals(addr.getText().toString().trim())) {
+					Toast.makeText(getActivity(), "地址不能为空", Toast.LENGTH_LONG)
+							.show();
+				} else {
+					List<Map<String, Object>> hastel = new ArrayList<Map<String, Object>>();
+					hastel = infodao.findistele(tel.getText().toString());// 是否有电话了
+					if (hastel.size() > 0) {
+						Toast.makeText(getActivity(), "此电话号码已存在，请重新录入！", 1000)
+								.show();
+					} else {
+						// infodao.inserttelephone(tel.getText().toString().trim(),
+						// name.getText().toString().trim(),preferences.getString("username",
+						// ""),preferences.getString("delvorgcode",
+						// ""),"11111111",addr.getText().toString().trim());
+						// dataList=infodao.Findtelephone(preferences.getString("username",
+						// ""),preferences.getString("delvorgcode", ""));
+						// adapter.notifyDataSetChanged();
+						Log.e("tag", "name" + name.getText().toString().trim());
+						Log.e("tag", "name" + tel.getText().toString().trim());
+						Log.e("tag", "name" + addr.getText().toString().trim());
+						addaddress(name.getText().toString().trim(), tel
+								.getText().toString().trim(), addr.getText()
+								.toString().trim());// 添加到通讯录
+						dias.dismiss();
+					}
+				}
+			}
+		});
+
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dias.dismiss();
+			}
+		});
+
+		dias.setOnDismissListener(new OnDismissListener() {
+			@Override
+			public void onDismiss(DialogInterface dialog) {
+				btn_saoma_content_1.setVisibility(view.VISIBLE);
+			}
+		});
+
+	}
+
+	/**
+	 * 添加通讯录
+	 */
+	private void addaddress(final String name, final String tel,
+			final String addr) {
+		new AsyncTask<Object, Void, JSONObject>() {
+			@Override
+			protected JSONObject doInBackground(Object... params) {
+				JSONObject jsonObj = null;
+				try {
+					List<NameValuePair> paramObject = new ArrayList<NameValuePair>();
+					paramObject.add(new BasicNameValuePair("contacts_address",
+							addr));// 地址
+					paramObject.add(new BasicNameValuePair("contacts_mobile",
+							tel));// 电话
+					paramObject.add(new BasicNameValuePair("contacts_name",
+							name));// 联系姓名
+					paramObject.add(new BasicNameValuePair("employee_no",
+							userInfo.getUserName()));// 工号
+					paramObject.add(new BasicNameValuePair("org_code", userInfo
+							.getUserDelvorgCode()));// 机构号
+					paramObject.add(new BasicNameValuePair(
+							"express_company_code", "EMS"));
+					paramObject.add(new BasicNameValuePair(
+							"express_company_name", "EMS"));
+
+					jsonObj = new JSONObject(NetHelper.doPost(Global.SERVER_URL
+							+ Global.ADDUSERCONTACTS, paramObject));
+
+				} catch (Exception e) {
+
+				}
+				Log.e("tag", "json = " + Global.SERVER_URL
+						+ Global.ADDUSERCONTACTS);
+				return jsonObj;
+			}
+
+			@Override
+			protected void onPostExecute(JSONObject jsonObj) {
+				try {
+					if (myDialog != null) {
+						myDialog.toDimiss();
+					}
+					if (jsonObj != null) {
+						if ("1".equals(jsonObj.get("result"))) {// 成功
+							String contacts_mainid = jsonObj
+									.getJSONObject("body")
+									.getJSONObject("success").getString("sid");
+
+							infodao.inserttelephone(tel, name,
+									userInfo.getUserName(),
+									userInfo.getUserDelvorgCode(),
+									contacts_mainid, addr);
+							dataList = infodao.Findtelephone(
+									userInfo.getUserName(),
+									userInfo.getUserDelvorgCode());
+							adapter.notifyDataSetChanged();
+
+							Message msg = new Message();
+							msg.what = SUCCESS;
+							msg.obj = "添加通讯录成功";
+							messageListener2.sendMessage(msg);
+
+						} else if ("请求服务器失败".equals(jsonObj.get("result"))) {
+							Toast.makeText(getActivity(), "请求服务器失败", 0).show();
+						} else {
+							Message msg = new Message();
+							msg.what = ERROR;
+							msg.obj = "添加通讯录失败";
+							messageListener2.sendMessage(msg);
+						}
+					} else {
+						Message msg = new Message();
+						msg.what = ERROR;
+						msg.obj = "添加通讯录异常";
+						messageListener2.sendMessage(msg);
+					}
+				} catch (Exception ex) {
+
+				}
+				super.onPostExecute(jsonObj);
+			}
+
+			@Override
+			protected void onPreExecute() {
+
+				if (myDialog != null) {
+					myDialog.toDimiss();
+				}
+				if (myDialog == null) {
+					myDialog = new ProgressDialog(getActivity(), "正在处理...");
+					myDialog.toShow();
+				} else {
+					myDialog.toShow();
+				}
+				super.onPreExecute();
+			}
+
+		}.execute();
+	}
+
+	/**
+	 * 删除
+	 */
+	private void deleaddress(final String mainid) {
+		new AsyncTask<Object, Void, JSONObject>() {
+
+			@Override
+			protected JSONObject doInBackground(Object... params) {
+				JSONObject jsonObj = null;
+				try {
+					NetHelper netHelper = new NetHelper();
+					// netHelper.Create(Global.SERVER_URL +
+					// Global.DELUSERCONTACTS);
+					List<NameValuePair> paramObject = new ArrayList<NameValuePair>();
+					paramObject.add(new BasicNameValuePair("sid", mainid));// id
+					jsonObj = new JSONObject(NetHelper.doPost(Global.SERVER_URL
+							+ Global.ADDUSERCONTACTS, paramObject));
+				} catch (Exception e) {
+
+				}
+				return jsonObj;
+			}
+
+			@Override
+			protected void onPostExecute(JSONObject jsonObj) {
+				try {
+					if (myDialog != null) {
+						myDialog.toDimiss();
+					}
+					if (jsonObj != null) {
+						if ("1".equals(jsonObj.get("result"))) {// 删除上传成功
+							infodao.deletetelephone(mainid);
+							dataList = infodao.Findtelephone(
+									userInfo.getUserName(),
+									userInfo.getUserDelvorgCode());
+							adapter.notifyDataSetChanged();
+							Message msg = new Message();
+							msg.what = SUCCESS;
+							msg.obj = "删除通讯录成功";
+							messageListener2.sendMessage(msg);
+						} else {
+							Message msg = new Message();
+							msg.what = SUCCESS;
+							msg.obj = "删除通讯录失败";
+							messageListener2.sendMessage(msg);
+
+						}
+					} else {
+						Message msg = new Message();
+						msg.what = ERROR;
+						msg.obj = "删除通讯录异常";
+						messageListener2.sendMessage(msg);
+					}
+				} catch (Exception ex) {
+
+				}
+				super.onPostExecute(jsonObj);
+			}
+
+			@Override
+			protected void onPreExecute() {
+				if (myDialog != null) {
+					myDialog.toDimiss();
+				}
+				if (myDialog == null) {
+					myDialog = new ProgressDialog(getActivity(), "正在处理...");
+					myDialog.toShow();
+				} else {
+					myDialog.toShow();
+				}
+				super.onPreExecute();
+			}
+
+		}.execute();
+	}
+
+	@SuppressLint("HandlerLeak")
+	private Handler messageListener2 = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case SUCCESS:
+				if (myDialog != null) {
+					myDialog.toDimiss();
+				}
+				Toast.makeText(getActivity(), msg.obj.toString(),
+						Toast.LENGTH_LONG).show();
+				break;
+			case ERROR:
+				if (myDialog != null) {
+					myDialog.toDimiss();
+				}
+				Toast.makeText(getActivity(), msg.obj.toString(),
+						Toast.LENGTH_LONG).show();
+				break;
+			default:
+				break;
+			}
+		}
+	};
+
+	class Receiver extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String msg = intent.getStringExtra("msg");
+			if ("update".equals(msg)) {
+				dataList = infodao.Findtelephone(userInfo.getUserName(),
+						userInfo.getUserDelvorgCode());
+				adapter.notifyDataSetChanged();
+			}
+		}
+	}
+
+	// 发送短信
+	public void sendSms(String strMessage, String phone) {
+		if (strMessage.equals("")) {
+			Toast.makeText(getActivity(), "请输入信息", Toast.LENGTH_SHORT).show();
+		} else {
+			try {
+				// 建立SmsManager对象
+				SmsManager smsManager = SmsManager.getDefault();
+				// 建立自定义Action常数的Intent(给PendingIntent参数之用)
+				Intent itSend = new Intent(SMS_SEND_ACTIOIN);
+				Intent itDeliver = new Intent(SMS_DELIVERED_ACTION);
+				// sentIntent参数为传送后接受的广播信息PendingIntent
+				PendingIntent mSendPI = PendingIntent.getBroadcast(
+						getActivity(), 0, itSend, 0);
+
+				// deliveryIntent参数为送达后接受的广播信息PendingIntent
+				PendingIntent mDeliverPI = PendingIntent.getBroadcast(
+						getActivity(), 0, itDeliver, 0);
+				// 发送SMS短信，注意倒数的两个PendingIntent参数
+				if (strMessage.length() > 70) {
+					ArrayList<String> msgs = smsManager
+							.divideMessage(strMessage);
+					for (String string : msgs) {
+						smsManager.sendTextMessage(phone, null, string,
+								mSendPI, mDeliverPI);
+					}
+				} else {
+					smsManager.sendTextMessage(phone, null, strMessage,
+							mSendPI, mDeliverPI);
+				}
+			} catch (Exception e) {
+				e.getStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * 解析短信
+	 * 
+	 */
+	public static String parseSMSs(String content, String name, String addr,
+			String tel) {
+		String newSms = content.replace("<发件人>", name).replace("<地址>", addr)
+				.replace("<联系电话>", tel);
+		Log.e("parseSms", newSms);
+		return newSms;
+	}
+
+	/**
+	 * 确认打电话
+	 * **/
+	private void sureCallDialog(final Dialog longdia, final String phoneNum) {
+		inflater = getActivity().getLayoutInflater();
+		layout = inflater.inflate(R.layout.dialog_call, null);
+		Button cancel = (Button) layout.findViewById(R.id.info_cancel);
+		Button sure = (Button) layout.findViewById(R.id.info_sure);
+		TextView custom_dia_centercall = (TextView) layout
+				.findViewById(R.id.custom_dia_centercall);
+		longdia.setContentView(layout, new LayoutParams(width * 15 / 20,
+				LayoutParams.WRAP_CONTENT));
+		longdia.setCancelable(true);
+		custom_dia_centercall.setText(phoneNum);
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				longdia.dismiss();
+			}
+		});
+		sure.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setAction(Intent.ACTION_CALL); // android.intent.action.DIAL
+				intent.setData(Uri.parse("tel:" + phoneNum));
+				// MainActivity.number = map.get("telephonenum")
+				// .toString();
+				// MainActivity.yeslan = true;
+				startActivity(intent);
+				longdia.dismiss();
+
+			}
+		});
+		longdia.show();
+	}
+
+	private void switchFragment(int fragmentFlag) {
+		MainActivity activity = (MainActivity) getActivity();
+		activity.switchContentFragment(fragmentFlag);
+		// activity.toggle();
+	}
+
+}

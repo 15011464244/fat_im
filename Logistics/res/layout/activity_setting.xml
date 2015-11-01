@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title_layout" />
+    
+    
+    <View style="@style/line_top_10" />
+
+  <!--   <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/horizontal_line" /> -->
+    <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="100dp"
+       android:background="#fff"
+       android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingLeft="8dp"
+        android:paddingRight="18dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:text="声音提醒"
+           	style="@style/text_list"
+           	  android:layout_marginLeft="10dp"
+            />
+
+        <Switch
+            android:id="@+id/sw_tone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+           android:switchMinWidth="10sp"
+            android:layout_marginRight="5dp"
+            android:thumbTextPadding="12dp"
+            android:textOff=""
+            android:textOn=""
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_selector" 
+            android:onClick="setTone"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        style="@style/line_left_right_10"
+        android:background="@drawable/horizontal_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingLeft="8dp"
+        android:paddingRight="18dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:text="震动提醒"
+           	style="@style/text_list" 
+           	  android:layout_marginLeft="10dp"
+            />
+
+        <Switch
+            android:id="@+id/sw_shake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:switchMinWidth="10sp"
+            android:layout_marginRight="5dp"
+            android:thumbTextPadding="12dp"
+            android:textOff=""
+            android:textOn=""
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_selector" 
+            android:onClick="setShake"/>
+    </RelativeLayout>
+    </LinearLayout>
+
+   <!--  <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/horizontal_line" /> -->
+        
+    <View style="@style/line_margin_no" />
+
+    <View style="@style/line_top_10" />
+    
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#fff"
+        android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:text="常用语"
+            android:layout_marginLeft="10dp"
+           	style="@style/text_list" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:onClick="addCommonWord"
+            android:src="@drawable/btn_setting_add_letter" />
+    </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        style="@style/line_left_right_10"
+        android:background="@drawable/horizontal_line" />
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:visibility="visible" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:text="清除缓存"
+           	style="@style/text_list"
+           	  android:layout_marginLeft="10dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:src="@drawable/btn_setting_clear_selector"
+            android:onClick="clearCache" />
+    </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/horizontal_line" />
+
+    <TextView
+        android:visibility="visible"
+        android:id="@+id/btn_login"
+        style="@style/BtnStyle"
+        android:layout_margin="@dimen/padding_20"
+        android:text="注销" />
+
+</LinearLayout>

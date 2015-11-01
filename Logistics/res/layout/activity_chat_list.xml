@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#eee" >
+
+<include
+        android:id="@+id/title"
+        layout="@layout/title_layout" />
+   <!--  <TextView
+        android:id="@+id/not_courier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:text="没有与快递小哥聊过天， 试试右上角周边~"
+        android:textColor="@color/grey"
+        android:textSize="18sp" />
+    <TextView 
+        android:id="@+id/not_courier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:background="@drawable/img_not_currier"/> -->
+    
+    <RelativeLayout
+        android:id="@+id/rl_notpackage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center" >
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+        <RelativeLayout
+            android:id="@+id/rl_notpackage_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/img_view2"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:src="@drawable/img_notmessage_frant" 
+                />
+
+            <ImageView
+                android:id="@+id/img_view3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/img_notpeople" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/rl_notpackage_img"
+            android:gravity="center"
+            android:text="亲，还没有记录哦"
+            android:textColor="#999"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/rl_notpackage_img"
+            android:gravity="center"
+            android:text="试试点击右上角的周边~"
+            android:textColor="#999"
+            android:textSize="14sp" />
+        </LinearLayout>
+        
+    </RelativeLayout>
+    
+    
+    
+    
+     <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/friend_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:divider="@drawable/horizontal_line"
+        android:dividerHeight="0.5dp"
+         />
+
+    <!-- android:listSelector="@drawable/list_item_selector" -->
+
+</LinearLayout>

@@ -1,0 +1,184 @@
+package com.ems.express.fragment.home;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.TreeSet;
+
+import com.ems.express.App;
+import com.ems.express.R;
+import com.ems.express.adapter.mail.MailSearchItemAdapter;
+import com.ems.express.adapter.mail.MailTransItemAdapter;
+import com.ems.express.adapter.message.SendNoticeBean;
+import com.ems.express.scan.activity.CaptureActivity;
+import com.ems.express.ui.Home2Activity;
+import com.ems.express.ui.check.ResultActivity;
+import com.ems.express.util.ToastUtil;
+import com.umeng.analytics.MobclickAgent;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
+
+public class HomeSearchFragment extends Fragment implements OnClickListener{
+	private ImageButton mScan;
+	private EditText mOrderId;
+	private TextView mSearch;
+	private ListView mSeaHis;
+	
+//	private ImageButton mScan;
+	
+	private View view;
+	
+	private MailTransItemAdapter adapter;
+	
+	private Context mContext;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		view = inflater.inflate(R.layout.home_search_fragment, null);
+		mContext = this.getActivity();
+		initView();
+		loadView();
+		return view;
+	}
+	
+	public void initView(){
+		mOrderId = (EditText) view.findViewById(R.id.et_orderid);
+		mSearch = (TextView) view.findViewById(R.id.tv_search);
+		mSeaHis = (ListView) view.findViewById(R.id.lv_history);
+		mScan = (ImageButton) view.findViewById(R.id.ib_scan);
+		mScan.setOnClickListener(this);
+		
+		//隐藏扫件
+		Home2Activity parent = (Home2Activity)getActivity();
+		parent.showScan(true);
+		parent.showSign(false);
+		
+		mSearch.setOnClickListener(this);
+	}
+	
+	public void loadView(){
+		List<SendNoticeBean> orders = App.dbHelper.querySendNoticeByOrderStatus(App.db, "4", null);
+		if(orders != null && orders.size()>0){
+			final List<String> mails = new ArrayList<String>();
+			for (int i = 0; i < orders.size(); i++) {
+				SendNoticeBean order = orders.get(i);
+				if(order != null){
+					String mailNum = orders.get(i).getMailNum();
+					if(!mailNum.contains(",")){
+						mails.add(mailNum);
+					}else{
+						String[] split = mailNum.split(",");
+						for (String string : split) {
+							mails.add(string);
+						}
+					}
+				}
+			}
+			
+			adapter = new MailTransItemAdapter(mContext, mails);
+			mSeaHis.setAdapter(adapter);
+			mSeaHis.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					
+					InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+					if(imm.isActive()&& getActivity().getCurrentFocus()!=null){
+						if ( getActivity().getCurrentFocus().getWindowToken()!=null) {
+						imm.hideSoftInputFromWindow( getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+						}			  
+					 }
+
+					search(mails.get(arg2));
+					
+				}
+			});
+		}
+	}
+
+	@Override
+	public void onClick(View view) {
+		InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+		switch (view.getId()) {
+//		case R.id.ib_scan:
+//			Intent intent1 = new Intent(mContext, CaptureActivity.class);
+//			startActivityForResult(intent1, 999);
+//			break;
+		case R.id.tv_search:
+			if(imm.isActive()&& getActivity().getCurrentFocus()!=null){
+				if ( getActivity().getCurrentFocus().getWindowToken()!=null) {
+				imm.hideSoftInputFromWindow( getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+				}			  
+			 }
+			search(mOrderId.getEditableText().toString());
+			
+			break;
+		case R.id.ib_scan:
+			if(imm.isActive()&& getActivity().getCurrentFocus()!=null){
+				if ( getActivity().getCurrentFocus().getWindowToken()!=null) {
+				imm.hideSoftInputFromWindow( getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+				}			  
+			 }
+			
+			Intent intent1 = new Intent(mContext, CaptureActivity.class);
+			((Activity)mContext).startActivityForResult(intent1, 999);
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	/*@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+		case 999:
+			System.out.println("扫扫待处理");
+			if(data!=null){
+				Bundle bundle = data.getExtras();
+				String resultStr = bundle.getString("txtResult");
+				mOrderId.setText(resultStr);
+				search(mOrderId.getEditableText().toString());
+			}
+			break;
+
+		default:
+			break;
+		}
+	}*/
+	
+	
+	
+	public void search(String id) {
+//		String id = mOrderId.getEditableText().toString();
+		//统计查件次数
+		MobclickAgent.onEvent(mContext,"Search mail");
+		if (TextUtils.isEmpty(id)) {
+			ToastUtil.show(mContext, "运单号不能为空");
+		} else {
+			// TODO 跳转到运单查询界面
+			ResultActivity.actionStart(mContext, id);
+		}
+	}
+
+
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/mainmail"
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:layout_weight="1"
+            android:background="@drawable/onetomore_item_bg"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/childmail"
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:layout_weight="1"
+            android:background="@drawable/onetomore_item_bg"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical" >
+
+<include
+        android:id="@+id/title"
+        layout="@layout/title_layout" />
+
+    <RelativeLayout
+        android:id="@+id/express"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff" >
+
+        <!-- <View
+            android:id="@+id/top_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/horizontal_line" />
+ -->
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/icon"
+            android:gravity="center"
+            android:text="单号：212313111"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+<!--         <ImageView -->
+<!--             android:layout_width="5dp" -->
+<!--             android:layout_height="match_parent" -->
+<!--             android:layout_toLeftOf="@+id/care" -->
+<!--             android:src="@drawable/test_shuline" /> -->
+
+<!--         <LinearLayout -->
+<!--             android:id="@+id/care" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="match_parent" -->
+<!--             android:layout_alignParentRight="true" -->
+<!--             android:layout_centerVertical="true" -->
+<!--             android:layout_marginRight="8dp" -->
+<!--             android:orientation="horizontal" > -->
+
+<!--             <ImageView -->
+<!--                 android:layout_width="20dp" -->
+<!--                 android:layout_height="match_parent" -->
+<!--                 android:paddingBottom="5dp" -->
+<!--                 android:paddingTop="5dp" -->
+<!--                 android:src="@drawable/test_record_care" /> -->
+
+<!--             <TextView -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="match_parent" -->
+<!--                 android:gravity="center" -->
+<!--                 android:text="关注订单" -->
+<!--                 android:textSize="14sp" /> -->
+<!--         </LinearLayout> -->
+
+        <View
+            android:id="@+id/bottom_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/horizontal_line" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="40dp"
+            android:layout_height="23dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/test_adapter_icon2" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:divider="@null"
+        android:background="#ffffff"
+        android:layout_height="wrap_content" >
+    </ListView>
+    
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/horizontal_line" />
+    
+     <!-- 菊花小人 -->
+    <RelativeLayout
+        android:id="@+id/result_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/result_chrysanthemum"
+            android:layout_width="104dp"
+            android:layout_height="100dp" 
+			android:layout_centerInParent="true"
+          	/>
+    </RelativeLayout>
+
+</LinearLayout>

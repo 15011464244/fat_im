@@ -1,0 +1,101 @@
+package com.ems.express.adapter.send;
+
+import java.util.List;
+
+import com.ems.express.R;
+import com.ems.express.bean.PeopleInfo;
+import com.ems.express.ui.send.SenderInfoActivity;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+public class SenderAdapter extends BaseAdapter{
+	private LayoutInflater mInflater;
+	private Context mContext;
+	public List<PeopleInfo> mList;
+	private int from;
+	private int type;
+	
+	
+	public SenderAdapter(Context context,List<PeopleInfo> list,int from,int type) {
+		this.mInflater = LayoutInflater.from(context);
+		this.mContext = context;
+		this.mList = list;
+		
+		this.from = from;
+		this.type = type;
+	}
+	
+	@Override
+	public int getCount() {
+		if(mList != null){
+			return mList.size();
+		}
+		return 0;
+	}
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		final int index = position; 
+		ViewHolder holder = null;
+		if(convertView == null){
+			holder = new ViewHolder();
+			convertView = mInflater.inflate(R.layout.send_sender_item, null);
+			holder.name = (TextView) convertView.findViewById(R.id.tv_name);
+			holder.phone = (TextView) convertView.findViewById(R.id.tv_phone);
+			holder.location = (TextView) convertView.findViewById(R.id.tv_location);
+			holder.ivEdit = (ImageView) convertView.findViewById(R.id.iv_edit);
+			
+			convertView.setTag(holder);
+		}else{
+			holder = (ViewHolder) convertView.getTag();
+		}
+		if(mList != null){
+				holder.name.setText(mList.get(index).getName());
+				holder.phone.setText(mList.get(index).getPhone());
+				holder.location.setText(mList.get(index).getLocation());
+				
+				holder.ivEdit.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						Intent intent = new Intent(mContext, SenderInfoActivity.class);
+						intent.putExtra(SenderInfoActivity.INFO_TYPE,type );
+						intent.putExtra("info", mList.get(index));
+						intent.putExtra("from", from);
+						((Activity) mContext).startActivityForResult(intent, type);
+					}
+				});
+		}
+		return convertView;
+	}
+	class ViewHolder{
+		TextView name;
+		TextView phone;
+		TextView location;
+		ImageView ivEdit;
+	}
+	
+	public void notifyList(List<PeopleInfo> list){
+		this.mList = list;
+		notifyDataSetChanged();
+	}
+}

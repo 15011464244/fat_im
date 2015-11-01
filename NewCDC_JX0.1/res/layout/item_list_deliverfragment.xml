@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:background="@drawable/selector_task_list"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/view_deliverfragment_mailnumber"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_marginTop="@dimen/pading10"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="邮件号："
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/item_list_deliverfragment_tv_mail_num"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="1000000000000"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/view_deliverfragment_reason"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_marginTop="@dimen/pading10"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="处理结果："
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/item_list_deliverfragment_tv_err_reason"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="该订单已经下段"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/item_list_deliverfragment_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buttonHeight"
+        android:background="@drawable/selector_deliver_task"
+        android:textColor="@drawable/selector_btn"
+        android:textSize="@dimen/textSizeNormal" />
+
+</LinearLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#eee">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title_layout" />
+    
+   <!--   <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" > -->
+        
+      <!-- <ImageView
+	        android:id="@+id/iv_nomessage"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="center"
+	        android:layout_centerInParent="true"
+	        android:src="@drawable/nothepackage" 
+	        android:visibility="visible"/> -->
+	        
+	       <RelativeLayout
+        android:id="@+id/rl_notpackage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center" >
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+        <RelativeLayout
+            android:id="@+id/rl_notpackage_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/img_view2"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:src="@drawable/img_notmessage_frant" />
+
+            <ImageView
+                android:id="@+id/img_view3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/img_notpackage" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/rl_notpackage_img"
+            android:gravity="center"
+            android:text="亲，还没有包裹信息"
+            android:textColor="#999"
+            android:textSize="14sp" />
+        
+        </LinearLayout>
+        
+    </RelativeLayout>
+      	
+      	<RelativeLayout 
+      	    android:layout_width="match_parent"
+      	    android:layout_height="match_parent"
+      	    android:background="#eee">
+      	    <View 
+      	        android:layout_width="0.5dp"
+      	        android:layout_height="match_parent"
+      	        android:layout_marginLeft="15dp"
+      	        android:background="#d5d5d5"
+      	        />
+      	    
+      	  	<ListView
+      	  	    android:id="@+id/list_deliver"
+      	  	    android:layout_marginLeft="2dp"
+      	  	    android:layout_width="match_parent"
+      	  	    android:layout_height="wrap_content"
+      	  	   android:listSelector="#eee"
+      	  	   android:divider="@null"
+       android:footerDividersEnabled="false">
+
+    		 </ListView>  
+      	</RelativeLayout>    
+    
+        
+    <!--  </ScrollView> -->
+
+</LinearLayout>

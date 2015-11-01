@@ -1,0 +1,14 @@
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('0','52958');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('A','收件人不在，今天再投');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('B','下一个工作日再投');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('C','保持与收件人的联系');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('D','已和寄件人联系，等待答复');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('E','退回寄件人');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('F','邮件转发');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('G','邮件待查');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('H','邮件被扣留或损坏');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('I','与原寄邮政联系');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('J','收件人自取');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('K','按寄件人要求毁掉');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('L','按收件人要求保留');
+insert into FOLLOW_ACTION(followAction, actionDescCHS) values ('M','收件人地址被核实');

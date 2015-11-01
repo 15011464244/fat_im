@@ -1,0 +1,116 @@
+<resources>
+
+    <!-- 揽收任务首页 -->
+    <dimen name="padBtnTop">5dp</dimen>
+    <dimen name="btnSize">15sp</dimen>
+    <dimen name="top_h">50dp</dimen>
+    <dimen name="text_h">50dp</dimen>
+    <dimen name="listTop_h">40dp</dimen>
+    <dimen name="listTop_size">20sp</dimen>
+    <dimen name="listTop_last">10sp</dimen>
+    <dimen name="listTop_left">30dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="textSizeBig">20sp</dimen>
+    <dimen name="textSizeNormal">17sp</dimen>
+    <dimen name="textSizeSamll">14sp</dimen>
+    <dimen name="textSizemin">12sp</dimen>
+    <dimen name="textSizeminer">13sp</dimen>
+    <dimen name="TtextSizeButton">18sp</dimen>
+    <dimen name="titleHeight">50dp</dimen>
+    <dimen name="buttonBackWidth">30dp</dimen>
+    <dimen name="buttonBackHeight">30dp</dimen>
+    <dimen name="titleTextWidth">150dp</dimen>
+    <dimen name="groutitem_height">35dp</dimen>
+    <!-- 登陆 -->
+    <dimen name="login_button_txtsize">18sp</dimen>
+    <dimen name="login_middle_height">60dp</dimen>
+    <dimen name="login_middle_margin">20dp</dimen>
+    <dimen name="login_check_padding">5dp</dimen>
+    <!-- 登陆 end -->
+    <!-- map start -->
+    <dimen name="map_divider">2dp</dimen>
+    <dimen name="map_margin">10dp</dimen>
+    <!-- map end -->
+    <!-- 设置    分组 -->
+    <dimen name="groupname_padding">10dp</dimen>
+    <dimen name="left_margin">10dp</dimen>
+    <dimen name="title_left_margin">10dp</dimen>
+    <dimen name="setting_tx_margin_left">35dp</dimen>
+    <dimen name="setting_button_height">35dp</dimen>
+    <dimen name="setting_margin_left_right">20dp</dimen>
+    <dimen name="setting_margin_left">15dp</dimen>
+    <dimen name="setting_margin_top">20dp</dimen>
+    <dimen name="linearlayout_margin">20dp</dimen>
+    <dimen name="half_padding">4dp</dimen>
+    <dimen name="paddingleft">5dp</dimen>
+    <dimen name="title_height">35dp</dimen>
+    <dimen name="et_padding_height">8dp</dimen>
+    <dimen name="img_height_width">100dp</dimen>
+    <dimen name="ll_margintop">8dp</dimen>
+    <!--  -->
+    <dimen name="layout_height">50dp</dimen>
+    <dimen name="scrollview_margin">5dp</dimen>
+    <dimen name="textview_width">100dp</dimen>
+    <dimen name="TextSize_detaixl">16sp</dimen>
+    <dimen name="padding_left">20dp</dimen>
+    <dimen name="TextSize_Button">15sp</dimen>
+    <dimen name="title_size">19sp</dimen>
+    <dimen name="TextSize_listView">18sp</dimen>
+    <dimen name="padding_medium">10dp</dimen>
+    <dimen name="item_list_2_margintit">8dp</dimen>
+    <dimen name="item_list_2_margin">5dp</dimen>
+    <dimen name="item_list_2_textsize">16sp</dimen>
+
+    <!-- zhangfan -->
+    <dimen name="item_marginleft">25dp</dimen>
+    <dimen name="marginLittle">5dp</dimen>
+    <dimen name="marginLeft_Item">65dp</dimen>
+    <dimen name="querenweituotou">75dp</dimen>
+    <dimen name="title_left_count_margin">2dp</dimen>
+    <dimen name="pading10">10dp</dimen>
+    <dimen name="margin4">4dp</dimen>
+    <dimen name="marginbottom_count">20dp</dimen>
+    <dimen name="marginleft_item">30dp</dimen>
+    <dimen name="marginright_item">50dp</dimen>
+    <dimen name="buttonHeight">40dp</dimen>
+    <!-- hanrong -->
+    <dimen name="custom_add">30dp</dimen>
+    <dimen name="dialog_marginBottom">10dp</dimen>
+
+    <!-- 无派单揽收 -->
+    <dimen name="edittextwidth">260sp</dimen>
+    <dimen name="saybutwidth">45dp</dimen>
+    <!-- 返单件 -->
+    <dimen name="backmailnumedittextwidth">170sp</dimen>
+    <dimen name="backmailedittextwidth">280sp</dimen>
+    <dimen name="onetomoreeditwidth">150dip</dimen>
+    <!-- 一票多件 -->
+    <dimen name="onetomoreaddtextsize">35dip</dimen>
+
+    <!-- 投递 -->
+    <dimen name="wushidp">50dp</dimen>
+    <dimen name="wudp">5dp</dimen>
+    <dimen name="badp">8dp</dimen>
+    <dimen name="sanshi">30dp</dimen>
+    <dimen name="shidp">10dp</dimen>
+    <dimen name="sizhidp">40dp</dimen>
+    <dimen name="shiwudp">15dp</dimen>
+    <dimen name="ershidp">20dp</dimen>
+    <dimen name="erdp">2dp</dimen>
+    <dimen name="sandp">3dp</dimen>
+    <dimen name="liushidp">60dp</dimen>
+    <dimen name="bashidp">80dp</dimen>
+    <dimen name="bashiwudp">85dp</dimen>
+    <dimen name="qishidp">70dp</dimen>
+    <dimen name="liushiwudp">65dp</dimen>
+    <dimen name="baidp">100dp</dimen>
+    <dimen name="jiushidp">90dp</dimen>
+    <dimen name="sanshiwudp">35dp</dimen>
+    <dimen name="fuwushidp">-50dp</dimen>
+    <dimen name="sanshisp">30sp</dimen>
+     <dimen name="ershisp">20sp</dimen>
+
+</resources>

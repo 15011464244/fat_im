@@ -1,0 +1,568 @@
+package com.newcdc.application;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.Dialog;
+import android.bluetooth.BluetoothAdapter;
+import android.content.ContentResolver;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Request.Method;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
+import com.cn.cdc.DaoFactory;
+import com.gicom.device.SerialPortFactory;
+import com.gicom.device.Bluetooth.BluetoothSerialPortInfo;
+import com.gicom.device.Bluetooth.SerialPort;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.lidroid.xutils.util.LogUtils;
+import com.newcdc.R;
+import com.newcdc.asynctask.BluetoothAsync;
+import com.newcdc.db.DeliverDaoFactory;
+import com.newcdc.db.FastLanDao;
+import com.newcdc.db.QueueDao;
+import com.newcdc.fragment.ChatListFragment;
+import com.newcdc.fragment.CustomFragment;
+import com.newcdc.fragment.DeliverFragment;
+import com.newcdc.fragment.DownDataFragment;
+import com.newcdc.fragment.MainFragment;
+import com.newcdc.fragment.PaymentFragment;
+import com.newcdc.fragment.SettingsFragment;
+import com.newcdc.model.DeliverQueueBean;
+import com.newcdc.service.AutoBlurtoothonnectionService;
+import com.newcdc.service.BlurtoothService;
+import com.newcdc.service.DownDCDataService;
+import com.newcdc.service.JXDownDataService;
+import com.newcdc.service.ListenNetStateService;
+import com.newcdc.service.LocationService;
+import com.newcdc.service.TestServiceNetStateService;
+import com.newcdc.tools.Constant;
+import com.newcdc.tools.Global;
+import com.newcdc.tools.NetHelper;
+import com.newcdc.tools.SharePreferenceUtilDaoFactory;
+import com.newcdc.tools.UserInfoUtils;
+import com.newcdc.tools.Utils;
+import com.newcdc.ui.CustomDialog;
+import com.newcdc.ui.ProgressDialog;
+import com.newcdc.ui.XFAudio;
+import com.newcdc.util.MyRequest;
+import com.newcdc.util.ParamsUtil;
+
+
+
+/**
+ * 
+ * @author zhangfan 2014-12-23 主页面
+ */
+public class MainActivity extends SlidingFragmentActivity {
+	
+	public static int scanType; // 0为投递页面 ， 1 为单号预制页面 , 2为揽收
+	private long pressTime = 0;
+	private Intent JXdownDataService;// 下载基础数据服务
+	private Intent downDCDataService;// 下载下段信息/派单信息/分组信息服务
+	private Intent listenNetStateService;// 监听网络状态服务
+	public static ContentResolver resolver;// 获取通话信息
+	private View layout;
+	private LayoutInflater inflater;
+	private int width;
+	private DeliverDaoFactory daoFactory;
+	private FastLanDao mFastLanDao;
+	private QueueDao mQueueDao;
+	private Dialog longdia;
+	private Dialog longdiaOut;
+	private String oldFormat;
+	private String newFormat;
+	private SharePreferenceUtilDaoFactory shareDao;
+	private Intent bluetoothService;// 蓝牙扫描枪监听服务
+	private Intent autobluetoothService;// 蓝牙枪自动连接服务
+	private BluetoothAdapter bluetoothAdapter = BluetoothAdapter
+			.getDefaultAdapter();
+	private BluetoothAsync bluetoothAsync;
+	private int bluetoothCount = 0;
+	
+	private RequestQueue sQueue;
+	ProgressDialog progressDialog = null;
+	private Handler handler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			if (msg.what == 1) {
+				if (progressDialog != null) {
+					progressDialog.toDimiss();
+				}
+			}
+		}
+	};
+	
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.activity_main);
+		setSlidingInfo();// 设置侧滑
+		DisplayMetrics metric = new DisplayMetrics();
+		MainActivity.this.getWindowManager().getDefaultDisplay()
+				.getMetrics(metric);
+		width = metric.widthPixels;
+		openBlueBooth(); // 打开蓝牙
+		sQueue = Volley.newRequestQueue(this);
+		inits();
+		initData();
+		DaoFactory.getInstance().init(this.getApplicationContext());
+		signIn();
+		startAllService();// 启动相关服务
+		commitException();// 提交异常信息
+		
+	}
+
+	/**
+	 * 打开蓝牙
+	 */
+	private void openBlueBooth() {
+		if (!isOpen()) {
+			bluetoothAdapter.enable();
+		}
+	}
+	
+	/**
+	 * 判断蓝牙是否打开
+	 * 
+	 * @return boolean
+	 */
+	public boolean isOpen() {
+		return this.bluetoothAdapter.isEnabled();
+
+	}
+
+	/**
+	 * 提交异常信息
+	 */
+	private void commitException() {
+		new Thread() {
+			@Override
+			public void run() {
+				UserInfoUtils user = new UserInfoUtils(MainActivity.this);
+				File file = new File(Constant.EXCEPTION_INFORMATION);
+				if (file.exists()) {
+					File[] files = file.listFiles();
+					if (files.length != 0) {
+						String except = Utils.readFile(files[files.length - 1]);
+						long operate_time = new Date().getTime();
+						ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+						params.add(new BasicNameValuePair("org_code", user
+								.getUserDelvorgCode()));
+						params.add(new BasicNameValuePair("employee_no", user
+								.getUserName()));
+						params.add(new BasicNameValuePair("exception_content",
+								except));
+						params.add(new BasicNameValuePair("operate_time",
+								operate_time + ""));
+						params.add(new BasicNameValuePair("operate_action", ""));
+						try {
+							JSONObject obj = new JSONObject(NetHelper.doPost(
+									Global.EXCEPT_COMMIT, params));
+							int result = obj.getInt("result");
+							if (result == 1) {// 上传成功，删除文件
+								for (int i = 0; i < files.length; i++) {
+									files[i].delete();
+								}
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			};
+		}.start();
+	}
+
+	private void inits() {
+		daoFactory = DeliverDaoFactory.getInstance();
+		daoFactory.initdao(this.getApplicationContext());
+		mFastLanDao = daoFactory.getFastLanDao(MainActivity.this);
+		mQueueDao = daoFactory.getQueueDao(MainActivity.this);
+		shareDao = SharePreferenceUtilDaoFactory
+				.getInstance(getApplicationContext());
+		newFormat = Utils.getSysDate();
+		oldFormat = shareDao.getDate();// 第一次登录，为空
+	}
+
+	/**
+	 * 启动相关服务
+	 */
+	private void startAllService() {
+		JXdownDataService = new Intent(MainActivity.this,
+				JXDownDataService.class);
+		listenNetStateService = new Intent(MainActivity.this,
+				ListenNetStateService.class);
+		downDCDataService = new Intent(MainActivity.this,
+				DownDCDataService.class);
+		startService(new Intent(MainActivity.this, LocationService.class));
+		startService(JXdownDataService);// 启动基础数据下载服务
+		startService(downDCDataService);// 启动下载下段信息/派单信息/分组信息服务
+		startService(listenNetStateService);// 启动网络监听
+		Utils.startIntentService(MainActivity.this);// 启动投递、揽收异步上传服务
+		connectBluetooth();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		// Log.e("tag", "" + isOpen());
+		if (isOpen()) {
+			bluetoothAdapter.disable();
+		}
+	}
+
+	/**
+	 * 关闭所有服务
+	 */
+	private void stopAllService() {
+		stopService(downDCDataService);
+		stopService(listenNetStateService);
+		stopService(new Intent(MainActivity.this,
+				TestServiceNetStateService.class));
+		if (bluetoothService != null) {
+			stopService(bluetoothService);
+		}
+		if (autobluetoothService != null) {
+			stopService(autobluetoothService);
+		}
+		if (isOpen()) {// 关闭蓝牙
+			bluetoothAdapter.disable();
+		}
+	}
+
+	private void initData() {
+		resolver = getContentResolver();
+	}
+
+	/**
+	 * 点击左侧，改变中间布局
+	 * 
+	 * @param fragmentFlag
+	 *            有三个值：0-主页 1-客户管理 2-设置
+	 */
+	public void switchContentFragment(int fragmentFlag) {
+		switch (fragmentFlag) {
+		case 0:// 支付
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container_content, new PaymentFragment())
+					.commit();
+			break;
+		case 1:
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container_content, new CustomFragment())
+					.commit();
+			break;
+		case 2:// 设置
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container_content, new SettingsFragment())
+					.commit();
+			break;
+		case 3:// 聊天
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container_content, new ChatListFragment())
+					.commit();
+			break;
+		case 4:// 下段
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container_content, new DeliverFragment())
+					.commit();
+			break;
+		case 5:// 基础数据下载
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container_content, new DownDataFragment())
+					.commit();
+			break;
+		case 6:// 主页
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container_content, new MainFragment())
+					.commit();
+			break;
+		}
+	}
+
+	/**
+	 * 设置侧滑属性
+	 */
+	private void setSlidingInfo() {
+		DisplayMetrics metric = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metric);
+		int width = metric.widthPixels;
+		setBehindContentView(R.layout.activity_left);
+		getSlidingMenu().setBehindWidth(width * 3 / 5);
+		getSlidingMenu().setMode(SlidingMenu.LEFT);
+		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.container_content, new MainFragment()).commit();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.container_left, new LeftFragment()).commit();
+	}
+
+	@Override
+	public void onBackPressed() {
+		ArrayList<DeliverQueueBean> allList = mQueueDao.queryAll();
+			if (allList.size() > 0) {
+				if (longdia == null) {
+					longdia = new Dialog(MainActivity.this, R.style.dialogss);
+					userExit_Judge_Dialog(longdia);
+					XFAudio xf = new XFAudio(MainActivity.this, "您有未上传的揽投信息");
+					xf.startSay();
+				} else {
+					XFAudio xf = new XFAudio(MainActivity.this, "您有未上传的揽投信息");
+					xf.startSay();
+					userExit_Judge_Dialog(longdia);
+				}
+			} else {
+				userLogout();
+			}
+	}
+
+	/**
+	 * 用户退出登录
+	 * **/
+	private void userLogout() {
+		CustomDialog.Builder builder = new CustomDialog.Builder(
+				MainActivity.this);
+		builder.setTitle("退出登录");
+		builder.setMessage("退出登录后，您将无法使用投递与揽收功能，是否确定退出？");
+		
+		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				progressDialog = new ProgressDialog(MainActivity.this, "正在退出...", handler);
+				progressDialog.setCanCalcelable(false);
+				if (!progressDialog.isShowing()) {
+					progressDialog.toShow();
+				}
+				HashMap<String, Object> json = new HashMap<String, Object>();
+				json.put("userCode", shareDao.getUSERNAME());
+				json.put("orgCode", shareDao.getOrgCode());
+				String params = ParamsUtil.getUrlParamsByMap(json);
+
+				MyRequest<Object> erq = new MyRequest<Object>(Method.POST, null,
+						Global.LOGOUT, new Listener<Object>() {
+
+							@Override
+							public void onResponse(Object arg0) {
+								com.alibaba.fastjson.JSONObject obj = com.alibaba.fastjson.JSONObject.parseObject(arg0.toString());
+								if ("1".equals(obj.getString("result"))) {
+									progressDialog.toDimiss();
+									stopAllService();
+									SharePreferenceUtilDaoFactory shareDao = new SharePreferenceUtilDaoFactory();
+									if (shareDao.getIsFirst()) {
+										shareDao.setIsFirst(false);
+									}
+									progressDialog.toDimiss();
+									System.exit(0);
+									
+								} else if ("0".equals(obj.getString("result"))) {
+									progressDialog.toDimiss();
+								}
+							}
+						}, new ErrorListener() {
+
+							@Override
+							public void onErrorResponse(VolleyError arg0) {
+								arg0.printStackTrace();
+								Toast.makeText(MainActivity.this, "签收异常，请检查您的网络", Toast.LENGTH_LONG).show();
+
+								
+								progressDialog.toDimiss();
+								stopAllService();
+								SharePreferenceUtilDaoFactory shareDao = new SharePreferenceUtilDaoFactory();
+								if (shareDao.getIsFirst()) {
+									shareDao.setIsFirst(false);
+								}
+								System.exit(0);
+								progressDialog.toDimiss();
+							}
+						}, params);
+				sQueue.add(erq);
+			}
+		});
+		builder.setNegativeButton("取消",
+				new android.content.DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+		builder.create().show();
+	}
+
+	/**
+	 * 判断是否有未上传数据
+	 * **/
+	private void userExit_Judge_Dialog(final Dialog longdia) {
+		inflater = MainActivity.this.getLayoutInflater();
+		layout = inflater.inflate(R.layout.dialog_userexitjude_layout, null);
+		Button sure = (Button) layout.findViewById(R.id.jude_sure);
+		Button cancel = (Button) layout.findViewById(R.id.jude_cancel);
+		TextView title = (TextView) layout
+				.findViewById(R.id.title_dialog_userexit);
+		title.setText("上传提示");
+		longdia.setContentView(layout, new LayoutParams(width * 17 / 20,
+				LayoutParams.WRAP_CONTENT));
+		longdia.setCancelable(true);
+		sure.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				longdia.dismiss();
+				stopAllService();
+				SharePreferenceUtilDaoFactory shareDao = new SharePreferenceUtilDaoFactory();
+				if (shareDao.getIsFirst()) {
+					shareDao.setIsFirst(false);
+				}
+				System.exit(0);
+			}
+		});
+		cancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				longdia.dismiss();
+			}
+		});
+		longdia.show();
+	}
+
+	@Override
+	protected void onResume() {
+		Utils.startIntentService(MainActivity.this);// 启动投递、揽收异步上传服务
+		super.onResume();
+	}
+
+	/**
+	 * 签到
+	 */
+	private void signIn() {
+//		if ((newFormat.equals(oldFormat))) {
+			
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+							signCheck(shareDao.getUSERNAME(),shareDao.getOrgCode());
+						}
+				}, 2000);
+				
+//				new Signin(MainActivity.this);
+//			}
+		/*else {
+			shareDao.setSignin(false);
+			new Signin(MainActivity.this);
+		}*/
+		
+	}
+	/**
+	 * 签到check
+	 * @param phone
+	 * @return
+	 */
+	public void signCheck(String userCode,String orgCode){
+		HashMap<String, Object> json = new HashMap<String, Object>();
+		json.put("userCode", userCode);
+		json.put("orgCode", orgCode);
+		String params = ParamsUtil.getUrlParamsByMap(json);
+		MyRequest<Object> req = new MyRequest<Object>(Request.Method.POST, null, Global.CHECKSIGN,
+				new Response.Listener<Object>() {
+
+					@Override
+					public void onResponse(Object arg0) {
+						LogUtils.e("签到check  "+ arg0.toString());
+							try {
+								String result = (String) arg0;
+								org.json.JSONObject object = new org.json.JSONObject(result.toString());
+								if (object.getInt("result") == 0) {
+									//已签到
+									shareDao.setSignin(true);
+								}else if (object.getInt("result")==1) {
+									
+									new Signin(MainActivity.this);
+									
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+				
+				}, new Response.ErrorListener() {
+
+					@Override
+					public void onErrorResponse(VolleyError arg0) {
+						LogUtils.e("签到check异常  "+ arg0.toString());
+						Toast.makeText(MainActivity.this, "查询是否签到失败!", Toast.LENGTH_LONG).show();
+						arg0.printStackTrace();
+					}
+				}, params);
+		CDCApplication.getQueue().add(req);
+		
+	}
+	/**
+	 * 蓝牙连接
+	 */
+	private void connectBluetooth() {
+		// Log.e("tag", "MainActivity == 蓝牙连接");
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				Log.e("tag", "handle");
+				if (!"".equals(shareDao.getBlueTooth())) {
+					Log.e("tag", "MainActivity==blue_shareDao存了");
+					BluetoothSerialPortInfo serialInfo = new BluetoothSerialPortInfo();
+					serialInfo.mac = shareDao.getBlueTooth();
+					SerialPort serialPort = SerialPortFactory
+							.getInstance(serialInfo);
+					try {
+						serialPort.Start();
+						shareDao.setBlueTooth(shareDao.getBlueTooth());
+						bluetoothService = new Intent(MainActivity.this,
+								BlurtoothService.class);
+						startService(bluetoothService);
+						autobluetoothService = new Intent(
+								getApplicationContext(),
+								AutoBlurtoothonnectionService.class);
+						startService(autobluetoothService);
+						Toast.makeText(MainActivity.this, "蓝牙连接成功",
+								Toast.LENGTH_LONG).show();
+						Log.e("tag", "MainActivity==chenggong");
+					} catch (Exception e) {
+						Log.e("tag", "MainActivity==shibai");
+						Toast.makeText(MainActivity.this, "蓝牙连接失败请手动连接",
+								Toast.LENGTH_LONG).show();
+					}
+				}
+			}
+		}, 5000);
+	}
+}

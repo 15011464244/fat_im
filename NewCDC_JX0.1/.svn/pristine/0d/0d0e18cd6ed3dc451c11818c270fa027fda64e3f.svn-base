@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".PhotoLView" >
+     <RelativeLayout
+    android:id="@+id/titlebar"  
+    android:layout_width="match_parent"
+    android:layout_height="50dp" 
+    android:background="@color/white"
+    >
+   <LinearLayout
+        android:id="@+id/topbar_linear1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/topbtn_return" >
+       
+        <ImageView
+        android:id="@+id/topbar_ib_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       
+       />
+       
+   </LinearLayout>
+  
+    <TextView
+        android:id="@+id/topbar_tv"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="通讯录"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textSize="22sp"
+        android:textColor="@color/black" />
+
+     <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/topbar_linear2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/top_pub"
+        android:gravity="center"
+        android:orientation="horizontal"  >
+    </LinearLayout>
+
+</RelativeLayout> 
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/titlebar">
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/large_photo"
+        />
+</LinearLayout>
+</RelativeLayout>

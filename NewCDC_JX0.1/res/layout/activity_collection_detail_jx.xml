@@ -1,0 +1,434 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/layout_title_function_4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleHeight"
+        android:background="@color/gree_my"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/deliver_back"
+            android:layout_width="@dimen/titleHeight"
+            android:layout_height="fill_parent"
+            android:background="@drawable/selector_back"
+            android:onClick="myonClick" />
+
+        <TextView
+            android:id="@+id/textView_title_function_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="揽收详情"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="邮件号: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_mailNo"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="重量: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="收件人姓名 : "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_receiverName"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="收件人手机 : "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_receiverMobile"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="收件人地址: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_receiverAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="寄件人姓名 : "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_senderName"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="寄件人手机 : "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_senderMobile"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="寄件人地址 : "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_senderAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="与寄件人距离: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_distance"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="应收资费: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_money"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="实收资费: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_actmoney"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="使用积分: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_Integral"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="付款方式: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_payment"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="业务类型: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_serviceType"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_startTime"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/scrollview_margin"
+                android:orientation="horizontal" 
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="@dimen/baidp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right|center_vertical"
+                    android:text="预约时间: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSizeSamll" />
+
+                <TextView
+                    android:id="@+id/tv_startTime"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/txt_background"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/textSizeSamll" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

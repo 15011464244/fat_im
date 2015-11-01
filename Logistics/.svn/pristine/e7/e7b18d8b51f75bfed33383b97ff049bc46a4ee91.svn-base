@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+     >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/img_sign_success"
+        android:gravity="bottom|center_horizontal"
+        >
+            <TextView 
+               
+                android:id="@+id/dialog_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="已签到10天，共累计10分"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:layout_marginLeft="15dp"
+		        android:layout_marginRight="15dp"
+		        android:layout_marginBottom="20dp"
+		        android:layout_centerHorizontal="true"
+                />
+            <!--  
+             <TextView 
+                android:id="@+id/dialog_content2"
+                android:layout_below="@id/dialog_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="（积分达到20分后可以使用）"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:layout_marginLeft="15dp"
+		        android:layout_marginRight="15dp"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginBottom="10dp"
+                />
+            -->
+            <ImageView 
+                android:id="@+id/iv_get_score"
+	        	android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:src="@drawable/img_get_score"
+	            android:layout_below="@id/dialog_content"
+	            android:layout_marginBottom="10dp"
+	            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+    
+</RelativeLayout>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical" >
+
+	<LinearLayout
+	    android:id="@+id/layout_above"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/neartask_title"
+        layout="@layout/header" 
+        >
+    </include>
+    
+
+    <LinearLayout
+        android:id="@+id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+
+        <RelativeLayout
+            android:id="@+id/layout_2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#fff"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/item_name_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:text="查询区域"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/line_2"
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/item_name_2"
+                android:background="@drawable/vertical_line" />
+
+            <TextView
+                android:id="@+id/item_value_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/line_2"
+                android:text="请选择查询区域"
+                android:textColor="#5c5c5c"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="7dp"
+                android:src="@drawable/icon_right" />
+        </RelativeLayout>
+       
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            >
+
+            <include layout="@layout/spiner_main" />
+        </LinearLayout>
+         
+         
+         
+         
+         
+         
+         
+        
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/horizontal_line" />
+
+        <TextView
+            android:id="@+id/item_loading"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#fff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="正在定位中..."
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <!-- <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/horizontal_line" />
+
+        <LinearLayout
+            android:id="@+id/layout_4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/submit_button_selector2"
+            android:gravity="center_horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" 
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_query" />
+
+            <TextView
+                android:id="@+id/item_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="5dp"
+                android:text="查询"
+                android:textColor="#000"
+                android:textSize="18sp"/>
+        </LinearLayout> -->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/horizontal_line" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+           	android:gravity="center_vertical|left"
+           	android:background="#fff"
+            >
+            <TextView
+	            android:id="@+id/item_tip"
+	            android:layout_width="270dp"
+	            android:layout_height="50dp"
+	            android:background="#fff"
+	            android:gravity="center_vertical"
+	            android:paddingLeft="8dp"
+	            android:text="附近快递员"
+	            android:textColor="#000"
+	            android:textSize="18sp" />
+            <TextView 
+                android:id="@+id/layout_4"
+	            android:layout_width="70dp"
+	            android:layout_height="35dp"
+	            style="@style/BtnStyle2"
+	            android:gravity="center"
+	            android:layout_marginRight="10dp"
+	            android:text="查询"
+	            android:textColor="#fff"
+	            android:textSize="18sp"
+	          />
+            
+        </LinearLayout>
+
+        
+    </LinearLayout>
+</LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:clickable="true" />
+
+        <Button
+            android:id="@+id/btn_fullscreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#4c4c4c4c"
+            android:padding="15dp"
+            android:text="全屏切换"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+        
+    
+        
+    </RelativeLayout>
+   
+</LinearLayout>

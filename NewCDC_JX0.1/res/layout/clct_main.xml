@@ -1,0 +1,111 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClctMainActivity" >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        >
+        
+        <Button 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回"
+            android:textSize="@dimen/title_size"
+            android:id="@+id/back"
+            android:layout_alignParentLeft="true"
+            />
+        
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="定位地址"
+            android:textSize="@dimen/title_size"
+            android:id="@+id/address"
+            android:layout_centerInParent="true"
+            />
+        
+    </RelativeLayout>
+    
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dip"
+        >
+        <EditText 
+            android:layout_width="300dip"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchtext"
+            android:background="@drawable/ed"
+            />
+       
+        <Button 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/say"
+            android:text="语音"
+            />
+        
+    </LinearLayout>
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        
+        <ListView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/clctlist"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="50dip"
+            ></ListView>
+        
+        
+        <RelativeLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+            
+            <Button 
+                android:layout_width="115dip"
+                android:layout_height="wrap_content"
+                android:id="@+id/chooseall"
+                android:text="全选"
+                android:layout_alignParentLeft="true"
+                />
+            
+            <Button 
+                android:layout_width="115dip"
+                android:layout_height="wrap_content"
+                android:id="@+id/sendmessage"
+                android:text="批量发短信"
+                android:layout_centerInParent="true"
+                />
+            
+            <Button 
+                android:layout_width="115dip"
+                android:layout_height="wrap_content"
+                android:id="@+id/noclct"
+                android:text="无派单揽收"
+                android:layout_alignParentRight="true"
+                />
+            
+       </RelativeLayout>
+        
+        </RelativeLayout>
+</LinearLayout>
+</RelativeLayout>

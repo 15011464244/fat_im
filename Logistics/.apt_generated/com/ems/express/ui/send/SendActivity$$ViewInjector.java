@@ -1,0 +1,117 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ems.express.ui.send;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.Injector;
+
+public class SendActivity$$ViewInjector<T extends com.ems.express.ui.send.SendActivity> implements Injector<T> {
+  @Override public void inject(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131427603, "field 'mTvTimeLine'");
+    target.mTvTimeLine = finder.castView(view, 2131427603, "field 'mTvTimeLine'");
+    view = finder.findRequiredView(source, 2131427596, "field 'llDateTime'");
+    target.llDateTime = finder.castView(view, 2131427596, "field 'llDateTime'");
+    view = finder.findRequiredView(source, 2131427589, "field 'jifenUse'");
+    target.jifenUse = finder.castView(view, 2131427589, "field 'jifenUse'");
+    view = finder.findRequiredView(source, 2131427528, "field 'mEtWeight'");
+    target.mEtWeight = finder.castView(view, 2131427528, "field 'mEtWeight'");
+    view = finder.findRequiredView(source, 2131427576, "field 'mWeightArrowView'");
+    target.mWeightArrowView = finder.castView(view, 2131427576, "field 'mWeightArrowView'");
+    view = finder.findRequiredView(source, 2131427581, "field 'mMailTypeSelectionView'");
+    target.mMailTypeSelectionView = finder.castView(view, 2131427581, "field 'mMailTypeSelectionView'");
+    view = finder.findRequiredView(source, 2131427606, "field 'mRelayStatement'");
+    target.mRelayStatement = finder.castView(view, 2131427606, "field 'mRelayStatement'");
+    view = finder.findRequiredView(source, 2131427575, "field 'mSelectedWeight'");
+    target.mSelectedWeight = finder.castView(view, 2131427575, "field 'mSelectedWeight'");
+    view = finder.findRequiredView(source, 2131427600, "field 'mDateSelectionView'");
+    target.mDateSelectionView = view;
+    view = finder.findRequiredView(source, 2131427580, "field 'mWeightSelectionView'");
+    target.mWeightSelectionView = finder.castView(view, 2131427580, "field 'mWeightSelectionView'");
+    view = finder.findRequiredView(source, 2131427598, "field 'mSelecteDate'");
+    target.mSelecteDate = finder.castView(view, 2131427598, "field 'mSelecteDate'");
+    view = finder.findRequiredView(source, 2131427577, "field 'mBusinessTypeSelectionView'");
+    target.mBusinessTypeSelectionView = finder.castView(view, 2131427577, "field 'mBusinessTypeSelectionView'");
+    view = finder.findRequiredView(source, 2131427599, "field 'mDateArrowView'");
+    target.mDateArrowView = finder.castView(view, 2131427599, "field 'mDateArrowView'");
+    view = finder.findRequiredView(source, 2131427585, "field 'mRbPayLater'");
+    target.mRbPayLater = finder.castView(view, 2131427585, "field 'mRbPayLater'");
+    view = finder.findRequiredView(source, 2131427866, "field 'mTvInfo'");
+    target.mTvInfo = finder.castView(view, 2131427866, "field 'mTvInfo'");
+    view = finder.findRequiredView(source, 2131427588, "field 'll4jifen'");
+    target.ll4jifen = finder.castView(view, 2131427588, "field 'll4jifen'");
+    view = finder.findRequiredView(source, 2131427605, "field 'mTimePicker'");
+    target.mTimePicker = finder.castView(view, 2131427605, "field 'mTimePicker'");
+    view = finder.findRequiredView(source, 2131427586, "field 'mRbJifen'");
+    target.mRbJifen = finder.castView(view, 2131427586, "field 'mRbJifen'");
+    view = finder.findRequiredView(source, 2131427573, "field 'mTvReceiverName'");
+    target.mTvReceiverName = finder.castView(view, 2131427573, "field 'mTvReceiverName'");
+    view = finder.findRequiredView(source, 2131427490, "field 'jifenTotal'");
+    target.jifenTotal = finder.castView(view, 2131427490, "field 'jifenTotal'");
+    view = finder.findRequiredView(source, 2131427602, "field 'mTvDateLine'");
+    target.mTvDateLine = finder.castView(view, 2131427602, "field 'mTvDateLine'");
+    view = finder.findRequiredView(source, 2131427587, "field 'line4youhui'");
+    target.line4youhui = view;
+    view = finder.findRequiredView(source, 2131427608, "field 'content'");
+    target.content = finder.castView(view, 2131427608, "field 'content'");
+    view = finder.findRequiredView(source, 2131427594, "field 'mTvExplain'");
+    target.mTvExplain = finder.castView(view, 2131427594, "field 'mTvExplain'");
+    view = finder.findRequiredView(source, 2131427607, "field 'mIvStatement'");
+    target.mIvStatement = finder.castView(view, 2131427607, "field 'mIvStatement'");
+    view = finder.findRequiredView(source, 2131427591, "field 'mSendTypeSelectionView'");
+    target.mSendTypeSelectionView = finder.castView(view, 2131427591, "field 'mSendTypeSelectionView'");
+    view = finder.findRequiredView(source, 2131427604, "field 'mDatePicker'");
+    target.mDatePicker = finder.castView(view, 2131427604, "field 'mDatePicker'");
+    view = finder.findRequiredView(source, 2131427583, "field 'mPaymentSelectionView'");
+    target.mPaymentSelectionView = finder.castView(view, 2131427583, "field 'mPaymentSelectionView'");
+    view = finder.findRequiredView(source, 2131427378, "field 'mTvTime'");
+    target.mTvTime = finder.castView(view, 2131427378, "field 'mTvTime'");
+    view = finder.findRequiredView(source, 2131427595, "field 'line4Time'");
+    target.line4Time = view;
+    view = finder.findRequiredView(source, 2131427584, "field 'mRbPayNow'");
+    target.mRbPayNow = finder.castView(view, 2131427584, "field 'mRbPayNow'");
+    view = finder.findRequiredView(source, 2131427571, "field 'mTvSenderName'");
+    target.mTvSenderName = finder.castView(view, 2131427571, "field 'mTvSenderName'");
+    view = finder.findRequiredView(source, 2131427590, "field 'mTvExplainJifen'");
+    target.mTvExplainJifen = finder.castView(view, 2131427590, "field 'mTvExplainJifen'");
+    view = finder.findRequiredView(source, 2131427601, "field 'mTvDate'");
+    target.mTvDate = finder.castView(view, 2131427601, "field 'mTvDate'");
+  }
+
+  @Override public void reset(T target) {
+    target.mTvTimeLine = null;
+    target.llDateTime = null;
+    target.jifenUse = null;
+    target.mEtWeight = null;
+    target.mWeightArrowView = null;
+    target.mMailTypeSelectionView = null;
+    target.mRelayStatement = null;
+    target.mSelectedWeight = null;
+    target.mDateSelectionView = null;
+    target.mWeightSelectionView = null;
+    target.mSelecteDate = null;
+    target.mBusinessTypeSelectionView = null;
+    target.mDateArrowView = null;
+    target.mRbPayLater = null;
+    target.mTvInfo = null;
+    target.ll4jifen = null;
+    target.mTimePicker = null;
+    target.mRbJifen = null;
+    target.mTvReceiverName = null;
+    target.jifenTotal = null;
+    target.mTvDateLine = null;
+    target.line4youhui = null;
+    target.content = null;
+    target.mTvExplain = null;
+    target.mIvStatement = null;
+    target.mSendTypeSelectionView = null;
+    target.mDatePicker = null;
+    target.mPaymentSelectionView = null;
+    target.mTvTime = null;
+    target.line4Time = null;
+    target.mRbPayNow = null;
+    target.mTvSenderName = null;
+    target.mTvExplainJifen = null;
+    target.mTvDate = null;
+  }
+}

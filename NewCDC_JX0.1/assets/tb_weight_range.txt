@@ -1,0 +1,4 @@
+insert into tb_weight_range values(1000,0,500,1);
+insert into tb_weight_range values(1500,500,1000000,1);
+insert into tb_weight_range values(2000,0,500,2);
+insert into tb_weight_range values(2500,500,1000000,2);

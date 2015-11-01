@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/title_layout" 
+        android:id="@+id/reset_log"
+        />
+
+    <EditText
+        android:layout_below="@+id/reset_log"
+        android:id="@+id/et_phone"
+        android:textColor="@color/black"
+        android:paddingBottom="@dimen/padding_15"
+        android:paddingTop="@dimen/padding_15"
+        android:layout_width="match_parent"
+        android:inputType="number"
+        android:background="@null"
+        android:hint="@string/C_HINT_FORGET_USER"
+        android:paddingLeft="@dimen/padding_20"
+        android:textSize="@dimen/font_15"
+        android:layout_height="wrap_content" />
+
+    <TextView style="@style/DividerLineStyle" 
+        android:id="@+id/reset_view"
+        android:layout_below="@+id/et_phone"
+        />
+
+    <LinearLayout
+        android:id="@+id/reset_ll"
+        android:layout_below="@+id/reset_view"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_auth_code"
+            android:textColor="@color/black"
+            android:paddingBottom="@dimen/padding_15"
+            android:paddingTop="@dimen/padding_15"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:background="@null"
+            android:hint="@string/C_HINT_AUTHOR_CODE"
+            android:paddingLeft="@dimen/padding_20"
+            android:textSize="@dimen/font_15"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/btn_auth_code"
+            android:layout_marginRight="@dimen/padding_20"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/font_14"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:background="@drawable/btn_send_selector"
+            android:text="@string/C_GET_AUTHOR_CODE"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView style="@style/DividerLineStyle"
+        android:id="@+id/reset_view1" 
+        android:layout_below="@+id/reset_ll"/>
+    <EditText
+        android:layout_below="@+id/reset_view1"
+        android:id="@+id/et_pw"
+        android:textColor="@color/black"
+        android:paddingBottom="@dimen/padding_15"
+        android:paddingTop="@dimen/padding_15"
+        android:layout_width="match_parent"
+        android:inputType="textCapWords"
+        android:background="@null"
+        android:hint="@string/C_NEW_PW"
+        android:paddingLeft="@dimen/padding_20"
+        android:textSize="@dimen/font_15"
+        android:layout_height="wrap_content" />
+
+    <TextView style="@style/DividerLineStyle"
+        android:id="@+id/reset_view2"
+        android:layout_below="@+id/et_pw" />
+
+    <TextView
+        android:layout_below="@+id/reset_view2"
+        android:id="@+id/btn_commit"
+        android:layout_margin="35dp"
+        android:text="@string/C_COMMIT"
+        style="@style/BtnStyle"
+        />
+    
+     <RelativeLayout
+        android:id="@+id/reset_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+
+        <ImageView
+            android:id="@+id/reset_chrysanthemum"
+            android:layout_width="104dp"
+            android:layout_height="100dp" 
+			android:layout_centerHorizontal="true"
+			android:layout_centerVertical="true"
+          	/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

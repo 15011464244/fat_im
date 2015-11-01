@@ -1,0 +1,385 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee" >
+
+    <LinearLayout
+        android:id="@+id/ll_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <include layout="@layout/title_layout" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp" >
+
+             <TextView
+                    android:id="@+id/line1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:text="姓        名"
+                    android:textColor="#333"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp" 
+                    android:layout_marginRight="10dp"/>
+            <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="#d5d5d5" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@null"
+                android:hint="请输入姓名"
+                android:paddingLeft="5dp"
+                android:textColor="#666"
+                android:textSize="16sp" />
+            
+        </LinearLayout>
+
+       <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#d5d5d5" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp" >
+
+             <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:text="手        机"
+                    android:textColor="#333"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp" 
+                    android:layout_marginRight="10dp"/>
+
+            <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="#d5d5d5" />
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@null"
+                android:hint="请输入手机号码"
+                android:inputType="phone"
+                android:paddingLeft="5dp"
+                android:textColor="#5c5c5c"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@drawable/horizontal_line" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/horizontal_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp" 
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="所在地区＊"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:src="#d2d2d2" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" >
+
+                <TextView
+                    android:id="@+id/tv_zone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="请选择所在地区"
+                    android:textColor="#5c5c5c"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/iv_zone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/icon_right" />
+            </LinearLayout>
+        </LinearLayout>
+        
+        
+        <!-- 测试代码start -->
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp" >
+
+             <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:text="所在地区"
+                    android:textColor="#333"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp" 
+                    android:layout_marginRight="10dp"/>
+
+            <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="#d5d5d5" />
+
+           <!--  <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" > -->
+                
+               
+
+               <!--  <TextView
+                    android:id="@+id/tv_zone2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="5dp"
+                   
+                    android:hint="请选择所在地区"
+                    android:textColor="#666"
+                    android:textSize="16sp" /> -->
+                
+
+                <!-- <ImageView
+                    android:id="@+id/iv_zone2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/icon_down" /> -->
+                    
+            <!-- </LinearLayout> -->
+        </LinearLayout>
+        
+         <LinearLayout 
+              android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+             
+              <include layout="@layout/spiner_main" />
+         </LinearLayout>
+        
+        <!-- <LinearLayout
+            android:id="@+id/ll_address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            >
+            
+            
+            
+            
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/white"
+                android:orientation="horizontal" >
+
+                <kankan.wheel.widget.WheelView
+                    android:id="@+id/wv_province"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1" >
+                </kankan.wheel.widget.WheelView>
+
+                <kankan.wheel.widget.WheelView
+                    android:id="@+id/wv_city"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1.2" >
+                </kankan.wheel.widget.WheelView>
+
+                <kankan.wheel.widget.WheelView
+                    android:id="@+id/wv_county"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2" >
+                </kankan.wheel.widget.WheelView>
+            </LinearLayout>
+            </LinearLayout> -->
+            <!-- 测试代码end -->
+
+           <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#d5d5d5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp" >
+
+               <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:text="详细地址"
+                    android:textColor="#333"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp" 
+                    android:layout_marginRight="10dp"/>
+
+            <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="#d5d5d5" />
+
+                <EditText
+                    android:id="@+id/et_location2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:background="@null"
+                    android:hint="请输入详细地址"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:textColor="#5c5c5c"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@drawable/horizontal_line" />
+
+       <!--  <ListView
+            android:id="@+id/query_address"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/dialog_backgroud"
+            android:divider="@drawable/horizontal_line" >
+        </ListView> -->
+
+        <Button
+            android:id="@+id/submit"
+           	style="@style/BtnStyle"
+           	android:onClick="storeInfo"
+        	android:layout_margin="@dimen/padding_20"
+        	android:text="保存" />
+    </LinearLayout>
+    
+    <!-- 地址输入框满屏start -->
+    
+    <LinearLayout
+        android:id="@+id/ll_location_select"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#cccccc"
+        android:orientation="vertical"
+        android:visibility="gone" >
+        <EditText
+             android:id="@+id/et_location"
+             android:layout_width="fill_parent"
+             android:layout_height="50dp"
+             android:layout_marginLeft="10dp"
+             android:layout_marginRight="10dp"
+             android:layout_marginTop="5dp"
+             android:layout_marginBottom="5dp"
+             android:background="#fff"
+             android:hint="请输入详细地址"
+             android:paddingLeft="5dp"
+             android:textColor="#5c5c5c"
+             android:textSize="18sp" />
+    	 
+       <LinearLayout 
+           android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+         <ListView
+            android:id="@+id/query_address"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:divider="@drawable/horizontal_line" >
+        </ListView>
+       </LinearLayout>
+       <Button
+            android:id="@+id/bt_select"
+           	style="@style/BtnStyle"
+        	android:layout_margin="@dimen/padding_20"
+        	android:text="确定" />
+    </LinearLayout>
+    <!-- 地址输入框满屏end -->
+
+</RelativeLayout>

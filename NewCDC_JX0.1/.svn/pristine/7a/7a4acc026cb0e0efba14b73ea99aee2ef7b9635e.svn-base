@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/ll_other"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/groutitem_height"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:paddingLeft="@dimen/groupname_padding"
+        android:paddingRight="@dimen/groupname_padding" >
+
+        <TextView
+            android:id="@+id/tv_other"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/groutitem_height"
+            android:background="@null"
+            android:ems="6"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="其他"
+            android:textColor="@color/gree_my" />
+
+        <TextView
+            android:id="@+id/tv_group_other_num"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/groutitem_height"
+            android:background="@null"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="(2)"
+            android:textColor="@color/gree_my" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ll_margintop"
+        android:background="@drawable/selector_org"
+        android:hint="请输入文字"
+        android:maxLength="10"
+        android:padding="@dimen/et_padding_height"
+        android:singleLine="true" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ll_margintop"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ll_voiceadd"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/bt_voiceadd"
+                android:layout_width="33dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@drawable/selector_voice" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_add"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/bt_add"
+                android:layout_width="33dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@drawable/selector_add" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

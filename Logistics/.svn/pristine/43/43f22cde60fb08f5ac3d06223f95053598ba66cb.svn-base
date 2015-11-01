@@ -1,0 +1,329 @@
+package com.ems.express.fragment.home;
+
+import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import com.ems.express.App;
+import com.ems.express.R;
+import com.ems.express.R.layout;
+import com.ems.express.ui.BaiduMapActivity;
+import com.ems.express.ui.Home2Activity;
+import com.ems.express.ui.LoginActivity;
+import com.ems.express.ui.PriceActivity;
+import com.ems.express.ui.ToolsActivity;
+import com.ems.express.ui.chat.ChatListActivity;
+import com.ems.express.ui.message.receive.ReceiveMailActivity;
+import com.ems.express.ui.message.send.SendMessageActivity;
+import com.ems.express.ui.message.send.SendMessageListActivity;
+import com.ems.express.ui.send.SendActivity;
+import com.ems.express.util.DialogUtils;
+import com.ems.express.util.SpfsUtil;
+import com.ems.express.util.ToastUtil;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+public class HomeIndexFragment extends Fragment implements OnClickListener {
+	private View view;
+
+	private LinearLayout send, receive, talk, message, near, tools;
+	private Context mContext;
+
+	// 来消息的时候判断是否被隐藏，改变红圈
+	public static Fragment indexFragment;
+
+	private TextView recNoread;
+	private TextView sendNoread;
+
+	private ViewPager mViewPager;
+	private int imageIds[];
+	private ArrayList<ImageView> images;
+	private ViewPagerAdapter adapter;
+	private ArrayList<View> dots;
+	private boolean isFirstIn = true;
+
+	private int oldPosition = 0;// 记录上一次点的位置
+	private int currentItem; // 当前页面
+	private ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+	
+	private ViewPagerTask viewPagerTask = new ViewPagerTask();
+
+	public BroadcastReceiver newMsgBReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			showMessageTag();
+		}
+	};
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		view = inflater.inflate(R.layout.home_index_fragment, null);
+		mContext = this.getActivity();
+		indexFragment = this;
+
+		// 注册一个自定义的广播接收器
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("NewMsgReceiver_Action");
+		mContext.registerReceiver(newMsgBReceiver, filter);
+
+		initView();
+		
+		if(isFirstIn){
+			// 每隔10秒钟切换一张图片
+			scheduledExecutorService.scheduleWithFixedDelay(viewPagerTask,
+					10, 10, TimeUnit.SECONDS);
+			isFirstIn = false;
+		}
+		
+		return view;
+	}
+
+	// 切换图片
+	private class ViewPagerTask implements Runnable {
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			currentItem = (currentItem + 1) % imageIds.length;
+			// 更新界面
+			// handler.sendEmptyMessage(0);
+			handler.obtainMessage().sendToTarget();
+		}
+
+	}
+
+	private Handler handler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			// 设置当前页面
+			mViewPager.setCurrentItem(currentItem);
+		}
+
+	};
+
+	private void initView() {
+		send = (LinearLayout) view.findViewById(R.id.ll_send);
+		receive = (LinearLayout) view.findViewById(R.id.ll_receive);
+		talk = (LinearLayout) view.findViewById(R.id.ll_talk);
+		message = (LinearLayout) view.findViewById(R.id.ll_message);
+		near = (LinearLayout) view.findViewById(R.id.ll_near);
+		tools = (LinearLayout) view.findViewById(R.id.ll_tools);
+		recNoread = (TextView) view.findViewById(R.id.rec_noread_count);
+		sendNoread = (TextView) view.findViewById(R.id.send_noread_count);
+
+		send.setOnClickListener(this);
+		receive.setOnClickListener(this);
+		talk.setOnClickListener(this);
+		message.setOnClickListener(this);
+		near.setOnClickListener(this);
+		tools.setOnClickListener(this);
+
+		// 隐藏扫件
+		Home2Activity parent = (Home2Activity) getActivity();
+		parent.showScan(false);
+		parent.showSign(true);
+		
+
+		mViewPager = (ViewPager) view.findViewById(R.id.vp_image_change);
+
+		// 图片ID
+		imageIds = new int[] { R.drawable.img_index, R.drawable.img_index3};
+		// 显示的图片
+		images = new ArrayList<ImageView>();
+		for (int i = 0; i < imageIds.length; i++) {
+			ImageView imageView = new ImageView(mContext);
+			imageView.setImageResource(imageIds[i]);
+			images.add(imageView);
+		}
+		
+		//显示的点
+        dots = new ArrayList<View>();
+        dots.add(view.findViewById(R.id.dot_0));
+        dots.add(view.findViewById(R.id.dot_1));
+
+		adapter = new ViewPagerAdapter();
+		mViewPager.setAdapter(adapter);
+
+		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int position) {
+				// TODO Auto-generated method stub
+				// title.setText(titles[position]);
+
+				 dots.get(oldPosition).setBackgroundResource(R.drawable.dot_normal);
+				 dots.get(position).setBackgroundResource(R.drawable.dot_focused);
+
+				oldPosition = position;
+				currentItem = position;
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		showMessageTag();
+	}
+
+	public void showMessageTag() {
+		// 是否有未读收件消息
+		int recMsgCount = App.dbHelper.queryUnRedDeliveryMessage(App.db);
+		if (recMsgCount == 0) {
+			recNoread.setVisibility(View.GONE);
+		} else {
+			recNoread.setVisibility(View.VISIBLE);
+			recNoread.setText(recMsgCount + "");
+		}
+		// 是否有未读寄件消息
+		int sendMsgCount = App.dbHelper.querySendNoticeMessage(App.db);
+		if (sendMsgCount == 0) {
+			sendNoread.setVisibility(View.GONE);
+		} else {
+			sendNoread.setVisibility(View.VISIBLE);
+			sendNoread.setText(sendMsgCount + "");
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		Intent intent = null;
+		switch (v.getId()) {
+		case R.id.ll_send:
+			if (SpfsUtil.loadPhone().equals("")) {
+				Intent intent1 = new Intent(mContext, LoginActivity.class);
+				startActivity(intent1);
+				ToastUtil.show(mContext, "请先登录");
+			} else {
+				SendActivity.actionStart(mContext);
+			}
+			if (SpfsUtil.getIsLoadingCity() == true) {
+				DialogUtils.successMessage(mContext, "初始化数据加载中\n请20秒后重新再试！");
+				return;
+			}
+
+			break;
+		case R.id.ll_receive:
+			if (SpfsUtil.loadPhone().equals("")) {
+				Intent intent1 = new Intent(mContext, LoginActivity.class);
+				startActivity(intent1);
+				ToastUtil.show(mContext, "请先登录");
+			} else {
+				DialogUtils.noticeDialog(mContext, "功能敬请期待", "知道了");
+//				ReceiveMailActivity.actionStart(mContext);
+			}
+			break;
+		case R.id.ll_talk:
+			ToastUtil.show(mContext, "实时通讯");
+			ChatListActivity.startAction(mContext);
+			break;
+		case R.id.ll_message:
+			if (SpfsUtil.loadPhone().equals("")) {
+				Intent intent1 = new Intent(mContext, LoginActivity.class);
+				startActivity(intent1);
+				ToastUtil.show(mContext, "请先登录");
+			} else {
+//				intent = new Intent(mContext, SendMessageActivity.class);
+				intent = new Intent(mContext, SendMessageListActivity.class);
+				intent.putExtra(BaiduMapActivity.KEY_TYPE,
+						BaiduMapActivity.TYPE_CARRIER);
+				startActivity(intent);
+			}
+
+			break;
+		case R.id.ll_near:
+			if (SpfsUtil.getIsLoadingCity() == true) {
+				DialogUtils.successMessage(mContext, "初始化数据加载中\n请20秒后重新再试！");
+				return;
+			}
+			// ToastUtil.show(this, "快递员位置");
+			intent = new Intent(mContext, BaiduMapActivity.class);
+			intent.putExtra(BaiduMapActivity.KEY_TYPE,
+					BaiduMapActivity.TYPE_CARRIER);
+			startActivity(intent);
+			break;
+		case R.id.ll_tools:
+			ToolsActivity.actionStart(mContext);
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public void onDestroy() {
+		mContext.unregisterReceiver(newMsgBReceiver);
+		super.onDestroy();
+	}
+
+	private class ViewPagerAdapter extends PagerAdapter {
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return images.size();
+		}
+
+		// 是否是同一张图片
+		@Override
+		public boolean isViewFromObject(View arg0, Object arg1) {
+			// TODO Auto-generated method stub
+			return arg0 == arg1;
+		}
+
+		@Override
+		public void destroyItem(ViewGroup view, int position, Object object) {
+			// TODO Auto-generated method stub
+			// super.destroyItem(container, position, object);
+			// view.removeViewAt(position);
+			view.removeView(images.get(position));
+
+		}
+
+		@Override
+		public Object instantiateItem(ViewGroup view, int position) {
+			// TODO Auto-generated method stub
+			view.addView(images.get(position));
+
+			return images.get(position);
+		}
+	}
+
+}

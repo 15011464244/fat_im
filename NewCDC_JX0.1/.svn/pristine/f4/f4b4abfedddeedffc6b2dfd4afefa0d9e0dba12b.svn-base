@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/jiqian_money_remarks"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_margin="@dimen/map_margin"
+        android:gravity="center"
+        android:text="更改手机号"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSizeBig" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/map_divider"
+        android:background="@color/glay" />
+
+    <EditText
+        android:id="@+id/et_number_changeMobile"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/ershidp"
+        android:hint="请输入新的手机号"
+        android:inputType="number"
+        android:textColor="@color/dialog_text"
+        android:textSize="@dimen/textSizeNormal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5" />
+
+        <Button
+            android:id="@+id/btn_negtive__changeMobile"
+            style="@style/button_sel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sizhidp"
+            android:layout_margin="@dimen/login_middle_margin"
+            android:layout_weight="1"
+            android:background="@drawable/button_selecter"
+            android:gravity="center"
+            android:text="取消"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <Button
+            android:id="@+id/btn_positive_changeMobile"
+            style="@style/button_sel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sizhidp"
+            android:layout_margin="@dimen/login_middle_margin"
+            android:layout_weight="1"
+            android:background="@drawable/button_selecter"
+            android:gravity="center"
+            android:text="确定"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5" />
+    </LinearLayout>
+
+</LinearLayout>

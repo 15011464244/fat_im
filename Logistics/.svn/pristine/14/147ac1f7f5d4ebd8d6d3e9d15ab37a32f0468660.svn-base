@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:background="#ffffff" >
+
+  <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:onClick="back"
+        android:padding="13dp"
+        android:src="@drawable/back_button" 
+       />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="title"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+    
+    <TextView
+        android:visibility="gone"
+        android:layout_marginRight="15dp"
+        android:id="@+id/tv_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:text="info"
+        android:textColor="#5c5c5c"
+        android:textSize="16sp" 
+        android:background="@drawable/btn_send_selector"
+        android:gravity="center"
+        />
+    
+     <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/horizontal_line" /> 
+
+</RelativeLayout>

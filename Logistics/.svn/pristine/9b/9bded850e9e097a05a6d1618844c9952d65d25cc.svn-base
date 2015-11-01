@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 是否取得焦点 -->
+    <item android:drawable="@drawable/radio_button_selected" android:state_focused="true"/>
+    <!-- 是否按下 -->
+    <item android:drawable="@drawable/radio_button_selected" android:state_pressed="true"/>
+    <!-- 是否被选中 -->
+    <item android:drawable="@drawable/radio_button_selected" android:state_selected="true"/>
+    <!-- 显示的资源 -->
+    <item android:drawable="@drawable/radio_button_normal" android:state_selected="false"/>
+
+</selector>

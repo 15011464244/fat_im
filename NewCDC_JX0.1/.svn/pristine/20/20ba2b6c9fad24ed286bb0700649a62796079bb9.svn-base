@@ -1,0 +1,193 @@
+package com.newcdc.db;
+
+import android.content.Context;
+
+/**
+ * @author zhangfan 2015-1-26,上午11:09:43
+ * 
+ */
+public class DeliverDaoFactory {
+
+	private static DeliverDaoFactory daoFactory;
+	private static DeliverDao deliverDao;
+	private static AddressDao addressDao;
+	private static GroupDao groupDao;
+	private static ExtraCastDao extraCastDao;
+	private static PushDao pushDao;
+	private static QueueDao queueDao;
+//	private static UserDao userDao;
+	private static QsjGndmDao qsjGndmDao;
+	private static CustomerDao customerDao;
+	private static Gather_MsgDao gather_msgdao;
+	private static FastLanDao fastLanDao;
+	private static MailTypeDao mailTypeDao;
+	private static TransportTypeDao transportTypeDao;
+	private static MoneyDao moneyDao;
+	private static ChatMessageDao chatMessageDao;
+	private static DeliverMailDao deliverMailDao;
+	private static DeliverTaskListDao delivertasklistdao;
+	private static NewUserDao newUserDao;
+	private static JxClctDao jxClctDao;
+
+	private DeliverDaoFactory() {
+	}
+
+	public static DeliverDaoFactory getInstance() {
+		if (daoFactory == null) {
+			daoFactory = new DeliverDaoFactory();
+		}
+		return daoFactory;
+	}
+
+	public void initdao(Context context) {
+		deliverDao = getInstance().getDeliverDao(context);
+		addressDao = getInstance().getAddressDao(context);
+		groupDao = getInstance().getGroupDao(context);
+		pushDao = getInstance().getPushDao(context);
+		queueDao = getInstance().getQueueDao(context);
+//		userDao = getInstance().getUserDao(context);
+		qsjGndmDao = getInstance().getQsjGndmDao(context);
+		customerDao = getInstance().getCustomerDao(context);
+		gather_msgdao = getInstance().getGather_msgdao(context);
+		fastLanDao = getInstance().getFastLanDao(context);
+		mailTypeDao = getInstance().getMailTypeDao(context);
+		transportTypeDao = getInstance().getTransportTypeDao(context);
+		moneyDao = getInstance().getMoneyDao(context);
+		chatMessageDao = getInstance().getChatMessageDao(context);
+		deliverMailDao = getInstance().getDeliverMailDao(context);
+		delivertasklistdao = getInstance().getDeliverTaskListDao(context);
+		newUserDao = getInstance().getNewUserDao(context);
+		jxClctDao = getInstance().getJxClctDao(context);
+	}
+	public NewUserDao getNewUserDao(Context context) {
+		if (newUserDao == null) {
+			newUserDao = new NewUserDao(context);
+		}
+		return newUserDao;
+	}
+	public JxClctDao getJxClctDao(Context context) {
+		if (jxClctDao == null) {
+			jxClctDao = new JxClctDao(context);
+		}
+		return jxClctDao;
+	}
+	public DeliverTaskListDao getDeliverTaskListDao(Context context) {
+		if (delivertasklistdao == null) {
+			delivertasklistdao = new DeliverTaskListDao(context);
+		}
+		return delivertasklistdao;
+	}
+
+	public DeliverDao getDeliverDao(Context context) {
+		if (deliverDao == null) {
+			deliverDao = new DeliverDao(context);
+		}
+		return deliverDao;
+	}
+
+	public DeliverMailDao getDeliverMailDao(Context context) {
+		if (deliverMailDao == null) {
+			deliverMailDao = new DeliverMailDao(context);
+		}
+		return deliverMailDao;
+	}
+
+	public ExtraCastDao getExtraCastDao(Context context) {
+		if (extraCastDao == null) {
+			extraCastDao = new ExtraCastDao(context);
+		}
+		return extraCastDao;
+	}
+
+	public GroupDao getGroupDao(Context context) {
+		if (groupDao == null) {
+			groupDao = new GroupDao(context);
+		}
+		return groupDao;
+	}
+
+	public PushDao getPushDao(Context context) {
+		if (pushDao == null) {
+			pushDao = new PushDao(context);
+		}
+		return pushDao;
+	}
+
+//	public UserDao getUserDao(Context context) {
+//		if (userDao == null) {
+//			userDao = new UserDao(context);
+//		}
+//		return userDao;
+//	}
+
+	public QueueDao getQueueDao(Context context) {
+		if (queueDao == null) {
+			queueDao = new QueueDao(context);
+		}
+		return queueDao;
+	}
+
+	public AddressDao getAddressDao(Context context) {
+		if (addressDao == null) {
+			addressDao = new AddressDao(context);
+		}
+		return addressDao;
+	}
+
+	public QsjGndmDao getQsjGndmDao(Context context) {
+		if (qsjGndmDao == null) {
+			qsjGndmDao = new QsjGndmDao(context);
+		}
+		return qsjGndmDao;
+	}
+
+	public CustomerDao getCustomerDao(Context context) {
+		if (customerDao == null) {
+			customerDao = new CustomerDao(context);
+		}
+		return customerDao;
+	}
+
+	public Gather_MsgDao getGather_msgdao(Context context) {
+		if (gather_msgdao == null) {
+			gather_msgdao = new Gather_MsgDao(context);
+		}
+		return gather_msgdao;
+	}
+
+	public FastLanDao getFastLanDao(Context context) {
+		if (fastLanDao == null) {
+			fastLanDao = new FastLanDao(context);
+		}
+		return fastLanDao;
+	}
+
+	public MailTypeDao getMailTypeDao(Context context) {
+		if (mailTypeDao == null) {
+			return mailTypeDao = new MailTypeDao(context);
+		}
+		return mailTypeDao;
+	}
+
+	public TransportTypeDao getTransportTypeDao(Context context) {
+		if (transportTypeDao == null) {
+			transportTypeDao = new TransportTypeDao(context);
+		}
+		return transportTypeDao;
+	}
+
+	public MoneyDao getMoneyDao(Context context) {
+		if (moneyDao == null) {
+			moneyDao = new MoneyDao(context);
+		}
+		return moneyDao;
+	}
+
+	public ChatMessageDao getChatMessageDao(Context context) {
+		if (chatMessageDao == null) {
+			chatMessageDao = new ChatMessageDao(context);
+		}
+		return chatMessageDao;
+	}
+
+}

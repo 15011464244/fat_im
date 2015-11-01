@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/left_background"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <com.newcdc.ui.RoundImageView
+            android:id="@+id/iv_headimg"
+            android:layout_width="@dimen/img_height_width"
+            android:layout_height="@dimen/img_height_width"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/headimg" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gray_line_2" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="vertical" >
+		<!--  
+        <Button
+            android:id="@+id/btn_main_left_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_leftfragment"
+            android:text="主页"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeBig" />
+            -->
+		<RelativeLayout 
+		    android:id="@+id/rl_paymentfragment_left_fragment"
+		    android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+		    >
+		    <TextView 
+		       android:id="@+id/tv_message"
+		       android:layout_width="fill_parent"
+		       android:layout_height="fill_parent"
+		       android:text="消息" 
+		       android:background="@drawable/selector_leftfragment"
+		       android:textColor="@color/white"
+		       android:textSize="@dimen/textSizeBig"
+		       android:gravity="center"
+		        />
+		    <TextView
+		                android:id="@+id/tv_unread_count"
+		                android:layout_width="15dp"
+		                android:layout_height="15dp"
+		                android:layout_alignParentRight="true"
+		                android:layout_marginRight="50dp"
+		      			android:layout_marginTop="5dp"
+		                android:background="@drawable/message_circle" 
+		                android:textColor="@color/white"
+		                android:textSize="10dp"
+		                android:text="99"
+		                android:gravity="center"
+		                />
+		</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gray_line_2" >
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_custom_left_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_leftfragment"
+            android:text="客户管理"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeBig"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gray_line_2" >
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_deliver_left_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_leftfragment"
+            android:text="任务分派"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeBig"
+            android:visibility="gone"  />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gray_line_2" >
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_downdata_leftfragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_leftfragment"
+            android:text="基础数据下载"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeBig" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gray_line_2" >
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_chat_left_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_leftfragment"
+            android:text="聊天"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeBig" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gray_line_2" >
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_settings_left_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_leftfragment"
+            android:text="设置"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeBig" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gray_line_2" >
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_help_left_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_leftfragment"
+            android:text="帮助"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeBig" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gray_line_2" >
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="bottom|center_horizontal"
+        android:text="@string/app_name"
+        android:textColor="@color/dialog_text"
+        android:textSize="@dimen/textSizeBig" />
+
+</LinearLayout>

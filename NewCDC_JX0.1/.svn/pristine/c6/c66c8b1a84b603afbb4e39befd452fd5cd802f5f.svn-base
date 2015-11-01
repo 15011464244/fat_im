@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/jiqian_money_remarks"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_margin="@dimen/map_margin"
+        android:gravity="center"
+        android:text="确认未妥投"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSizeBig" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/map_divider"
+        android:background="@color/glay" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/login_middle_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="共计:"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/tv_all_dialog_commit_manydlv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextViews"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="件"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="妥投:"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/tv_tuotou_dialog_commit_manydlv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="件"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="需收款邮件:"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/tv_money_dialog_commit_manydlv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="件"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="未妥投:"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/tv_weituotou_dialog_commit_manydlv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="件"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="剩余:"
+            android:textColor="@color/glay"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/tv_daichuli_dialog_commit_manydlv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone"
+            android:textColor="@color/gree_my"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="件"
+            android:textColor="@color/glay"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/login_middle_margin"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sizhidp"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/btn_cancel_dialog_commit_manydlv"
+                style="@style/button_sel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/button_selecter"
+                android:text="取消"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:background="@drawable/edit_bac"
+            android:orientation="horizontal"
+            android:visibility="invisible" >
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sizhidp"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_positive_dialog_commit_manydlv"
+                style="@style/button_sel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/button_selecter"
+                android:text="确定"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

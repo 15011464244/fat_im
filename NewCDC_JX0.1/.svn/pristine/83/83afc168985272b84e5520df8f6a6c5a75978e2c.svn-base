@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_horizontal_margin" >
+    
+
+    <Button
+        android:id="@+id/btn_footer_deliverfragment_del_err"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_weight="1"
+        android:background="@drawable/selector_deliver_task"
+        android:text="移除异常邮件"
+        android:textColor="@drawable/selector_btn"
+        android:textSize="@dimen/textSizeNormal" />
+
+    <Button
+        android:id="@+id/btn_footer_deliverfragment_commit_all"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:background="@drawable/selector_deliver_task"
+        android:text="全部提交"
+        android:textColor="@drawable/selector_btn"
+        android:textSize="@dimen/textSizeNormal" />
+</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+
+</LinearLayout>

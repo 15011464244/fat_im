@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/titleHeight"
+    android:background="@color/orange_title"
+    android:orientation="vertical" >
+
+   
+    <RelativeLayout
+        
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/layout_height"
+        android:background="@color/gree_my" >
+
+        <Button
+            android:id="@+id/censcue_back"
+            android:layout_width="@dimen/layout_height"
+            android:layout_height="@dimen/layout_height"
+            android:background="@drawable/selector_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/title_size"
+            android:textColor="@color/white"
+            android:text="统计"/>
+    </RelativeLayout>
+
+</LinearLayout>

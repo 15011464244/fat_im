@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <gradient android:startColor="#c0000000" android:endColor="#c0000000" android:angle="90" />
+    <solid android:color="#00000000" />  
+    <!-- 边框宽度 -->  
+    <stroke android:width="8dp"  android:color="#FFFFFF" /> 
+	<!-- 设置圆角 -->  
+    <corners android:topLeftRadius="15px" 
+        android:topRightRadius="15px"
+         android:bottomLeftRadius="15px" 
+        android:bottomRightRadius="15px"/>    
+    <padding     
+        android:left="5dp"    
+        android:top="5dp"     
+        android:right="5dp"    
+        android:bottom="5dp" />  
+</shape>

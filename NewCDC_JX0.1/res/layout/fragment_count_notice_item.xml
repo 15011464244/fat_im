@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_task_list"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/marginbottom_count"
+        android:layout_marginLeft="@dimen/marginleft_item"
+        android:layout_marginRight="@dimen/marginleft_item"
+        android:layout_marginTop="@dimen/marginbottom_count"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/fragment_count_item_kehu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="客户1:"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeBig" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/fragment_count_item_phone1"
+                android:layout_width="@dimen/baidp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="right"
+                android:text="电话"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeBig" />
+
+            <TextView
+                android:id="@+id/fragment_count_item_phone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/wudp"
+                android:layout_toRightOf="@+id/fragment_count_item_phone1"
+                android:background="@drawable/txt_bg_transparent"
+                android:gravity="center_vertical"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/shidp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/fragment_count_item_number1"
+                android:layout_width="@dimen/baidp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="right"
+                android:text="单号"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeBig" />
+
+            <TextView
+                android:id="@+id/fragment_count_item_number"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/wudp"
+                android:layout_toRightOf="@+id/fragment_count_item_number1"
+                android:background="@drawable/txt_bg_transparent"
+                android:gravity="center_vertical"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/shidp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/fragment_count_item_address1"
+                android:layout_width="@dimen/baidp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="right"
+                android:text="寄件地址"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeBig" />
+
+            <TextView
+                android:id="@+id/fragment_count_item_address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/wudp"
+                android:layout_toRightOf="@+id/fragment_count_item_address1"
+                android:background="@drawable/txt_bg_transparent"
+                android:gravity="center_vertical"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/textSizeNormal" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

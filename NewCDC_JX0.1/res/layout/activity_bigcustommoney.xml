@@ -1,0 +1,159 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+<RelativeLayout
+        android:id="@+id/layout_title_function_4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleHeight"
+        android:background="@color/gree_my"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/give_btn_money_back"
+            android:layout_width="@dimen/titleHeight"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_back" />
+
+        <TextView
+            android:id="@+id/textView_title_function_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="记欠金额"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/linearlayout_margin"
+        android:layout_marginLeft="@dimen/linearlayout_margin"
+        android:layout_marginRight="@dimen/linearlayout_margin"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="@dimen/baidp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="大客户号 : "
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeNormal" />
+
+    
+         <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/txt_background"
+            android:gravity="center_vertical"
+        android:orientation="horizontal" >
+            <EditText
+            android:id="@+id/txtsender_name"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/dialog_text"
+            android:background="@null"
+            android:textSize="@dimen/textSizeNormal" />
+            <ImageButton
+                android:id="@+id/cha"
+                android:layout_width="45dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/selector_btn_sounds"
+                android:padding="@dimen/scrollview_margin" />
+          </LinearLayout>
+    </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/scrollview_margin"
+        android:layout_marginLeft="@dimen/linearlayout_margin"
+        android:layout_marginRight="@dimen/linearlayout_margin"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="@dimen/baidp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="支付方式: "
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <Spinner
+            android:id="@+id/pay_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/txt_background"
+            android:gravity="center_vertical"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/scrollview_margin"
+        android:layout_marginLeft="@dimen/linearlayout_margin"
+        android:layout_marginRight="@dimen/linearlayout_margin"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="@dimen/baidp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="实收金额: "
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <TextView
+            android:id="@+id/txtsender_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/txt_background"
+            android:gravity="center_vertical"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/scrollview_margin"
+        android:layout_marginLeft="@dimen/linearlayout_margin"
+        android:layout_marginRight="@dimen/linearlayout_margin"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="@dimen/baidp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="备注: "
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeNormal" />
+
+        <EditText
+            android:id="@+id/txtsender_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/txt_background"
+            android:gravity="center_vertical"
+            android:textColor="@color/dialog_text"
+            android:minEms="12"
+            
+            android:textSize="@dimen/textSizeNormal" />
+    </LinearLayout>
+</LinearLayout>

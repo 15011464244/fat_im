@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="78dp"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    >
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="78dp"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="2dp" >
+
+    <!--
+         <com.ems.express.ui.view.CircleImageView
+        android:id="@+id/image"
+        android:layout_width="68dp"
+        android:layout_height="match_parent"
+        android:padding="3dp"
+        android:src="@drawable/defualt_header"
+        android:layout_marginLeft="5dp" />
+    -->
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp" >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/img_personal_bg"
+            
+            android:src="@drawable/img_photo_frame" />
+
+        <LinearLayout
+            android:id="@+id/message_view"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/message_new"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/message_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_weight="4"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginLeft="8dp"
+            android:text="快递员甲"
+            android:textColor="#333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:text="你好，hello!"
+            android:textColor="#666"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    
+      <Button
+        android:id="@+id/message"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="29dp"
+        android:background="@drawable/btn_message_selector"
+        android:focusable="false"
+        android:textColor="#000000"
+        android:textSize="11sp" 
+        android:visibility="gone"/>
+    
+
+    
+         <Button
+        android:id="@+id/call"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="17dp"
+        android:layout_toLeftOf="@+id/message"
+        android:background="@drawable/btn_call_selector"
+        android:focusable="false"
+        android:textColor="#000000"
+        android:textSize="11sp" 
+        android:visibility="gone"/>
+    
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="08:30"
+        android:textColor="#666"
+        android:textSize="16sp" 
+       	android:layout_marginRight="10dp"
+       	android:layout_gravity="right"/>
+    
+</LinearLayout>
+</LinearLayout>

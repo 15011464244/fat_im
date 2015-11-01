@@ -1,0 +1,97 @@
+package com.ems.express.adapter.message;
+
+import java.io.Serializable;
+
+public class ReceivePaymnetBean implements Serializable{
+	
+	//以下的是支付的相关的字段
+	private int receiveId;
+	private String orderNum;//订单号
+	private String price;//应付金额
+	private String mobNum;//电话号
+	private String userCode;//揽投员的号
+	private String orgCode;//机构号
+	
+	
+    //	以下是积分相关的字段
+	private String mailStatus;      //订单的状态
+	private String messageTime; 
+	private String messageStatus;       //状态
+	private String  integral;        // 积分
+	private String invitedMobile;  // 邀请的手机号
+	
+    public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getMessageTime() {
+		return messageTime;
+	}
+	public void setMessageTime(String messageTime) {
+		this.messageTime = messageTime;
+	}
+	public String getMessageStatus() {
+		return messageStatus;
+	}
+	public void setMessageStatus(String messageStatus) {
+		this.messageStatus = messageStatus;
+	}
+	public String getIntegral() {
+		return integral;
+	}
+	public void setIntegral(String integral) {
+		this.integral = integral;
+	}
+	public String getInvitedMobile() {
+		return invitedMobile;
+	}
+	public void setInvitedMobile(String invitedMobile) {
+		this.invitedMobile = invitedMobile;
+	}
+	public String getMailStatus() {
+		return mailStatus;
+	}
+	public void setMailStatus(String mailStatus) {
+		this.mailStatus = mailStatus;
+	}
+	public int getReceiveId() {
+		return receiveId;
+	}
+	public void setReceiveId(int receiveId) {
+		this.receiveId = receiveId;
+	}
+	public String getOrderNum() {
+		return orderNum;
+	}
+	public void setOrderNum(String orderNum) {
+		this.orderNum = orderNum;
+	}
+	public String getMobNum() {
+		return mobNum;
+	}
+	public void setMobNum(String mobNum) {
+		this.mobNum = mobNum;
+	}
+
+    public String getUserCode() {
+		return userCode;
+	}
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+	public String getOrgCode() {
+		return orgCode;
+	}
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
+	}
+	public ReceivePaymnetBean() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+    
+}
